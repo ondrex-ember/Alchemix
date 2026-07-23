@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { BookOpen, Star, Save, Folder, Trash2 } from 'lucide-react';
+import { BookOpen, Star, Save, Folder, Trash2, Search, X } from 'lucide-react';
 import { Recipe } from '../types';
 import { RECIPES } from '../data';
 import { ingMap } from '../utils/gameUtils';
@@ -30,6 +30,7 @@ export const GrimoireTab: React.FC<GrimoireTabProps> = ({
 }) => {
   const [filter, setFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('name');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
 
   // Filters: 'all', 'discovered', 'hinted', 'favorites', and categories
@@ -45,12 +46,31 @@ export const GrimoireTab: React.FC<GrimoireTabProps> = ({
     if (filter === 'favorites') return isFav;
     if (categories.includes(filter)) return (isDisc || isHint) && r.category === filter;
 
-    // 'all' shows unlocked recipes plus a few silhouettes of locked items
     return true;
   });
 
-  // Sort
+  // Search filter
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase();
+    filteredRecipes = filteredRecipes.filter((r) => {
+      const isDisc = !!discovered[r.id || ''];
+      if (!isDisc) return false;
+      const matchName = r.name_cz.toLowerCase().includes(q) || r.name_lat.toLowerCase().includes(q);
+      const baseName = ingMap[r.base]?.name_cz || '';
+      const reqNames = r.req_ing.map((id) => ingMap[id]?.name_cz || '').join(' ');
+      return matchName || baseName.toLowerCase().includes(q) || reqNames.toLowerCase().includes(q);
+    });
+  }
+
+  // Sort: Discovered and Hinted ALWAYS come BEFORE undiscovered silhouettes!
   filteredRecipes = [...filteredRecipes].sort((a, b) => {
+    const aDisc = !!discovered[a.id || ''] || !!hinted[a.id || ''];
+    const bDisc = !!discovered[b.id || ''] || !!hinted[b.id || ''];
+
+    if (aDisc !== bDisc) {
+      return aDisc ? -1 : 1; // Discovered first!
+    }
+
     if (sortBy === 'value') return (b.value || 0) - (a.value || 0);
     if (sortBy === 'tier') return b.tier - a.tier;
     return a.name_cz.localeCompare(b.name_cz);
@@ -193,16 +213,36 @@ export const GrimoireTab: React.FC<GrimoireTabProps> = ({
           </button>
         </div>
 
-        {/* Sort select */}
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-          className="w-full bg-[#1a1208] border border-[#5c3d1a] hover:border-[#7a5128] text-[#b5945a] font-serif text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#c8961e] transition-colors"
-        >
-          <option value="name">Řadit podle: Název</option>
-          <option value="value">Řadit podle: Hodnota 🪙</option>
-          <option value="tier">Řadit podle: Úroveň (Tier)</option>
-        </select>
+        {/* Search input & Sort select */}
+        <div className="flex flex-col sm:flex-row gap-2">
+          <div className="relative flex-1">
+            <Search className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[#7a5f35]" />
+            <input
+              type="text"
+              placeholder="Hledat v receptáři..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-[#1a1208] border border-[#5c3d1a] hover:border-[#7a5128] text-[#e8d5a3] placeholder-[#7a5f35] font-serif text-xs rounded-lg pl-8 pr-7 py-1.5 focus:outline-none focus:border-[#c8961e] transition-colors"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2 top-2 text-[#7a5f35] hover:text-white"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="bg-[#1a1208] border border-[#5c3d1a] hover:border-[#7a5128] text-[#b5945a] font-serif text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#c8961e] transition-colors shrink-0"
+          >
+            <option value="name">Řadit podle: Název</option>
+            <option value="value">Řadit podle: Hodnota 🪙</option>
+            <option value="tier">Řadit podle: Úroveň (Tier)</option>
+          </select>
+        </div>
       </div>
 
       {/* Recipe list container */}

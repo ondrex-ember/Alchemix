@@ -30,7 +30,8 @@ import {
   CauldronResidue,
   GameState,
   BartexOffer,
-  BrewLogEntry
+  BrewLogEntry,
+  CraftedPotionItem
 } from './types';
 
 import {
@@ -75,6 +76,8 @@ export default function App() {
   // ══════════════════════════════════════════════════════
   const [gold, setGold] = useState<number>(150);
   const [inventory, setInventory] = useState<Record<string, number>>({});
+  const [potionInventory, setPotionInventory] = useState<Record<string, CraftedPotionItem>>({});
+  const [forageExp, setForageExp] = useState<number>(0);
   const [inventoryMeta, setInventoryMeta] = useState<Record<string, { purchasedDays: number[] }>>({});
   const [slots, setSlots] = useState<string[]>([]);
   const [process, setProcess] = useState<ProcessType>("Mix");
@@ -228,6 +231,8 @@ export default function App() {
         const d = JSON.parse(saved) as GameState;
         setGold(d.gold ?? 150);
         setInventory(d.inventory ?? {});
+        setPotionInventory(d.potionInventory ?? {});
+        setForageExp(d.forageExp ?? 0);
         setDiscovered(d.discovered ?? {});
         setHinted(d.hinted ?? {});
         setNotes(d.notes ?? {});
@@ -298,6 +303,8 @@ export default function App() {
     if (!d) return;
     setGold(d.gold ?? 150);
     setInventory(d.inventory ?? {});
+    setPotionInventory(d.potionInventory ?? {});
+    setForageExp(d.forageExp ?? 0);
     setDiscovered(d.discovered ?? {});
     setHinted(d.hinted ?? {});
     setNotes(d.notes ?? {});
@@ -355,7 +362,7 @@ export default function App() {
   // Sync to localstorage
   const saveGame = () => {
     const saveData: GameState = {
-      gold, inventory, slots, process, discovered, hinted, notes, favorites,
+      gold, inventory, potionInventory, forageExp, slots, process, discovered, hinted, notes, favorites,
       brewed, maxToxSeen, vigor, hunger, gameDay, inventoryMeta, questsCompleted,
       suspicion, inquisitionWarnings, upgrades, maxSlots, grindBonus, cellarBonus,
       silverLining, hasCalendar, residue, ailments: activeAilments, inspiredBrews,
@@ -989,6 +996,29 @@ export default function App() {
       };
       setBrewLog((prev) => [newLogEntry, ...prev].slice(0, 100));
 
+      // Store crafted potion or powder in laboratory warehouse stock (potionInventory)
+      const pKey = matched.id || matched.name_cz;
+      const isPowder = process === 'Grind';
+      setPotionInventory((prev) => {
+        const existing = prev[pKey] || {
+          id: matched.id || `crafted_${Date.now()}`,
+          name_cz: matched.name_cz,
+          category: isPowder ? 'Powder' : matched.category || 'Liquid',
+          value: matched.value || (isExact ? 15 : 2),
+          isExact,
+          count: 0,
+          icon: isPowder ? '🧪' : '🏺',
+          process,
+        };
+        return {
+          ...prev,
+          [pKey]: {
+            ...existing,
+            count: existing.count + 1,
+          },
+        };
+      });
+
       if (isExact && matched.id && !discovered[matched.id]) {
         setDiscovered((prev) => ({ ...prev, [matched.id!]: true }));
         addNotification(`✨ Nový alchymistický recept zaznamenán: ${matched.name_cz}!`, 'success');
@@ -1192,10 +1222,10 @@ export default function App() {
       )}
 
       {/* Medieval Header */}
-      <header className="border-b border-[#5c3d1a] bg-gradient-to-b from-[#1a1208] to-transparent py-4 px-6 sticky top-0 z-100 backdrop-blur-md">
+      <header className="border-b border-[#5c3d1a] bg-[#1a1208]/90 py-4 px-6 sticky top-0 z-100 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div>
-            <h1 className="font-serif text-3xl md:text-4xl text-[#f0c040] font-bold tracking-widest text-shadow shadow-[#c8961e]/40 flex items-center justify-center md:justify-start gap-2">
+            <h1 className="font-serif text-3xl md:text-4xl text-[#f0c040] font-bold tracking-widest flex items-center justify-center md:justify-start gap-2">
               ⚗️ AlchemiX
             </h1>
             <p className="text-[10px] text-[#7a5f35] font-serif uppercase tracking-wider italic mt-0.5">
@@ -1204,25 +1234,34 @@ export default function App() {
           </div>
 
           {/* Stat bar */}
-          <div className="flex gap-3 flex-wrap items-center justify-center text-xs font-serif">
-            <span className="flex items-center gap-1.5 text-white">
-              <Coins className="w-4 h-4 text-[#f0c040]" /> Zlato:{' '}
-              <strong className="text-[#f0c040]">{gold}</strong>
+          <div className="flex gap-2.5 flex-wrap items-center justify-center text-xs font-serif">
+            <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-white" title="Zlato v truhle">
+              <Coins className="w-3.5 h-3.5 text-[#f0c040]" />
+              <strong className="text-[#f0c040]">{gold} zl.</strong>
             </span>
-            <span className="text-[#b5945a]">
-              Uvařeno: <strong className="text-white">{brewed}×</strong>
+            <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-[#e8d5a3]" title="Energijní síla">
+              ⚡ Vigor: <strong className={vigor < 25 ? 'text-red-400 font-bold' : 'text-green-400 font-bold'}>{vigor}/100</strong>
             </span>
-            <span className="text-[#b5945a]">
-              Recepty: <strong className="text-white">{Object.keys(discovered).length}</strong>
+            <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-[#e8d5a3]" title="Stupeň hladu">
+              🍖 Hlad: <strong className={hunger > 50 ? 'text-amber-400 font-bold' : 'text-white'}>{hunger}/100</strong>
             </span>
-            <span className="text-[#b5945a]">
-              Den: <strong className="text-white">{gameDay}</strong>
+            <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-[#e8d5a3]" title="Splněné cechovní zakázky">
+              📜 Zakázky: <strong className="text-[#f0c040] font-bold">{questsCompleted}</strong>
+            </span>
+            <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-[#b5945a]" title="Počet uvařených lektvarů">
+              🧪 <strong className="text-white">{brewed}×</strong>
+            </span>
+            <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-[#b5945a]" title="Objevené recepty v grimoáru">
+              📖 <strong className="text-white">{Object.keys(discovered).length}/{RECIPES.length}</strong>
+            </span>
+            <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-[#b5945a]">
+              📅 Den <strong className="text-white">{gameDay}</strong>
             </span>
             <button
               onClick={() => setTutGuideOpen(true)}
               className="px-2.5 py-1 bg-gradient-to-r from-[#7a4a10] to-[#c8961e] hover:from-[#8a5a15] hover:to-[#e0a820] text-white border border-[#f0c040]/60 rounded-lg text-xs font-serif font-bold cursor-pointer shadow-md transition-all flex items-center gap-1.5"
             >
-              🎓 Škola alchymie ({Object.keys(tutRecipesCompleted).length}/3)
+              🎓 Škola ({Object.keys(tutRecipesCompleted).length}/3)
             </button>
             <button
               onClick={() => setSettingsOpen(true)}
@@ -1310,7 +1349,7 @@ export default function App() {
             </div>
 
             {/* Ingredient Type Filter Pills */}
-            <div className="flex gap-1 overflow-x-auto pb-1 text-[11px] font-serif no-scrollbar">
+            <div className="flex flex-wrap gap-1.5 py-1 text-[11px] font-serif">
               {[
                 { id: 'All', label: 'Všechny typy' },
                 { id: 'Herb', label: '🌿 Byliny' },
@@ -1671,25 +1710,134 @@ export default function App() {
 
           {activeCenterTab === 'stats' && (
             <div className="flex flex-col gap-4 bg-[#1a1208] border border-[#5c3d1a] rounded-xl p-4">
-              <h3 className="font-serif text-[#f0c040] text-sm font-bold tracking-wider pb-2 border-b border-[#5c3d1a]">
-                📜 Záznamy dílny
-              </h3>
+              <div className="flex justify-between items-center pb-2 border-b border-[#5c3d1a]">
+                <h3 className="font-serif text-[#f0c040] text-sm font-bold tracking-wider flex items-center gap-2">
+                  📜 Kronika & Záznamy dílny
+                </h3>
+                <span className="text-[11px] text-[#7a5f35] font-serif">
+                  Aktivních zakázek: <strong className="text-white">{quests.length}</strong>
+                </span>
+              </div>
+
+              {/* ACTIVE GUILD QUESTS IN KRONIKA */}
+              <div className="bg-[#120d07] border border-[#5c3d1a] rounded-xl p-3.5 flex flex-col gap-3">
+                <h4 className="font-serif text-xs text-[#f0c040] font-bold uppercase tracking-wider flex items-center justify-between">
+                  <span>📜 Aktivní cechovní zakázky ({quests.length})</span>
+                  <span className="text-[10px] text-[#b5945a] font-normal italic">
+                    Odevzdej přímo z truhly vytvořených lektvarů
+                  </span>
+                </h4>
+
+                {quests.length === 0 ? (
+                  <div className="text-center italic text-[#7a5f35] py-3 text-xs font-serif bg-black/20 rounded-lg">
+                    Nemáš žádné aktivní zakázky. Nové zakázky se objevují každé ráno!
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                    {quests.map((q) => {
+                      const matchingPotion = (Object.values(potionInventory) as CraftedPotionItem[]).find(
+                        p => p.count > 0 && (
+                          (q.targetRecipeId && p.id === q.targetRecipeId) ||
+                          (q.targetName && p.name_cz.toLowerCase().includes(q.targetName.toLowerCase()))
+                        )
+                      );
+                      const hasStock = Boolean(matchingPotion);
+
+                      return (
+                        <div
+                          key={q.id}
+                          className={`p-3 border rounded-xl flex flex-col justify-between gap-2 bg-[#1a1208] ${
+                            hasStock ? 'border-[#f0c040] ring-1 ring-[#f0c040]/30 shadow-md' : 'border-[#5c3d1a]'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2">
+                              <span className="text-lg">{q.customer.icon}</span>
+                              <div>
+                                <span className="font-serif text-xs font-bold text-[#e8d5a3] block">
+                                  {q.customer.name}
+                                </span>
+                                <span className="text-[10px] text-[#7a5f35] font-serif">
+                                  {q.customer.role || 'Zákazník cechu'}
+                                </span>
+                              </div>
+                            </div>
+                            <span className="text-xs text-[#f0c040] font-bold font-mono bg-black/40 px-2 py-0.5 rounded border border-[#5c3d1a]">
+                              💰 {q.reward} zl.
+                            </span>
+                          </div>
+
+                          <p className="text-xs text-[#b5945a] leading-relaxed italic">
+                            "{q.description}"
+                          </p>
+
+                          <div className="flex items-center justify-between border-t border-[#5c3d1a]/40 pt-2 text-[10px] font-serif">
+                            {hasStock ? (
+                              <span className="text-green-400 font-bold flex items-center gap-1">
+                                ✅ Máš v truhle ({matchingPotion?.name_cz})
+                              </span>
+                            ) : (
+                              <span className="text-amber-400/80 italic">
+                                ⏳ Poptává: {q.targetName || 'Speciální lektvar'}
+                              </span>
+                            )}
+
+                            <button
+                              onClick={() => {
+                                if (hasStock && matchingPotion) {
+                                  const pKey = matchingPotion.id || matchingPotion.name_cz;
+                                  setPotionInventory(prev => {
+                                    const cur = prev[pKey];
+                                    if (!cur) return prev;
+                                    return {
+                                      ...prev,
+                                      [pKey]: {
+                                        ...cur,
+                                        count: Math.max(0, cur.count - 1)
+                                      }
+                                    };
+                                  });
+                                  setGold(g => g + q.reward);
+                                  setQuestsCompleted(qc => qc + 1);
+                                  setQuests(prev => prev.filter(quest => quest.id !== q.id));
+                                  addNotification(`🎉 Zakázka pro ${q.customer.name} splněna! Získal jsi 🪙 ${q.reward} zl.!`, "success");
+                                } else {
+                                  addNotification(`❌ V truhle nemáš potřebný lektvar: ${q.targetName || 'požadovaný lektvar'}. Uvař ho u stolu!`, "error");
+                                }
+                              }}
+                              className={`px-3 py-1 font-serif font-bold text-xs rounded-lg cursor-pointer transition-all ${
+                                hasStock
+                                  ? 'bg-gradient-to-r from-[#c8961e] to-[#f0c040] text-black hover:brightness-110 shadow'
+                                  : 'bg-[#2a1d0d] text-[#7a5f35] border border-[#5c3d1a] hover:text-[#b5945a]'
+                              }`}
+                            >
+                              {hasStock ? '🤝 Odevzdat & Vybrat odměnu' : '🧪 Uvařit v dílně'}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* GENERAL STATS SUMMARY */}
               <div className="flex flex-col gap-2.5 text-xs text-[#b5945a] font-serif">
                 <div className="flex justify-between">
                   <span>📅 Celkový věk laboratoře:</span>
-                  <span className="text-white">{gameDay} dní</span>
+                  <span className="text-white font-bold">{gameDay} dní</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>🧪 Celkem uvařeno:</span>
-                  <span className="text-white">{brewed}×</span>
+                  <span>🧪 Celkem uvařeno preparátů:</span>
+                  <span className="text-white font-bold">{brewed}×</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>🎖️ Splněné smlouvy:</span>
-                  <span className="text-white">{questsCompleted} zakázek</span>
+                  <span>📜 Splněné cechovní smlouvy:</span>
+                  <span className="text-[#f0c040] font-bold">{questsCompleted} zakázek</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>👁️ Podezření u inkvizitorů:</span>
-                  <span className="text-red-400 font-bold">{suspicion}%</span>
+                  <span>👁️ Podezření u svaté inkvizice:</span>
+                  <span className={suspicion > 50 ? 'text-red-400 font-bold' : 'text-green-400 font-bold'}>{suspicion}%</span>
                 </div>
               </div>
 
@@ -1785,7 +1933,7 @@ export default function App() {
                       className="w-full bg-[#0d0a06] border border-[#5c3d1a] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#e8d5a3] placeholder-[#7a5f35] focus:outline-none focus:border-[#c8961e]"
                     />
                   </div>
-                  <div className="flex gap-1 overflow-x-auto text-[10px] font-serif">
+                  <div className="flex flex-wrap gap-1 text-[10px] font-serif">
                     {[
                       { id: 'all', label: 'Vše' },
                       { id: 'Mix', label: '🥄 Smíchat' },
@@ -2268,29 +2416,124 @@ export default function App() {
 
               {/* SELL panel */}
               {shopMode === 'sell' && (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-[300px] overflow-y-auto">
-                  {Object.entries(inventory).filter(([, qty]) => (qty as number) > 0).map(([id, qty]) => {
-                    const item = ingMap[id];
-                    if (!item) return null;
-                    const sellPrice = Math.max(1, Math.round(item.price * 0.6));
+                <div className="flex flex-col gap-4 max-h-[360px] overflow-y-auto pr-1">
+                  {/* Crafted Potions & Powders Stock Section */}
+                  <div>
+                    <h3 className="font-serif text-xs text-[#f0c040] font-bold uppercase tracking-wider mb-2 flex items-center justify-between border-b border-[#5c3d1a] pb-1">
+                      <span>🧪 Uvařené lektvary & preparáty v laboratoři</span>
+                      <span className="text-[10px] text-[#7a5f35] font-normal">
+                        ({(Object.values(potionInventory) as CraftedPotionItem[]).reduce((a: number, b: CraftedPotionItem) => a + (b.count || 0), 0)} ks v truhle)
+                      </span>
+                    </h3>
 
-                    return (
-                      <div
-                        key={id}
-                        onClick={() => {
-                          setGold(g => g + sellPrice);
-                          setInventory(prev => ({ ...prev, [id]: prev[id] - 1 }));
-                        }}
-                        className="p-2 border border-[#5c3d1a] hover:border-red-500 rounded-xl flex items-center justify-between cursor-pointer"
-                      >
-                        <div>
-                          <span className="font-serif text-[11px] block text-white font-bold">{item.name_cz}</span>
-                          <span className="text-[10px] text-[#2ecc71] font-serif">Prodej: 🪙 {sellPrice}</span>
-                        </div>
-                        <span className="text-[10px] text-[#7a5f35]">{qty}×</span>
+                    {(Object.values(potionInventory) as CraftedPotionItem[]).filter((p: CraftedPotionItem) => p.count > 0).length === 0 ? (
+                      <div className="text-center italic text-[#7a5f35] py-4 text-xs font-serif bg-[#0d0a06]/40 border border-[#5c3d1a]/40 rounded-xl">
+                        V truhle nemáš žádné vyrobené lektvary ani prášky.<br />
+                        Běž ke stolu a uvař nebo rozdrt preparáty!
                       </div>
-                    );
-                  })}
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {(Object.values(potionInventory) as CraftedPotionItem[]).filter((p: CraftedPotionItem) => p.count > 0).map((p: CraftedPotionItem) => {
+                          const unitPrice = p.isExact ? Math.max(1, p.value) : (p.value ? Math.max(0.5, p.value * 0.2) : 1);
+                          const isGuildWanted = quests.some(q => q.targetName === p.name_cz || q.targetRecipeId === p.id);
+                          const pKey = p.id || p.name_cz;
+
+                          return (
+                            <div
+                              key={pKey}
+                              className={`p-2.5 border rounded-xl flex items-center justify-between gap-2 transition-all ${
+                                isGuildWanted ? 'border-[#f0c040] bg-[#2a1d0d]' : 'border-[#5c3d1a] bg-[#0d0a06]/60'
+                              }`}
+                            >
+                              <div className="flex flex-col min-w-0 flex-1">
+                                <div className="flex items-center gap-1">
+                                  <span className="text-xs">{p.icon || '🧪'}</span>
+                                  <span className="font-serif text-xs font-bold text-[#e8d5a3] truncate">
+                                    {p.name_cz}
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-2 text-[10px] text-[#7a5f35] mt-0.5">
+                                  <span>{p.category}</span>
+                                  {isGuildWanted && (
+                                    <span className="text-amber-400 font-bold bg-amber-500/20 px-1 rounded text-[9px]">
+                                      📜 Poptává Cech!
+                                    </span>
+                                  )}
+                                </div>
+                                <span className="text-[11px] text-[#2ecc71] font-bold font-serif mt-0.5">
+                                  Cena: 🪙 {unitPrice} zl. {p.isExact ? '' : '(Bez cennosti)'}
+                                </span>
+                              </div>
+
+                              <div className="flex flex-col items-end gap-1 shrink-0">
+                                <span className="text-xs text-[#f0c040] font-mono font-bold bg-black/40 px-2 py-0.5 rounded border border-[#5c3d1a]">
+                                  {p.count}×
+                                </span>
+                                <div className="flex gap-1">
+                                  <button
+                                    onClick={() => {
+                                      setGold(g => Number((g + unitPrice).toFixed(2)));
+                                      setPotionInventory(prev => {
+                                        const cur = prev[pKey];
+                                        if (!cur) return prev;
+                                        return {
+                                          ...prev,
+                                          [pKey]: {
+                                            ...cur,
+                                            count: Math.max(0, cur.count - 1)
+                                          }
+                                        };
+                                      });
+                                      addNotification(`Prodal jsi 1× ${p.name_cz} za 🪙 ${unitPrice} zl.`, "success");
+                                    }}
+                                    className="px-2 py-0.5 bg-[#c8961e] hover:bg-[#f0c040] text-black text-[10px] font-serif font-bold rounded cursor-pointer"
+                                  >
+                                    Prodat 1×
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Raw Ingredients Section */}
+                  <div>
+                    <h3 className="font-serif text-xs text-[#f0c040] font-bold uppercase tracking-wider mb-2 flex items-center justify-between border-b border-[#5c3d1a] pb-1 pt-2">
+                      <span>🌿 Surové ingredience ze skladu</span>
+                      <span className="text-[10px] text-[#7a5f35] font-normal">
+                        ({Object.values(inventory).reduce((a: number, b) => a + (b as number), 0)} ks)
+                      </span>
+                    </h3>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                      {Object.entries(inventory).filter(([, qty]) => (qty as number) > 0).map(([id, qty]) => {
+                        const item = ingMap[id];
+                        if (!item) return null;
+                        const sellPrice = Math.max(1, Math.round(item.price * 0.6));
+
+                        return (
+                          <div
+                            key={id}
+                            onClick={() => {
+                              setGold(g => g + sellPrice);
+                              setInventory(prev => ({ ...prev, [id]: prev[id] - 1 }));
+                              addNotification(`Prodal jsi 1× ${item.name_cz} za 🪙 ${sellPrice} zl.`, "info");
+                            }}
+                            className="p-2 border border-[#5c3d1a] hover:border-[#2ecc71] rounded-xl flex items-center justify-between cursor-pointer bg-[#0d0a06]/40 transition-colors"
+                          >
+                            <div>
+                              <span className="font-serif text-[11px] block text-white font-bold">{item.name_cz}</span>
+                              <span className="text-[10px] text-[#2ecc71] font-serif">Prodej: 🪙 {sellPrice}</span>
+                            </div>
+                            <span className="text-[10px] text-[#f0c040] font-bold bg-black/40 px-1.5 py-0.5 rounded">{qty}×</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               )}
 

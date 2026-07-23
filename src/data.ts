@@ -4502,6 +4502,85 @@ export const INGREDIENTS: Ingredient[] = [
 
 export const RECIPES: Recipe[] = [
   {
+    "id": "POT_TOXIC_WINE",
+    "name_lat": "Vinum Atropinum",
+    "name_cz": "Jedovatý odvar z rulíku",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING02",
+    "req_ing": [
+      "ING07"
+    ],
+    "effect": "Smrtící toxický odvar vzniklý povařením rulíku zlomocného ve víně. Vysoce nebezpečný atropinový extrakt.",
+    "tags": [
+      "poison",
+      "toxic",
+      "shady",
+      "dangerous"
+    ],
+    "value": 45,
+    "color": "#6b1135"
+  },
+  {
+    "id": "POT_BELLADONNA_POWDER",
+    "name_lat": "Pulvis Atropae",
+    "name_cz": "Jemný prach z rulíku",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING07",
+    "req_ing": [],
+    "effect": "Jemně podrcený rulík zlomocný. Laboratorní mezi-surovina pro přípravu jedů a anestetik.",
+    "tags": [
+      "powder",
+      "toxic",
+      "intermediate"
+    ],
+    "value": 20,
+    "color": "#4a1235"
+  },
+  {
+    "id": "POT_HERBAL_POWDER",
+    "name_lat": "Pulvis Chamomillae",
+    "name_cz": "Zklidňující bylinný pudr",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING11",
+    "req_ing": [
+      "ING15"
+    ],
+    "effect": "Drcená směs heřmánku a křídy pro ošetření podrážděné pokožky a popálenin.",
+    "tags": [
+      "powder",
+      "soothing",
+      "healing"
+    ],
+    "value": 22,
+    "color": "#e8e0c8"
+  },
+  {
+    "id": "POT_CORAL_POWDER",
+    "name_lat": "Pulvis Corallii et Sulphuris",
+    "name_cz": "Korálový a sírový prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING42",
+    "req_ing": [
+      "ING49"
+    ],
+    "effect": "Jemný minerální prášek ze síry a červeného korálu. Slouží k vysušování ran a jako přísada pro alchymistické baze.",
+    "tags": [
+      "powder",
+      "mineral",
+      "preservation"
+    ],
+    "value": 40,
+    "color": "#d9534f"
+  },
+  {
     "id": "POT01",
     "name_lat": "Aqua Ardens",
     "name_cz": "Hořící voda",
@@ -12343,14 +12422,74 @@ export const FORAGE_LOCATIONS: ForageLocation[] = [
     vigorCost: 40,
     hungerCost: 30,
     possibleFinds: [
-      { id: "ING07", w: 5 }, { id: "ING09", w: 8 }, { id: "ING12", w: 15 },
-      { id: "ING62", w: 8 }, { id: "ING177", w: 20 }, { id: "ING178", w: 20 },
+      { id: "ING07", w: 15 }, { id: "ING09", w: 12 }, { id: "ING12", w: 15 },
+      { id: "ING62", w: 12 }, { id: "ING177", w: 20 }, { id: "ING178", w: 20 },
       { id: "ING179", w: 25 }
     ],
     minFinds: 1,
     maxFinds: 4,
     risks: [{ chance: 0.25, name: "Močálová zimnice", icon: "🤒", effectText: "-40 Vigor" }],
-    unlockAt: 5
+    unlockAt: 4
+  },
+  {
+    id: "FORAGE_CAVE",
+    name: "Měsíční sluj & Jeskyně",
+    icon: "🌙",
+    vigorCost: 45,
+    hungerCost: 35,
+    possibleFinds: [
+      { id: "ING65", w: 25 }, { id: "ING67", w: 20 }, { id: "ING68", w: 20 },
+      { id: "ING49", w: 15 }, { id: "ING42", w: 20 }, { id: "ING84", w: 10 }
+    ],
+    minFinds: 2,
+    maxFinds: 5,
+    risks: [{ chance: 0.22, name: "Zával v jeskyni", icon: "🦇", effectText: "-45 Vigor" }],
+    unlockAt: 6
+  },
+  {
+    id: "FORAGE_GRAVEYARD",
+    name: "Stará krypta a Pohřebiště",
+    icon: "🪦",
+    vigorCost: 50,
+    hungerCost: 40,
+    possibleFinds: [
+      { id: "ING07", w: 25 }, { id: "ING50", w: 20 }, { id: "ING22", w: 15 },
+      { id: "ING27", w: 15 }, { id: "ING08", w: 20 }
+    ],
+    minFinds: 2,
+    maxFinds: 5,
+    risks: [{ chance: 0.28, name: "Miasma a přízrak", icon: "👻", effectText: "-50 Vigor" }],
+    unlockAt: 8
+  },
+  {
+    id: "FORAGE_VOLCANO",
+    name: "Sopečné vřídlo a Gejzír",
+    icon: "🌋",
+    vigorCost: 55,
+    hungerCost: 45,
+    possibleFinds: [
+      { id: "ING42", w: 35 }, { id: "ING68", w: 25 }, { id: "ING82", w: 20 },
+      { id: "ING84", w: 20 }
+    ],
+    minFinds: 2,
+    maxFinds: 6,
+    risks: [{ chance: 0.30, name: "Sopečný popálenina", icon: "🔥", effectText: "-55 Vigor" }],
+    unlockAt: 10
+  },
+  {
+    id: "FORAGE_GARDEN",
+    name: "Královská botanická zahrada",
+    icon: "🌺",
+    vigorCost: 60,
+    hungerCost: 30,
+    possibleFinds: [
+      { id: "ING33", w: 15 }, { id: "ING15", w: 25 }, { id: "ING11", w: 25 },
+      { id: "ING01", w: 25 }, { id: "ING05", w: 10 }
+    ],
+    minFinds: 3,
+    maxFinds: 7,
+    risks: [{ chance: 0.15, name: "Zadržen strážemi", icon: "⚔️", effectText: "-30 Vigor" }],
+    unlockAt: 12
   }
 ];
 

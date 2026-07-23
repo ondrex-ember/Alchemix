@@ -208,9 +208,22 @@ export interface CauldronResidue {
 
 export type GameSaveData = GameState;
 
+export interface CraftedPotionItem {
+  id: string;
+  name_cz: string;
+  category: string;
+  value: number;
+  isExact: boolean;
+  count: number;
+  icon?: string;
+  process?: ProcessType;
+}
+
 export interface GameState {
   gold: number;
   inventory: Record<string, number>; // { [ingId]: qty }
+  potionInventory?: Record<string, CraftedPotionItem>; // Crafted potions in laboratory warehouse
+  forageExp?: number; // Expeditions EXP
   slots: string[]; // active items in cauldron
   process: ProcessType;
   discovered: Record<string, boolean>; // { [recipeId]: true }

@@ -37,12 +37,12 @@ export const THEMES: ThemeOption[] = [
   {
     id: 'light',
     name: '📜 Světlý Pergamen',
-    description: 'Světlý starodávný rukopis s jemně stínovanými kartami',
-    bgMain: '#f4ecd8',
-    bgCard: '#fffbf2',
-    borderColor: '#c4a682',
-    accentColor: '#a66a1a',
-    textColor: '#2b1b0e',
+    description: 'Čistý starodávný rukopis s jemným písmem a vyváženým kontrastem',
+    bgMain: '#f6f1e5',
+    bgCard: '#fdfbf7',
+    borderColor: '#d4c2a8',
+    accentColor: '#a36e1c',
+    textColor: '#2e2318',
   },
   {
     id: 'blue',

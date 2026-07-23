@@ -63,122 +63,139 @@ export const CauldronVisual: React.FC<CauldronVisualProps> = ({
         }
         transition={brewing ? { repeat: Infinity, duration: 0.6 } : undefined}
       >
-        <svg viewBox="0 0 180 140" className="w-full h-full">
-          {/* Legs */}
-          <line
-            x1="55"
-            y1="110"
-            x2="45"
-            y2="135"
-            stroke="#5c3d1a"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-          <line
-            x1="90"
-            y1="115"
-            x2="90"
-            y2="138"
-            stroke="#5c3d1a"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-          <line
-            x1="125"
-            y1="110"
-            x2="135"
-            y2="135"
-            stroke="#5c3d1a"
+        <svg viewBox="0 0 180 145" className="w-full h-full">
+          {/* 1. Floor shadow beneath hearth */}
+          <ellipse cx="90" cy="136" rx="52" ry="7" fill="rgba(20, 12, 5, 0.4)" />
+
+          {/* 2. Back Leg (Center-Back of Tripod) - situated behind fire */}
+          <path
+            d="M 90 106 L 90 124"
+            stroke="#3d2712"
             strokeWidth="6"
             strokeLinecap="round"
           />
 
-          {/* Fire glow */}
-          <ellipse cx="90" cy="128" rx="30" ry="6" fill="rgba(200,80,20,0.3)" />
+          {/* 3. Wood Logs & Charcoal Hearth */}
+          <g id="hearthLogs">
+            <path d="M 66 135 L 114 128" stroke="#2b1a0a" strokeWidth="5" strokeLinecap="round" />
+            <path d="M 114 135 L 66 128" stroke="#231407" strokeWidth="5" strokeLinecap="round" />
+            <ellipse cx="90" cy="131" rx="24" ry="5" fill="rgba(230, 90, 20, 0.4)" />
+            <ellipse cx="90" cy="131" rx="14" ry="3" fill="rgba(245, 170, 30, 0.6)" />
+          </g>
 
-          {/* Flickering flames */}
+          {/* 4. Fire glow and flickering flames */}
+          <ellipse cx="90" cy="126" rx="28" ry="7" fill="rgba(220,70,15,0.35)" />
+
           <g id="fireGroup">
-            {/* Flame 1 */}
+            {/* Flame Left */}
             <motion.ellipse
-              cx="80"
+              cx="78"
               cy="120"
-              rx="8"
-              ry="14"
-              fill="#e74c3c"
-              opacity="0.6"
+              rx="7"
+              ry="13"
+              fill="#d35400"
+              opacity="0.7"
               animate={{
-                scaleY: [1, 1.3, 0.8, 1.1, 1],
+                scaleY: [1, 1.3, 0.8, 1.2, 1],
                 y: [0, -3, 2, -1, 0],
               }}
               transition={{ repeat: Infinity, duration: 1.1, ease: 'easeInOut' }}
             />
-            {/* Flame 2 (Center) */}
+            {/* Flame Right */}
             <motion.ellipse
-              cx="90"
-              cy="115"
-              rx="10"
-              ry="18"
-              fill="#f39c12"
-              opacity="0.75"
-              animate={{
-                scaleY: [1, 1.4, 0.9, 1.2, 1],
-                y: [0, -5, 1, -2, 0],
-              }}
-              transition={{ repeat: Infinity, duration: 0.8, ease: 'easeInOut' }}
-            />
-            {/* Flame 3 */}
-            <motion.ellipse
-              cx="100"
+              cx="102"
               cy="120"
-              rx="8"
-              ry="14"
-              fill="#e74c3c"
-              opacity="0.6"
+              rx="7"
+              ry="13"
+              fill="#d35400"
+              opacity="0.7"
               animate={{
                 scaleY: [1, 1.2, 0.7, 1.3, 1],
                 y: [0, -4, 3, -1, 0],
               }}
               transition={{ repeat: Infinity, duration: 1.3, ease: 'easeInOut' }}
             />
-            {/* Flame 4 (Inner core) */}
+            {/* Center Main Flame */}
             <motion.ellipse
               cx="90"
-              cy="110"
-              rx="6"
-              ry="12"
-              fill="#f1c40f"
-              opacity="0.9"
+              cy="116"
+              rx="10"
+              ry="17"
+              fill="#e67e22"
+              opacity="0.85"
               animate={{
-                scaleY: [1, 1.5, 0.8, 1.3, 1],
+                scaleY: [1, 1.35, 0.85, 1.2, 1],
+                y: [0, -5, 1, -2, 0],
+              }}
+              transition={{ repeat: Infinity, duration: 0.85, ease: 'easeInOut' }}
+            />
+            {/* Inner Hot Flame Core */}
+            <motion.ellipse
+              cx="90"
+              cy="112"
+              rx="6"
+              ry="11"
+              fill="#f1c40f"
+              opacity="0.95"
+              animate={{
+                scaleY: [1, 1.4, 0.8, 1.25, 1],
                 y: [0, -6, 2, -3, 0],
               }}
-              transition={{ repeat: Infinity, duration: 0.7, ease: 'easeInOut' }}
+              transition={{ repeat: Infinity, duration: 0.65, ease: 'easeInOut' }}
             />
           </g>
 
-          {/* Cauldron Body */}
+          {/* 5. Cauldron Body */}
           <path
-            d="M45 75 Q40 105 55 110 Q90 120 125 110 Q140 105 135 75 Z"
-            fill="#2c1a08"
-            stroke="#5c3d1a"
-            strokeWidth="2.5"
-          />
-          <ellipse
-            cx="90"
-            cy="75"
-            rx="48"
-            ry="18"
-            fill="#241208"
+            d="M 42 72 Q 36 102 56 112 Q 90 120 124 112 Q 144 102 138 72 Z"
+            fill="#29190b"
             stroke="#5c3d1a"
             strokeWidth="2.5"
           />
 
-          {/* Liquid surface with smooth color transition */}
+          {/* 6. Front Tripod Legs (Attached to cauldron bottom, drawn IN FRONT of fire!) */}
+          <path
+            d="M 58 108 L 45 135"
+            stroke="#5c3d1a"
+            strokeWidth="6.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 58 108 L 45 135"
+            stroke="#3d2712"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 122 108 L 135 135"
+            stroke="#5c3d1a"
+            strokeWidth="6.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 122 108 L 135 135"
+            stroke="#3d2712"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+
+          {/* Cauldron Top Rim */}
+          <ellipse
+            cx="90"
+            cy="72"
+            rx="48"
+            ry="17"
+            fill="#1d1106"
+            stroke="#5c3d1a"
+            strokeWidth="2.5"
+          />
+
+          {/* Liquid surface */}
           <motion.ellipse
             cx="90"
-            cy="75"
+            cy="72"
             rx="44"
-            ry="15"
+            ry="14"
             animate={{ fill: liquidColor }}
             transition={{ duration: 0.5 }}
           />

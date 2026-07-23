@@ -1788,17 +1788,23 @@ export default function App() {
                                   let fulfilled = false;
                                   setPotionInventory(prev => {
                                     const entry = (Object.entries(prev) as [string, CraftedPotionItem][]).find(([k, item]) =>
-                                      (matchingPotion.id && (k === matchingPotion.id || item.id === matchingPotion.id)) ||
-                                      (matchingPotion.name_cz && item.name_cz === matchingPotion.name_cz)
+                                      ((matchingPotion.id && (k === matchingPotion.id || item.id === matchingPotion.id)) ||
+                                      (matchingPotion.name_cz && item.name_cz === matchingPotion.name_cz)) && item.count > 0
                                     );
                                     if (!entry || entry[1].count <= 0) return prev;
                                     const [dictKey, curItem] = entry;
                                     fulfilled = true;
+                                    const newCount = curItem.count - 1;
+                                    if (newCount <= 0) {
+                                      const next = { ...prev };
+                                      delete next[dictKey];
+                                      return next;
+                                    }
                                     return {
                                       ...prev,
                                       [dictKey]: {
                                         ...curItem,
-                                        count: Math.max(0, curItem.count - 1)
+                                        count: newCount
                                       }
                                     };
                                   });
@@ -2487,17 +2493,23 @@ export default function App() {
                                       let sold = false;
                                       setPotionInventory(prev => {
                                         const entry = (Object.entries(prev) as [string, CraftedPotionItem][]).find(([k, item]) => 
-                                          k === pKey || item.id === p.id || item.name_cz === p.name_cz
+                                          (k === pKey || item.id === p.id || item.name_cz === p.name_cz) && item.count > 0
                                         );
                                         if (!entry || entry[1].count <= 0) return prev;
 
                                         const [dictKey, curItem] = entry;
                                         sold = true;
+                                        const newCount = curItem.count - 1;
+                                        if (newCount <= 0) {
+                                          const next = { ...prev };
+                                          delete next[dictKey];
+                                          return next;
+                                        }
                                         return {
                                           ...prev,
                                           [dictKey]: {
                                             ...curItem,
-                                            count: Math.max(0, curItem.count - 1)
+                                            count: newCount
                                           }
                                         };
                                       });
@@ -2545,11 +2557,19 @@ export default function App() {
                               setInventory(prev => {
                                 if (!prev[id] || prev[id] <= 0) return prev;
                                 sold = true;
-                                return { ...prev, [id]: prev[id] - 1 };
+                                const newQty = prev[id] - 1;
+                                if (newQty <= 0) {
+                                  const next = { ...prev };
+                                  delete next[id];
+                                  return next;
+                                }
+                                return { ...prev, [id]: newQty };
                               });
                               if (sold) {
                                 setGold(g => g + sellPrice);
                                 addNotification(`Prodal jsi 1× ${item.name_cz} za 🪙 ${sellPrice} zl.`, "info");
+                              } else {
+                                addNotification(`❌ Tuto surovinu už nemáš v inventáři.`, "error");
                               }
                             }}
                             className="p-2 border border-[#5c3d1a] hover:border-[#2ecc71] rounded-xl flex items-center justify-between cursor-pointer bg-[#0d0a06]/40 transition-colors"

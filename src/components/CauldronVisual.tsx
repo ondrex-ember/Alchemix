@@ -63,77 +63,118 @@ export const CauldronVisual: React.FC<CauldronVisualProps> = ({
         }
         transition={brewing ? { repeat: Infinity, duration: 0.6 } : undefined}
       >
-        <svg viewBox="0 0 180 145" className="w-full h-full">
-          {/* 1. Floor shadow beneath hearth */}
-          <ellipse cx="90" cy="136" rx="52" ry="7" fill="rgba(20, 12, 5, 0.4)" />
+        <svg viewBox="0 0 180 145" className="w-full h-full drop-shadow-md">
+          <defs>
+            {/* Metallic Cast Iron / Bronze Gradients */}
+            <radialGradient id="cauldronBodyGrad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stopColor="#4a331e" />
+              <stop offset="50%" stopColor="#2b1a0a" />
+              <stop offset="100%" stopColor="#140b03" />
+            </radialGradient>
+            <linearGradient id="metalRimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#3d2712" />
+              <stop offset="30%" stopColor="#6e4a23" />
+              <stop offset="70%" stopColor="#4a3014" />
+              <stop offset="100%" stopColor="#231407" />
+            </linearGradient>
+            <linearGradient id="ironLegGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#5c3d1a" />
+              <stop offset="50%" stopColor="#3d2712" />
+              <stop offset="100%" stopColor="#1c1005" />
+            </linearGradient>
+            <radialGradient id="fireGlowGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="rgba(255, 140, 20, 0.6)" />
+              <stop offset="60%" stopColor="rgba(220, 60, 10, 0.3)" />
+              <stop offset="100%" stopColor="rgba(0, 0, 0, 0)" />
+            </radialGradient>
+          </defs>
 
-          {/* 2. Back Leg (Center-Back of Tripod) - situated behind fire */}
-          <path
-            d="M 90 106 L 90 124"
-            stroke="#3d2712"
-            strokeWidth="6"
+          {/* 1. Floor shadow beneath hearth & tripod */}
+          <ellipse cx="90" cy="138" rx="55" ry="6" fill="rgba(15, 9, 3, 0.5)" />
+
+          {/* 2. Rear Tripod Leg (behind the fire) */}
+          <line
+            x1="90"
+            y1="98"
+            x2="90"
+            y2="132"
+            stroke="#241508"
+            strokeWidth="5"
             strokeLinecap="round"
           />
 
-          {/* 3. Wood Logs & Charcoal Hearth */}
+          {/* 3. Wood Logs & Fire Hearth (Charcoal bed) */}
           <g id="hearthLogs">
-            <path d="M 66 135 L 114 128" stroke="#2b1a0a" strokeWidth="5" strokeLinecap="round" />
-            <path d="M 114 135 L 66 128" stroke="#231407" strokeWidth="5" strokeLinecap="round" />
-            <ellipse cx="90" cy="131" rx="24" ry="5" fill="rgba(230, 90, 20, 0.4)" />
-            <ellipse cx="90" cy="131" rx="14" ry="3" fill="rgba(245, 170, 30, 0.6)" />
+            {/* Crossed firewood logs */}
+            <path d="M 64 135 L 116 127" stroke="#211306" strokeWidth="5.5" strokeLinecap="round" />
+            <path d="M 116 135 L 64 127" stroke="#1c0f04" strokeWidth="5.5" strokeLinecap="round" />
+            <ellipse cx="90" cy="132" rx="28" ry="6" fill="url(#fireGlowGrad)" />
+            <ellipse cx="90" cy="131" rx="16" ry="3.5" fill="rgba(255, 180, 40, 0.7)" />
           </g>
 
           {/* 4. Fire glow and flickering flames */}
-          <ellipse cx="90" cy="126" rx="28" ry="7" fill="rgba(220,70,15,0.35)" />
-
           <g id="fireGroup">
-            {/* Flame Left */}
+            {/* Outer Flame Glow */}
+            <motion.ellipse
+              cx="90"
+              cy="124"
+              rx="22"
+              ry="12"
+              fill="#d35400"
+              opacity="0.65"
+              animate={{
+                scaleY: [1, 1.25, 0.85, 1.15, 1],
+                y: [0, -2, 1, -1, 0],
+              }}
+              transition={{ repeat: Infinity, duration: 0.9, ease: 'easeInOut' }}
+            />
+            {/* Left Flame */}
             <motion.ellipse
               cx="78"
               cy="120"
-              rx="7"
+              rx="6.5"
               ry="13"
-              fill="#d35400"
-              opacity="0.7"
+              fill="#e67e22"
+              opacity="0.8"
               animate={{
                 scaleY: [1, 1.3, 0.8, 1.2, 1],
-                y: [0, -3, 2, -1, 0],
+                y: [0, -4, 2, -1, 0],
               }}
               transition={{ repeat: Infinity, duration: 1.1, ease: 'easeInOut' }}
             />
-            {/* Flame Right */}
+            {/* Right Flame */}
             <motion.ellipse
               cx="102"
               cy="120"
-              rx="7"
+              rx="6.5"
               ry="13"
-              fill="#d35400"
-              opacity="0.7"
+              fill="#e67e22"
+              opacity="0.8"
               animate={{
                 scaleY: [1, 1.2, 0.7, 1.3, 1],
                 y: [0, -4, 3, -1, 0],
               }}
               transition={{ repeat: Infinity, duration: 1.3, ease: 'easeInOut' }}
             />
-            {/* Center Main Flame */}
+            {/* Main Center Flame */}
             <motion.ellipse
               cx="90"
-              cy="116"
-              rx="10"
+              cy="115"
+              rx="9.5"
               ry="17"
-              fill="#e67e22"
-              opacity="0.85"
+              fill="#f39c12"
+              opacity="0.9"
               animate={{
                 scaleY: [1, 1.35, 0.85, 1.2, 1],
                 y: [0, -5, 1, -2, 0],
               }}
-              transition={{ repeat: Infinity, duration: 0.85, ease: 'easeInOut' }}
+              transition={{ repeat: Infinity, duration: 0.8, ease: 'easeInOut' }}
             />
-            {/* Inner Hot Flame Core */}
+            {/* Inner Hot Core */}
             <motion.ellipse
               cx="90"
               cy="112"
-              rx="6"
+              rx="5.5"
               ry="11"
               fill="#f1c40f"
               opacity="0.95"
@@ -145,57 +186,87 @@ export const CauldronVisual: React.FC<CauldronVisualProps> = ({
             />
           </g>
 
-          {/* 5. Cauldron Body */}
+          {/* 5. Cauldron Main Belly (Cast Iron / Bronze Body) */}
           <path
-            d="M 42 72 Q 36 102 56 112 Q 90 120 124 112 Q 144 102 138 72 Z"
-            fill="#29190b"
+            d="M 42 70 C 34 100, 52 114, 90 114 C 128 114, 146 100, 138 70 Z"
+            fill="url(#cauldronBodyGrad)"
             stroke="#5c3d1a"
-            strokeWidth="2.5"
+            strokeWidth="2"
           />
 
-          {/* 6. Front Tripod Legs (Attached to cauldron bottom, drawn IN FRONT of fire!) */}
-          <path
-            d="M 58 108 L 45 135"
-            stroke="#5c3d1a"
-            strokeWidth="6.5"
+          {/* 6. Front Tripod Legs (Drawn over fire, attached to cauldron body) */}
+          {/* Left Leg Shadow & Body */}
+          <line
+            x1="56"
+            y1="104"
+            x2="42"
+            y2="136"
+            stroke="#1c1005"
+            strokeWidth="7"
             strokeLinecap="round"
           />
-          <path
-            d="M 58 108 L 45 135"
-            stroke="#3d2712"
-            strokeWidth="3.5"
+          <line
+            x1="56"
+            y1="104"
+            x2="42"
+            y2="136"
+            stroke="url(#ironLegGrad)"
+            strokeWidth="4.5"
             strokeLinecap="round"
           />
-          <path
-            d="M 122 108 L 135 135"
-            stroke="#5c3d1a"
-            strokeWidth="6.5"
+          {/* Right Leg Shadow & Body */}
+          <line
+            x1="124"
+            y1="104"
+            x2="138"
+            y2="136"
+            stroke="#1c1005"
+            strokeWidth="7"
             strokeLinecap="round"
           />
-          <path
-            d="M 122 108 L 135 135"
-            stroke="#3d2712"
-            strokeWidth="3.5"
+          <line
+            x1="124"
+            y1="104"
+            x2="138"
+            y2="136"
+            stroke="url(#ironLegGrad)"
+            strokeWidth="4.5"
             strokeLinecap="round"
           />
 
-          {/* Cauldron Top Rim */}
+          {/* 7. Reinforced Iron Collar / Rim with Rivets */}
           <ellipse
             cx="90"
-            cy="72"
+            cy="70"
             rx="48"
             ry="17"
-            fill="#1d1106"
+            fill="url(#metalRimGrad)"
             stroke="#5c3d1a"
             strokeWidth="2.5"
           />
 
-          {/* Liquid surface */}
+          {/* Decorative Medieval Rivets along collar */}
+          <circle cx="48" cy="72" r="1.5" fill="#f0c040" opacity="0.8" />
+          <circle cx="68" cy="80" r="1.5" fill="#f0c040" opacity="0.8" />
+          <circle cx="90" cy="83" r="1.5" fill="#f0c040" opacity="0.8" />
+          <circle cx="112" cy="80" r="1.5" fill="#f0c040" opacity="0.8" />
+          <circle cx="132" cy="72" r="1.5" fill="#f0c040" opacity="0.8" />
+
+          {/* Inner Cauldron Well */}
+          <ellipse
+            cx="90"
+            cy="70"
+            rx="44"
+            ry="14.5"
+            fill="#120a04"
+          />
+
+          {/* 8. Liquid Surface */}
           <motion.ellipse
             cx="90"
-            cy="72"
-            rx="44"
-            ry="14"
+            cy="71"
+            rx="42"
+            ry="13.5"
             animate={{ fill: liquidColor }}
             transition={{ duration: 0.5 }}
           />
@@ -268,21 +339,44 @@ export const CauldronVisual: React.FC<CauldronVisualProps> = ({
             transition={{ repeat: Infinity, duration: 2.1, ease: 'easeInOut', delay: 0.8 }}
           />
 
-          {/* Handles */}
+          {/* 9. Wrought-Iron Side Handles (Perspective fixed: smaller at back along rim, larger & wider toward front) */}
+          {/* Left Handle Shadow & Iron Loop */}
           <path
-            d="M42 80 Q30 75 35 62 Q40 50 52 58"
+            d="M 49 64 C 28 61, 22 75, 38 77"
             fill="none"
-            stroke="#5c3d1a"
-            strokeWidth="5"
+            stroke="#1c1005"
+            strokeWidth="6.5"
             strokeLinecap="round"
           />
           <path
-            d="M138 80 Q150 75 145 62 Q140 50 128 58"
+            d="M 49 64 C 28 61, 22 75, 38 77"
             fill="none"
-            stroke="#5c3d1a"
-            strokeWidth="5"
+            stroke="url(#ironLegGrad)"
+            strokeWidth="4.5"
             strokeLinecap="round"
           />
+          {/* Left Handle Mounting Brackets / Plates */}
+          <circle cx="49" cy="64" r="2.5" fill="#241508" stroke="#5c3d1a" strokeWidth="1" />
+          <circle cx="38" cy="77" r="3" fill="#241508" stroke="#5c3d1a" strokeWidth="1" />
+
+          {/* Right Handle Shadow & Iron Loop */}
+          <path
+            d="M 131 64 C 152 61, 158 75, 142 77"
+            fill="none"
+            stroke="#1c1005"
+            strokeWidth="6.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 131 64 C 152 61, 158 75, 142 77"
+            fill="none"
+            stroke="url(#ironLegGrad)"
+            strokeWidth="4.5"
+            strokeLinecap="round"
+          />
+          {/* Right Handle Mounting Brackets / Plates */}
+          <circle cx="131" cy="64" r="2.5" fill="#241508" stroke="#5c3d1a" strokeWidth="1" />
+          <circle cx="142" cy="77" r="3" fill="#241508" stroke="#5c3d1a" strokeWidth="1" />
 
           {/* Shine highlight */}
           <ellipse

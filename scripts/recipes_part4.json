@@ -1,0 +1,958 @@
+[
+  {
+    "id": "POT151",
+    "name_lat": "Balsamum Apoplecticum",
+    "name_cz": "Mrtvicový balzám",
+    "category": "Ointment",
+    "tier": 3,
+    "process": "Mix",
+    "base": "ING33",
+    "req_ing": [
+      "ING159",
+      "ING37"
+    ],
+    "effect": "Tře se pod nos při mrtvici a těžkých záchvatech hlavy.",
+    "tags": [
+      "brain",
+      "stimulant",
+      "rare"
+    ],
+    "value": 110,
+    "color": "#4a148c"
+  },
+  {
+    "id": "POT152",
+    "name_lat": "Magisterium Bismuthi",
+    "name_cz": "Bismutový magistr",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING72",
+    "req_ing": [
+      "POT141"
+    ],
+    "effect": "Sněhobílý prášek na záhadné žaludeční vředy a kosmetiku.",
+    "tags": [
+      "digestive",
+      "cosmetic"
+    ],
+    "value": 45,
+    "color": "#ffffff"
+  },
+  {
+    "id": "POT153",
+    "name_lat": "Magisterium Jovis",
+    "name_cz": "Cínový magistr",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING64",
+    "req_ing": [
+      "POT140"
+    ],
+    "effect": "Prášek ničí děložní vředy a výtoky.",
+    "tags": [
+      "blood",
+      "astringent"
+    ],
+    "value": 38,
+    "color": "#cfd8dc"
+  },
+  {
+    "id": "POT154",
+    "name_lat": "Magisterium Saturni",
+    "name_cz": "Olověný magistr (Cukr olova)",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING63",
+    "req_ing": [
+      "ING03"
+    ],
+    "effect": "Sladký prášek mírní záněty. POZOR: Extrémně toxický!",
+    "tags": [
+      "poison",
+      "cooling",
+      "dangerous"
+    ],
+    "value": 30,
+    "color": "#f5f5f5"
+  },
+  {
+    "id": "POT155",
+    "name_lat": "Magisterium Coralliorum",
+    "name_cz": "Korálový magistr",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Grind",
+    "base": "ING40",
+    "req_ing": [
+      "ING222"
+    ],
+    "effect": "Šumivý prášek stavící chrlění krve z plic.",
+    "tags": [
+      "blood",
+      "heart",
+      "precious"
+    ],
+    "value": 85,
+    "color": "#ef5350"
+  },
+  {
+    "id": "POT156",
+    "name_lat": "Magisterium Margaritarum",
+    "name_cz": "Perlový magistr",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Grind",
+    "base": "ING39",
+    "req_ing": [
+      "ING222"
+    ],
+    "effect": "Rozpustný nápoj z perel navracející omládnutí srdce.",
+    "tags": [
+      "heart",
+      "precious",
+      "tonic"
+    ],
+    "value": 140,
+    "color": "#f5f5f5"
+  },
+  {
+    "id": "POT157",
+    "name_lat": "Magisterium Sulphuris",
+    "name_cz": "Sírné mléko",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING67",
+    "req_ing": [
+      "ING75"
+    ],
+    "effect": "Jemný bílý prášek na čištění pleti od beďarů a lišejů.",
+    "tags": [
+      "skin",
+      "purifying"
+    ],
+    "value": 35,
+    "color": "#fffde7"
+  },
+  {
+    "id": "POT158",
+    "name_lat": "Arcanum Corallinum",
+    "name_cz": "Červený arkánum (Rtuť. nitrát)",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING62",
+    "req_ing": [
+      "POT141"
+    ],
+    "effect": "Jedovaté laxativum vytahující z těla starý syfilis.",
+    "tags": [
+      "poison",
+      "purgative",
+      "dangerous"
+    ],
+    "value": 95,
+    "color": "#e53935"
+  },
+  {
+    "id": "POT159",
+    "name_lat": "Crocus Martis",
+    "name_cz": "Železný šafrán",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING65",
+    "req_ing": [
+      "ING67"
+    ],
+    "effect": "Červený železitý prach na bledničku (chudokrevnost).",
+    "tags": [
+      "blood",
+      "tonic"
+    ],
+    "value": 25,
+    "color": "#d84315"
+  },
+  {
+    "id": "POT160",
+    "name_lat": "Crocus Metallorum",
+    "name_cz": "Kovový šafrán (Antimon)",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING69",
+    "req_ing": [
+      "ING77"
+    ],
+    "effect": "Vyvolává prudké zvracení, čistí žaludek od otrávenin.",
+    "tags": [
+      "emetic",
+      "purgative",
+      "poison"
+    ],
+    "value": 60,
+    "color": "#ff8f00"
+  },
+  {
+    "id": "POT161",
+    "name_lat": "Flores Sulphuris",
+    "name_cz": "Sírný květ",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Distill",
+    "base": "ING67",
+    "req_ing": [],
+    "effect": "Žlutý sublimovaný prach na astma a svrab.",
+    "tags": [
+      "lung",
+      "skin",
+      "purifying"
+    ],
+    "value": 15,
+    "color": "#ffee58"
+  },
+  {
+    "id": "POT162",
+    "name_lat": "Flores Salis Ammoniaci",
+    "name_cz": "Salmiakové květy",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING71",
+    "req_ing": [],
+    "effect": "Bílý ostrý prášek rozpouštějící hleny a horké otoky.",
+    "tags": [
+      "solvent",
+      "pungent"
+    ],
+    "value": 25,
+    "color": "#eceff1"
+  },
+  {
+    "id": "POT163",
+    "name_lat": "Flores Benzoes",
+    "name_cz": "Benzoinové květy (Kys. benzoová)",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING28",
+    "req_ing": [],
+    "effect": "Voňavá jehličková sůl na průdušky a kašel.",
+    "tags": [
+      "aromatic",
+      "lung"
+    ],
+    "value": 40,
+    "color": "#fff8e1"
+  },
+  {
+    "id": "POT164",
+    "name_lat": "Calx Viva Purificata",
+    "name_cz": "Čisté vápno",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING75",
+    "req_ing": [
+      "ING01"
+    ],
+    "effect": "Kyselé vápno na rozežírání planého masa v ranách.",
+    "tags": [
+      "caustic",
+      "wound"
+    ],
+    "value": 8,
+    "color": "#fafafa"
+  },
+  {
+    "id": "POT165",
+    "name_lat": "Cinnabaris Factitia",
+    "name_cz": "Umelá rumělka",
+    "category": "Material",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING62",
+    "req_ing": [
+      "ING67"
+    ],
+    "effect": "Syntetický jasně červený pigment ze rtuti a síry.",
+    "tags": [
+      "pigment",
+      "craft",
+      "dangerous"
+    ],
+    "value": 50,
+    "color": "#d50000"
+  },
+  {
+    "id": "POT166",
+    "name_lat": "Turpethum Minerale",
+    "name_cz": "Žlutý sirnan rtuťný",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING62",
+    "req_ing": [
+      "POT143"
+    ],
+    "effect": "Žluté dávidlo na francouzskou nemoc.",
+    "tags": [
+      "emetic",
+      "poison",
+      "dangerous"
+    ],
+    "value": 80,
+    "color": "#ffd600"
+  },
+  {
+    "id": "POT167",
+    "name_lat": "Butter of Antimony",
+    "name_cz": "Antimonové máslo",
+    "category": "Liquid",
+    "tier": 3,
+    "process": "Distill",
+    "base": "ING69",
+    "req_ing": [
+      "POT140"
+    ],
+    "effect": "Hustá leptavá tekutina vyžírající vzteklá kousnutí.",
+    "tags": [
+      "caustic",
+      "acid",
+      "dangerous"
+    ],
+    "value": 85,
+    "color": "#4e342e"
+  },
+  {
+    "id": "POT168",
+    "name_lat": "Regulus Antimonii",
+    "name_cz": "Antimonový král",
+    "category": "Material",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING69",
+    "req_ing": [
+      "ING65"
+    ],
+    "effect": "Čistý lesklý kov z antimonu, lije se z něj věčný dávivý kalíšek.",
+    "tags": [
+      "catalyst",
+      "craft"
+    ],
+    "value": 70,
+    "color": "#78909c"
+  },
+  {
+    "id": "POT169",
+    "name_lat": "Pulvis Algaroth",
+    "name_cz": "Algarothův prášek",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Boil",
+    "base": "POT167",
+    "req_ing": [
+      "ING01"
+    ],
+    "effect": "Bílý dávivý prach šetřící žaludek od pálení.",
+    "tags": [
+      "emetic",
+      "purgative"
+    ],
+    "value": 75,
+    "color": "#ffffff"
+  },
+  {
+    "id": "POT170",
+    "name_lat": "Glass of Antimony",
+    "name_cz": "Antimonové sklo",
+    "category": "Material",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING69",
+    "req_ing": [
+      "ING67"
+    ],
+    "effect": "Žlutohnědé průhledné sklo dávající víno na zvracení.",
+    "tags": [
+      "emetic",
+      "craft"
+    ],
+    "value": 65,
+    "color": "#ff6f00"
+  },
+  {
+    "id": "POT171",
+    "name_lat": "Kermes Minerale",
+    "name_cz": "Minerální kermes",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING69",
+    "req_ing": [
+      "ING76"
+    ],
+    "effect": "Červenohnědý prášek na hrudní zápal a kašel.",
+    "tags": [
+      "lung",
+      "expectorant"
+    ],
+    "value": 45,
+    "color": "#bf360c"
+  },
+  {
+    "id": "POT172",
+    "name_lat": "Tartarus Emeticus",
+    "name_cz": "Dávivý vinný kámen",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING78",
+    "req_ing": [
+      "ING69"
+    ],
+    "effect": "Nejznámější středomořské dávidlo na přežranost.",
+    "tags": [
+      "emetic",
+      "purgative"
+    ],
+    "value": 35,
+    "color": "#f5f5f5"
+  },
+  {
+    "id": "POT173",
+    "name_lat": "Tartarus Solubilis",
+    "name_cz": "Rozpustný vinný kámen",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING78",
+    "req_ing": [
+      "ING76"
+    ],
+    "effect": "Mírné prohánědlo rozpouštějící jaterní městnání.",
+    "tags": [
+      "purgative",
+      "liver"
+    ],
+    "value": 25,
+    "color": "#fff3e0"
+  },
+  {
+    "id": "POT174",
+    "name_lat": "Tartarus Vitriolatus",
+    "name_cz": "Síran draselný",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING76",
+    "req_ing": [
+      "POT143"
+    ],
+    "effect": "Prochlazující sůl na žlučové horečky.",
+    "tags": [
+      "cooling",
+      "purgative"
+    ],
+    "value": 30,
+    "color": "#e0f2f1"
+  },
+  {
+    "id": "POT175",
+    "name_lat": "Sal Tartari",
+    "name_cz": "Sůl vinného kamene",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Distill",
+    "base": "ING78",
+    "req_ing": [],
+    "effect": "Silná alkali na čištění olejů a neutralizaci kyselin.",
+    "tags": [
+      "caustic",
+      "purifying"
+    ],
+    "value": 15,
+    "color": "#fafafa"
+  },
+  {
+    "id": "POT176",
+    "name_lat": "Sal Volatile Oleosum",
+    "name_cz": "Aromatická prchavá sůl",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING71",
+    "req_ing": [
+      "ING76"
+    ],
+    "effect": "Lihové křísicí kapky při zástavě dechu a srdce.",
+    "tags": [
+      "stimulant",
+      "aromatic",
+      "heart"
+    ],
+    "value": 40,
+    "color": "#e0f7fa"
+  },
+  {
+    "id": "POT177",
+    "name_lat": "Sal Prunellae",
+    "name_cz": "Biskupská sůl",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING77",
+    "req_ing": [
+      "ING67"
+    ],
+    "effect": "Chladivé kuličky na pálení v krku a horké močení.",
+    "tags": [
+      "cooling",
+      "throat",
+      "diuretic"
+    ],
+    "value": 22,
+    "color": "#f1f8e9"
+  },
+  {
+    "id": "POT178",
+    "name_lat": "Sal Polychrestum",
+    "name_cz": "Sůl mnoha užitků",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING77",
+    "req_ing": [
+      "ING79"
+    ],
+    "effect": "Univerzální proháněcí a močopudná sůl.",
+    "tags": [
+      "purgative",
+      "diuretic"
+    ],
+    "value": 28,
+    "color": "#e8f5e9"
+  },
+  {
+    "id": "POT179",
+    "name_lat": "Sal Mirabile Glauberi",
+    "name_cz": "Glauberova zázračná sůl",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING68",
+    "req_ing": [
+      "POT143"
+    ],
+    "effect": "Slavné projímadlo čistící celou zažívací trubici.",
+    "tags": [
+      "purgative",
+      "purifying"
+    ],
+    "value": 35,
+    "color": "#e1f5fe"
+  },
+  {
+    "id": "POT180",
+    "name_lat": "Sal Ammoniacum Purificatum",
+    "name_cz": "Čištěný salmiak",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING71",
+    "req_ing": [
+      "ING01"
+    ],
+    "effect": "Chladí těžké záněty a odhání uhnilost.",
+    "tags": [
+      "cooling",
+      "antiseptic"
+    ],
+    "value": 18,
+    "color": "#eceff1"
+  },
+  {
+    "id": "POT181",
+    "name_lat": "Lapis Infernalis",
+    "name_cz": "Pekelný kamínek (Dusičnan stříbrný)",
+    "category": "Material",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING61",
+    "req_ing": [
+      "POT141"
+    ],
+    "effect": "Tyčinky na vypalování bradavic a planého masa. Černá na kůži!",
+    "tags": [
+      "caustic",
+      "wound",
+      "precious"
+    ],
+    "value": 95,
+    "color": "#212121"
+  },
+  {
+    "id": "POT182",
+    "name_lat": "Luna Caustica",
+    "name_cz": "Lunární leptadlo",
+    "category": "Material",
+    "tier": 3,
+    "process": "Mix",
+    "base": "ING61",
+    "req_ing": [
+      "POT143"
+    ],
+    "effect": "Mírnější stříbrné leptadlo na vředy.",
+    "tags": [
+      "caustic",
+      "precious"
+    ],
+    "value": 85,
+    "color": "#424242"
+  },
+  {
+    "id": "POT183",
+    "name_lat": "Aqua Divina",
+    "name_cz": "Božská voda",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING79",
+    "req_ing": [
+      "ING30"
+    ],
+    "effect": "Oční voda na šedý zákal a těžké záněty očí.",
+    "tags": [
+      "eye",
+      "cooling"
+    ],
+    "value": 40,
+    "color": "#b3e5fc"
+  },
+  {
+    "id": "POT184",
+    "name_lat": "Aqua Ophthalmica",
+    "name_cz": "Oční voda",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING167"
+    ],
+    "effect": "Chladivá voda při pálení očí od prachu a kouře.",
+    "tags": [
+      "eye",
+      "cooling"
+    ],
+    "value": 15,
+    "color": "#e0f7fa"
+  },
+  {
+    "id": "POT185",
+    "name_lat": "Aqua Phagedaenica",
+    "name_cz": "Žravá voda",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Mix",
+    "base": "ING75",
+    "req_ing": [
+      "ING62"
+    ],
+    "effect": "Žlutá voda vyžírající sněť a staré nehojící se vředy.",
+    "tags": [
+      "caustic",
+      "wound"
+    ],
+    "value": 35,
+    "color": "#ffee58"
+  },
+  {
+    "id": "POT186",
+    "name_lat": "Aqua Stygia",
+    "name_cz": "Styžská voda",
+    "category": "Liquid",
+    "tier": 3,
+    "process": "Mix",
+    "base": "POT140",
+    "req_ing": [
+      "ING62"
+    ],
+    "effect": "Rozpustí vše kromě skla. Jedovaté dýmy!",
+    "tags": [
+      "acid",
+      "poison",
+      "dangerous"
+    ],
+    "value": 110,
+    "color": "#37474f"
+  },
+  {
+    "id": "POT187",
+    "name_lat": "Ens Veneris",
+    "name_cz": "Jsoucno Venuše (Železo-salmiak)",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Distill",
+    "base": "ING65",
+    "req_ing": [
+      "ING71"
+    ],
+    "effect": "Purpurový prášek na křeče, červené krvinky a rickets.",
+    "tags": [
+      "blood",
+      "tonic",
+      "spasm"
+    ],
+    "value": 75,
+    "color": "#8e24aa"
+  },
+  {
+    "id": "POT188",
+    "name_lat": "Aurum Potabile",
+    "name_cz": "Pitné zlato",
+    "category": "Liquid",
+    "tier": 4,
+    "process": "Distill",
+    "base": "POT142",
+    "req_ing": [
+      "ING46"
+    ],
+    "effect": "Nejvyšší všelék rozpuštěného zlata. Ruší stáří a nemoci.",
+    "tags": [
+      "rare",
+      "precious",
+      "tonic",
+      "legendary"
+    ],
+    "value": 1000,
+    "color": "#ffd700"
+  },
+  {
+    "id": "POT189",
+    "name_lat": "Liquor Silicum",
+    "name_cz": "Křemičitý luh (Vodní sklo)",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING82",
+    "req_ing": [
+      "ING76"
+    ],
+    "effect": "Hustý roztok tuhnoucí na kamen. Konzervuje vejce a dřevo.",
+    "tags": [
+      "craft",
+      "binder"
+    ],
+    "value": 25,
+    "color": "#eceff1"
+  },
+  {
+    "id": "POT190",
+    "name_lat": "Oleum Tartari per Deliquium",
+    "name_cz": "Olej z vinného kamene",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Mix",
+    "base": "ING78",
+    "req_ing": [
+      "ING01"
+    ],
+    "effect": "Hustý alkalický olej na čištění skvrn a zjemnění pleti.",
+    "tags": [
+      "cosmetic",
+      "purifying"
+    ],
+    "value": 20,
+    "color": "#fff3e0"
+  },
+  {
+    "id": "POT191",
+    "name_lat": "Stibium Praeparatum",
+    "name_cz": "Upravený antimon",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING69",
+    "req_ing": [
+      "ING68"
+    ],
+    "effect": "Jemný prach na líčení očí a čistění krve.",
+    "tags": [
+      "cosmetic",
+      "eye"
+    ],
+    "value": 22,
+    "color": "#212121"
+  },
+  {
+    "id": "POT192",
+    "name_lat": "Ethiops Mineralis",
+    "name_cz": "Černý minerál",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING62",
+    "req_ing": [
+      "ING67"
+    ],
+    "effect": "Černý prášek hubící střevní červy a tasemnice.",
+    "tags": [
+      "anti-worm",
+      "poison"
+    ],
+    "value": 30,
+    "color": "#000000"
+  },
+  {
+    "id": "POT193",
+    "name_lat": "Cinnabaris Nativum",
+    "name_cz": "Přírodní rumělka",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING43",
+    "req_ing": [],
+    "effect": "Drcená ruda na červené barvivo a zklidnění šílenství.",
+    "tags": [
+      "pigment",
+      "sedative"
+    ],
+    "value": 35,
+    "color": "#c62828"
+  },
+  {
+    "id": "POT194",
+    "name_lat": "Lapis Medicamentosus",
+    "name_cz": "Lékařský kámen",
+    "category": "Material",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING42",
+    "req_ing": [
+      "ING79",
+      "ING75"
+    ],
+    "effect": "Tvrdý kámen, jehož roztok vysušuje hnisavé rány.",
+    "tags": [
+      "astringent",
+      "wound"
+    ],
+    "value": 40,
+    "color": "#d7ccc8"
+  },
+  {
+    "id": "POT195",
+    "name_lat": "Pulvis Catharticus",
+    "name_cz": "Projímací prášek",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING109",
+    "req_ing": [
+      "ING78"
+    ],
+    "effect": "Běžný prach na vyprázdnění střev před operací.",
+    "tags": [
+      "purgative"
+    ],
+    "value": 12,
+    "color": "#8d6e63"
+  },
+  {
+    "id": "POT196",
+    "name_lat": "Pulvis Anodynus",
+    "name_cz": "Prášek proti bolesti",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING06",
+    "req_ing": [
+      "ING152"
+    ],
+    "effect": "Mírní kruté bolesti zubů a kloubů.",
+    "tags": [
+      "analgesic",
+      "narcotic"
+    ],
+    "value": 35,
+    "color": "#4e342e"
+  },
+  {
+    "id": "POT197",
+    "name_lat": "Pulvis Febrifugus",
+    "name_cz": "Protihoroučkový prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING10",
+    "req_ing": [
+      "ING212"
+    ],
+    "effect": "Sráží zimničné třesavky a střídavé horečky.",
+    "tags": [
+      "anti-fever",
+      "analgesic"
+    ],
+    "value": 25,
+    "color": "#aed581"
+  },
+  {
+    "id": "POT198",
+    "name_lat": "Pulvis Diureticus",
+    "name_cz": "Močopudný prášek",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING77",
+    "req_ing": [
+      "ING195"
+    ],
+    "effect": "Vyhání přebytečnou vodu z břicha a nohou.",
+    "tags": [
+      "diuretic"
+    ],
+    "value": 15,
+    "color": "#dcedc8"
+  },
+  {
+    "id": "POT199",
+    "name_lat": "Pulvis Vermifugus",
+    "name_cz": "Prášek proti červům",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING112",
+    "req_ing": [
+      "ING86"
+    ],
+    "effect": "Vyhání hlisty u dětí.",
+    "tags": [
+      "anti-worm"
+    ],
+    "value": 10,
+    "color": "#558b2f"
+  },
+  {
+    "id": "POT200",
+    "name_lat": "Pulvis Hemostaticus",
+    "name_cz": "Stavěcí prášek",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING49",
+    "req_ing": [
+      "ING41"
+    ],
+    "effect": "Sypaný do rány okamžitě sráží krev.",
+    "tags": [
+      "blood",
+      "wound"
+    ],
+    "value": 18,
+    "color": "#b71c1c"
+  }
+]

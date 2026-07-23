@@ -1,0 +1,971 @@
+[
+  {
+    "id": "POT201",
+    "name_lat": "Pulvis Cephalicus",
+    "name_cz": "Hlavový prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING16",
+    "req_ing": [
+      "ING90"
+    ],
+    "effect": "Šňupací prach na čištění hlavy od těžkých par.",
+    "tags": [
+      "brain",
+      "aromatic"
+    ],
+    "value": 22,
+    "color": "#7e57c2"
+  },
+  {
+    "id": "POT202",
+    "name_lat": "Pulvis Sanguinis",
+    "name_cz": "Krevní prach",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING49",
+    "req_ing": [],
+    "effect": "Rychlé zastavení krvácení z nosu.",
+    "tags": [
+      "blood",
+      "astringent"
+    ],
+    "value": 12,
+    "color": "#c62828"
+  },
+  {
+    "id": "POT203",
+    "name_lat": "Pulvis Lithontripticus",
+    "name_cz": "Kamenodrtič",
+    "category": "Powder",
+    "tier": 3,
+    "process": "Grind",
+    "base": "ING181",
+    "req_ing": [
+      "ING175"
+    ],
+    "effect": "Drtí mechýřové kameny na jemný písek.",
+    "tags": [
+      "diuretic",
+      "purifying"
+    ],
+    "value": 65,
+    "color": "#b0bec5"
+  },
+  {
+    "id": "POT204",
+    "name_lat": "Pulvis Anti-asthmaticus",
+    "name_cz": "Zádušní prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING88",
+    "req_ing": [
+      "ING209"
+    ],
+    "effect": "Uvolňuje stažené průdušky při záduše.",
+    "tags": [
+      "lung",
+      "stimulant"
+    ],
+    "value": 38,
+    "color": "#81c784"
+  },
+  {
+    "id": "POT205",
+    "name_lat": "Pulvis Alexipharmacus",
+    "name_cz": "Protijedový prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING48",
+    "req_ing": [
+      "ING14"
+    ],
+    "effect": "Mírní účinky snědených jedovatých hub a trav.",
+    "tags": [
+      "anti-poison"
+    ],
+    "value": 30,
+    "color": "#a1887f"
+  },
+  {
+    "id": "POT206",
+    "name_lat": "Pulvis Spleneticus",
+    "name_cz": "Slezinový prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING131",
+    "req_ing": [
+      "ING204"
+    ],
+    "effect": "Odstraňuje tvrdost a bolest pod levým žebrem.",
+    "tags": [
+      "liver",
+      "cooling"
+    ],
+    "value": 24,
+    "color": "#9e9d24"
+  },
+  {
+    "id": "POT207",
+    "name_lat": "Pulvis Hepatica",
+    "name_cz": "Jaterní prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING12",
+    "req_ing": [
+      "ING137"
+    ],
+    "effect": "Čistí žloutenkovou játru a otvírá průchody.",
+    "tags": [
+      "liver",
+      "purifying"
+    ],
+    "value": 28,
+    "color": "#fbc02d"
+  },
+  {
+    "id": "POT208",
+    "name_lat": "Pulvis Hystericus",
+    "name_cz": "Hysterický prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING188",
+    "req_ing": [
+      "ING13"
+    ],
+    "effect": "Vypuzuje zbloudilou dělohu zpět na její místo.",
+    "tags": [
+      "spasm",
+      "pungent"
+    ],
+    "value": 32,
+    "color": "#3e2723"
+  },
+  {
+    "id": "POT209",
+    "name_lat": "Pulvis Arthriticus",
+    "name_cz": "Pakostní prášek",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING238",
+    "req_ing": [
+      "ING60"
+    ],
+    "effect": "Vyhání usazenou kyselinu z oteklých palců u nohou.",
+    "tags": [
+      "joint",
+      "diuretic"
+    ],
+    "value": 30,
+    "color": "#dce775"
+  },
+  {
+    "id": "POT210",
+    "name_lat": "Pulvis Ophtalmicus",
+    "name_cz": "Oční prach",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING80",
+    "req_ing": [
+      "ING15"
+    ],
+    "effect": "Fouká se trubičkou do oka k odstranění bělma.",
+    "tags": [
+      "eye",
+      "cooling"
+    ],
+    "value": 25,
+    "color": "#e0f7fa"
+  },
+  {
+    "id": "POT211",
+    "name_lat": "Pulvis Cosmeticus",
+    "name_cz": "Krášlicí prach",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING81",
+    "req_ing": [
+      "ING235"
+    ],
+    "effect": "Bělí tváře a pohlcuje noční pot.",
+    "tags": [
+      "cosmetic",
+      "skin"
+    ],
+    "value": 15,
+    "color": "#ffffff"
+  },
+  {
+    "id": "POT212",
+    "name_lat": "Pulvis Fumalis",
+    "name_cz": "Vykuřovací prach",
+    "category": "Powder",
+    "tier": 1,
+    "process": "Grind",
+    "base": "ING27",
+    "req_ing": [
+      "ING28"
+    ],
+    "effect": "Sypaný na řeřavé uhlíky voňavě čistí vzduch od nemocí.",
+    "tags": [
+      "aromatic",
+      "purifying"
+    ],
+    "value": 14,
+    "color": "#d7ccc8"
+  },
+  {
+    "id": "POT213",
+    "name_lat": "Pulvis Pyrius",
+    "name_cz": "Střelný prach",
+    "category": "Powder",
+    "tier": 2,
+    "process": "Grind",
+    "base": "ING77",
+    "req_ing": [
+      "ING67",
+      "ING170"
+    ],
+    "effect": "Černý prach do hmoždířů a mušket. Výbušné!",
+    "tags": [
+      "explosive",
+      "craft",
+      "dangerous"
+    ],
+    "value": 40,
+    "color": "#212121"
+  },
+  {
+    "id": "POT214",
+    "name_lat": "Sapo Medicatus",
+    "name_cz": "Lékařské mýdlo",
+    "category": "Ointment",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING05",
+    "req_ing": [
+      "ING76"
+    ],
+    "effect": "Smyje špínu z vředů a změkčuje ztvrdlé strupy.",
+    "tags": [
+      "purifying",
+      "skin"
+    ],
+    "value": 12,
+    "color": "#f5f5f5"
+  },
+  {
+    "id": "POT215",
+    "name_lat": "Sapo Hispanica",
+    "name_cz": "Španělské mýdlo",
+    "category": "Ointment",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING05",
+    "req_ing": [
+      "ING75",
+      "ING76"
+    ],
+    "effect": "Luxusní bílé mýdlo k mytí pánů a kousavých vředů.",
+    "tags": [
+      "cosmetic",
+      "purifying"
+    ],
+    "value": 25,
+    "color": "#ffffff"
+  },
+  {
+    "id": "POT216",
+    "name_lat": "Sapo Tartareus",
+    "name_cz": "Vinné mýdlo",
+    "category": "Ointment",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING78",
+    "req_ing": [
+      "ING05"
+    ],
+    "effect": "Mýdlo rozpouštějící zatvrdliny v kloubech.",
+    "tags": [
+      "joint",
+      "purifying"
+    ],
+    "value": 22,
+    "color": "#f5f5f5"
+  },
+  {
+    "id": "POT217",
+    "name_lat": "Sapo Sulphuratus",
+    "name_cz": "Sírné mýdlo",
+    "category": "Ointment",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING67",
+    "req_ing": [
+      "ING05"
+    ],
+    "effect": "Nemilosrdně ničí svrab a kožní parazity.",
+    "tags": [
+      "skin",
+      "purifying"
+    ],
+    "value": 18,
+    "color": "#fff59d"
+  },
+  {
+    "id": "POT218",
+    "name_lat": "Rotulae Menthae",
+    "name_cz": "Mátové čočky",
+    "category": "Pill",
+    "tier": 1,
+    "process": "Mix",
+    "base": "ING04",
+    "req_ing": [
+      "ING58"
+    ],
+    "effect": "Cukrové placičky chladící hrdlo a oslažující dech.",
+    "tags": [
+      "aromatic",
+      "sweet"
+    ],
+    "value": 8,
+    "color": "#b2dfdb"
+  },
+  {
+    "id": "POT219",
+    "name_lat": "Rotulae Cinnamonii",
+    "name_cz": "Skořicové čočky",
+    "category": "Pill",
+    "tier": 1,
+    "process": "Mix",
+    "base": "ING04",
+    "req_ing": [
+      "ING25"
+    ],
+    "effect": "Hřejivé sladkosti pro slabé srdce a studený žaludek.",
+    "tags": [
+      "warming",
+      "sweet",
+      "spice"
+    ],
+    "value": 10,
+    "color": "#d7ccc8"
+  },
+  {
+    "id": "POT220",
+    "name_lat": "Rotulae Berberum",
+    "name_cz": "Dřišťálové čočky",
+    "category": "Pill",
+    "tier": 1,
+    "process": "Mix",
+    "base": "ING04",
+    "req_ing": [
+      "ING131"
+    ],
+    "effect": "Kyselé bonbóny na hašení žízně v horké horečce.",
+    "tags": [
+      "cooling",
+      "sweet"
+    ],
+    "value": 9,
+    "color": "#ff8a80"
+  },
+  {
+    "id": "POT221",
+    "name_lat": "Morsuli Stomachici",
+    "name_cz": "Žaludeční kousky",
+    "category": "Electuary",
+    "tier": 1,
+    "process": "Mix",
+    "base": "ING04",
+    "req_ing": [
+      "ING24"
+    ],
+    "effect": "Kořeněný marcipán po hostině na dobré strávení.",
+    "tags": [
+      "digestive",
+      "sweet",
+      "spice"
+    ],
+    "value": 12,
+    "color": "#ffe0b2"
+  },
+  {
+    "id": "POT222",
+    "name_lat": "Morsuli Imperatoris",
+    "name_cz": "Císařské kousky",
+    "category": "Electuary",
+    "tier": 3,
+    "process": "Mix",
+    "base": "ING04",
+    "req_ing": [
+      "ING22",
+      "ING130"
+    ],
+    "effect": "Drahocenná konfekce posilující mozkové komory.",
+    "tags": [
+      "brain",
+      "precious",
+      "sweet"
+    ],
+    "value": 65,
+    "color": "#ffd54f"
+  },
+  {
+    "id": "POT223",
+    "name_lat": "Confectio de Hyacintho",
+    "name_cz": "Hyacintová konfekce",
+    "category": "Electuary",
+    "tier": 3,
+    "process": "Mix",
+    "base": "POT07",
+    "req_ing": [
+      "ING197",
+      "ING40"
+    ],
+    "effect": "Lék proti strachu, srdečnímu bušení a melancholii.",
+    "tags": [
+      "heart",
+      "calming",
+      "precious"
+    ],
+    "value": 85,
+    "color": "#e1bee7"
+  },
+  {
+    "id": "POT224",
+    "name_lat": "Pastilli de Fumaria",
+    "name_cz": "Zemědýmové pastilky",
+    "category": "Pill",
+    "tier": 1,
+    "process": "Mix",
+    "base": "ING137",
+    "req_ing": [
+      "ING04"
+    ],
+    "effect": "Čistí pleť od svrabu a pálivé vyrážky.",
+    "tags": [
+      "skin",
+      "purifying"
+    ],
+    "value": 11,
+    "color": "#c8e6c9"
+  },
+  {
+    "id": "POT225",
+    "name_lat": "Gelatina C cervi",
+    "name_cz": "Jelení rosol",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING38",
+    "req_ing": [
+      "ING01"
+    ],
+    "effect": "Výživný Rosol pro těžce nemocné, staví průjmy.",
+    "tags": [
+      "tonic",
+      "astringent"
+    ],
+    "value": 25,
+    "color": "#fff8e1"
+  },
+  {
+    "id": "POT226",
+    "name_lat": "Cydoniatum",
+    "name_cz": "Kdoulový rosol",
+    "category": "Electuary",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING04",
+    "req_ing": [
+      "ING243"
+    ],
+    "effect": "Svíravá sladkost posilující ochablý žaludek.",
+    "tags": [
+      "astringent",
+      "sweet",
+      "digestive"
+    ],
+    "value": 15,
+    "color": "#ffe082"
+  },
+  {
+    "id": "POT227",
+    "name_lat": "Rob de Sambuco",
+    "name_cz": "Bezový povidla",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING208",
+    "req_ing": [
+      "ING04"
+    ],
+    "effect": "Hustá šťáva vyhánějící pot při těžkém nachlazení.",
+    "tags": [
+      "anti-fever",
+      "sweet"
+    ],
+    "value": 14,
+    "color": "#4a148c"
+  },
+  {
+    "id": "POT228",
+    "name_lat": "Rob Juniperinum",
+    "name_cz": "Jalovcová povidla",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING190",
+    "req_ing": [
+      "ING04"
+    ],
+    "effect": "Čistí ledviny od písku a prohřívá tělo.",
+    "tags": [
+      "diuretic",
+      "warming"
+    ],
+    "value": 16,
+    "color": "#1b5e20"
+  },
+  {
+    "id": "POT229",
+    "name_lat": "Rob Ribium",
+    "name_cz": "Rybízová povidla",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING110",
+    "req_ing": [
+      "ING04"
+    ],
+    "effect": "Osvěžuje v palčivých letních horečkách.",
+    "tags": [
+      "cooling",
+      "sweet"
+    ],
+    "value": 10,
+    "color": "#b71c1c"
+  },
+  {
+    "id": "POT230",
+    "name_lat": "Succus Glycyrrhizae",
+    "name_cz": "Lékořicový obušek (Pendrek)",
+    "category": "Material",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING211"
+    ],
+    "effect": "Černá sladká hmota na obalení kašlajícího krku.",
+    "tags": [
+      "lung",
+      "demulcent",
+      "sweet"
+    ],
+    "value": 8,
+    "color": "#212121"
+  },
+  {
+    "id": "POT231",
+    "name_lat": "Acanthium Extractum",
+    "name_cz": "Ostropestřcový výtažek",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING204"
+    ],
+    "effect": "Hojí otrávená játra a žlučník.",
+    "tags": [
+      "liver",
+      "purifying"
+    ],
+    "value": 28,
+    "color": "#33691e"
+  },
+  {
+    "id": "POT232",
+    "name_lat": "Extractum Absinthii",
+    "name_cz": "Pelyňkový výtažek",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING56"
+    ],
+    "effect": "Hustý hořký extrakt probouzející mrtvý žaludek.",
+    "tags": [
+      "bitter",
+      "digestive"
+    ],
+    "value": 22,
+    "color": "#2e7d32"
+  },
+  {
+    "id": "POT233",
+    "name_lat": "Extractum Cardui Benedicti",
+    "name_cz": "Benediktový výtažek",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING225"
+    ],
+    "effect": "Mocné hořké tonikum proti moru a žluči.",
+    "tags": [
+      "bitter",
+      "anti-plague"
+    ],
+    "value": 25,
+    "color": "#558b2f"
+  },
+  {
+    "id": "POT234",
+    "name_lat": "Extractum Gentianae",
+    "name_cz": "Enciánový výtažek",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING109"
+    ],
+    "effect": "Nejhořčejší výtažek na světě — ničí střevní červy.",
+    "tags": [
+      "bitter",
+      "anti-worm"
+    ],
+    "value": 30,
+    "color": "#3e2723"
+  },
+  {
+    "id": "POT235",
+    "name_lat": "Extractum Hellebori",
+    "name_cz": "Čemeřicový výtažek",
+    "category": "Liquid",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING254"
+    ],
+    "effect": "Vypuzuje černou žluč a šílenství. Smrtelně nebezpečné!",
+    "tags": [
+      "poison",
+      "purgative",
+      "dangerous"
+    ],
+    "value": 75,
+    "color": "#000000"
+  },
+  {
+    "id": "POT236",
+    "name_lat": "Extractum Hypocistidis",
+    "name_cz": "Ozorníkový výtažek",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING41"
+    ],
+    "effect": "Mocně svírá uvolněná střeva a zastavuje úplavici.",
+    "tags": [
+      "astringent",
+      "digestive"
+    ],
+    "value": 32,
+    "color": "#4e342e"
+  },
+  {
+    "id": "POT237",
+    "name_lat": "Extractum Liquiritiae",
+    "name_cz": "Lékořicový výtažek",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING211"
+    ],
+    "effect": "Sladká šťáva na plíce a hojení žaludečních vředů.",
+    "tags": [
+      "lung",
+      "sweet",
+      "healing"
+    ],
+    "value": 12,
+    "color": "#3e2723"
+  },
+  {
+    "id": "POT238",
+    "name_lat": "Extractum Rhei",
+    "name_cz": "Reveňový výtažek",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING109"
+    ],
+    "effect": "Čisté projímadlo bez pálivých přísad.",
+    "tags": [
+      "purgative",
+      "liver"
+    ],
+    "value": 35,
+    "color": "#bf360c"
+  },
+  {
+    "id": "POT239",
+    "name_lat": "Extractum Scillae",
+    "name_cz": "Mořskocibulový výtažek",
+    "category": "Liquid",
+    "tier": 3,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING228"
+    ],
+    "effect": "Srdeční léčení a vyhánění vody z těla.",
+    "tags": [
+      "heart",
+      "diuretic",
+      "dangerous"
+    ],
+    "value": 65,
+    "color": "#e65100"
+  },
+  {
+    "id": "POT240",
+    "name_lat": "Extractum Taraxaci",
+    "name_cz": "Pampeliškový výtažek",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Boil",
+    "base": "ING01",
+    "req_ing": [
+      "ING204"
+    ],
+    "effect": "Jarní očista krve a žlučníku.",
+    "tags": [
+      "purifying",
+      "liver"
+    ],
+    "value": 10,
+    "color": "#fbc02d"
+  },
+  {
+    "id": "POT241",
+    "name_lat": "Oleum Aetherium Lavandulae",
+    "name_cz": "Levandulová esence",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING90"
+    ],
+    "effect": "Vnitřně na úzkost, zevně zahání moly a vši.",
+    "tags": [
+      "aromatic",
+      "calming",
+      "purifying"
+    ],
+    "value": 35,
+    "color": "#7e57c2"
+  },
+  {
+    "id": "POT242",
+    "name_lat": "Oleum Aetherium Rosmarini",
+    "name_cz": "Rozmarýnová esence",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING16"
+    ],
+    "effect": "Prokrvuje mozkové cesty, navrací paměť.",
+    "tags": [
+      "aromatic",
+      "brain",
+      "tonic"
+    ],
+    "value": 38,
+    "color": "#388e3c"
+  },
+  {
+    "id": "POT243",
+    "name_lat": "Oleum Aetherium Salviae",
+    "name_cz": "Šalvějová esence",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING17"
+    ],
+    "effect": "Mocně vysušuje noční poty tuberkulózních.",
+    "tags": [
+      "aromatic",
+      "astringent"
+    ],
+    "value": 32,
+    "color": "#689f38"
+  },
+  {
+    "id": "POT244",
+    "name_lat": "Oleum Aetherium Thymi",
+    "name_cz": "Tymiánová esence",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING97"
+    ],
+    "effect": "Silné antiseptikum, hubí červy v ranách.",
+    "tags": [
+      "antiseptic",
+      "aromatic",
+      "wound"
+    ],
+    "value": 40,
+    "color": "#558b2f"
+  },
+  {
+    "id": "POT245",
+    "name_lat": "Oleum Aetherium Cinnamonii",
+    "name_cz": "Skořicová esence",
+    "category": "Liquid",
+    "tier": 3,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING25"
+    ],
+    "effect": "Sžíravý sladký olej křísící umírající.",
+    "tags": [
+      "warming",
+      "stimulant",
+      "spice"
+    ],
+    "value": 90,
+    "color": "#6d4c41"
+  },
+  {
+    "id": "POT246",
+    "name_lat": "Oleum Aetherium Caryophyllorum",
+    "name_cz": "Hřebíčková esence",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING152"
+    ],
+    "effect": "Okamžitě umrtvuje bolest zubního červa.",
+    "tags": [
+      "analgesic",
+      "aromatic",
+      "dental"
+    ],
+    "value": 50,
+    "color": "#4e342e"
+  },
+  {
+    "id": "POT247",
+    "name_lat": "Oleum Aetherium Rutae",
+    "name_cz": "Routová esence",
+    "category": "Liquid",
+    "tier": 2,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING225"
+    ],
+    "effect": "Ostrá esence na očerstvení zraku a zahánění zlých duchů.",
+    "tags": [
+      "aromatic",
+      "eye",
+      "magic"
+    ],
+    "value": 30,
+    "color": "#afb42b"
+  },
+  {
+    "id": "POT248",
+    "name_lat": "Oleum Aetherium Sabinae",
+    "name_cz": "Chvojková esence",
+    "category": "Liquid",
+    "tier": 3,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING200"
+    ],
+    "effect": "Nebezpečný olej vyvolávající potrat. Toxický!",
+    "tags": [
+      "poison",
+      "caustic",
+      "dangerous"
+    ],
+    "value": 85,
+    "color": "#1b5e20"
+  },
+  {
+    "id": "POT249",
+    "name_lat": "Oleum Aetherium Cumi",
+    "name_cz": "Kmínová esence",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING86"
+    ],
+    "effect": "Rychle rozpouští studené větry v břiše.",
+    "tags": [
+      "digestive",
+      "aromatic"
+    ],
+    "value": 18,
+    "color": "#8d6e63"
+  },
+  {
+    "id": "POT250",
+    "name_lat": "Oleum Aetherium Foeniculi",
+    "name_cz": "Fenyklová esence",
+    "category": "Liquid",
+    "tier": 1,
+    "process": "Distill",
+    "base": "ING01",
+    "req_ing": [
+      "ING195"
+    ],
+    "effect": "Množí matkám mléko v prsech a čistí oči.",
+    "tags": [
+      "digestive",
+      "eye",
+      "aromatic"
+    ],
+    "value": 20,
+    "color": "#c8e6c9"
+  }
+]

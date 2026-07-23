@@ -1,0 +1,4488 @@
+[
+  {
+    "id": "ING01",
+    "name_lat": "Aqua",
+    "name_cz": "Voda",
+    "type": "Liquid",
+    "thermal": -2,
+    "moisture": 4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "solvent",
+      "base"
+    ],
+    "price": 1,
+    "shelf_days": 0,
+    "color": "#5dade2"
+  },
+  {
+    "id": "ING02",
+    "name_lat": "Vinum",
+    "name_cz": "Víno",
+    "type": "Liquid",
+    "thermal": 2,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "solvent",
+      "warming",
+      "base"
+    ],
+    "price": 3,
+    "shelf_days": 180,
+    "color": "#922b21"
+  },
+  {
+    "id": "ING03",
+    "name_lat": "Acetum",
+    "name_cz": "Ocet",
+    "type": "Liquid",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "preservative"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#f4d03f"
+  },
+  {
+    "id": "ING04",
+    "name_lat": "Mel",
+    "name_cz": "Med",
+    "type": "Liquid",
+    "thermal": 2,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "sweet",
+      "preservative"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#d4a843"
+  },
+  {
+    "id": "ING05",
+    "name_lat": "Oleum Olivae",
+    "name_cz": "Olivový olej",
+    "type": "Liquid",
+    "thermal": 1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "ointment",
+      "carrier"
+    ],
+    "price": 5,
+    "shelf_days": 180,
+    "color": "#a8b820"
+  },
+  {
+    "id": "ING06",
+    "name_lat": "Papaver somniferum",
+    "name_cz": "Mák setý",
+    "type": "Herb",
+    "thermal": -4,
+    "moisture": -2,
+    "toxicity": 40,
+    "potency": 3,
+    "tags": [
+      "sedative",
+      "analgesic",
+      "narcotic"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#e8a0b4"
+  },
+  {
+    "id": "ING07",
+    "name_lat": "Mandragora officinarum",
+    "name_cz": "Mandragora",
+    "type": "Herb",
+    "thermal": -4,
+    "moisture": -3,
+    "toxicity": 70,
+    "potency": 4,
+    "tags": [
+      "narcotic",
+      "sedative",
+      "rare"
+    ],
+    "price": 40,
+    "shelf_days": 180,
+    "color": "#8b4513"
+  },
+  {
+    "id": "ING08",
+    "name_lat": "Hyoscyamus niger",
+    "name_cz": "Blín černý",
+    "type": "Herb",
+    "thermal": -4,
+    "moisture": -3,
+    "toxicity": 60,
+    "potency": 4,
+    "tags": [
+      "narcotic",
+      "sedative"
+    ],
+    "price": 25,
+    "shelf_days": 180,
+    "color": "#5d6d7e"
+  },
+  {
+    "id": "ING09",
+    "name_lat": "Belladonna",
+    "name_cz": "Rulík zlomocný",
+    "type": "Herb",
+    "thermal": -4,
+    "moisture": -4,
+    "toxicity": 85,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "narcotic",
+      "rare"
+    ],
+    "price": 50,
+    "shelf_days": 90,
+    "color": "#1a0033"
+  },
+  {
+    "id": "ING10",
+    "name_lat": "Salix alba",
+    "name_cz": "Vrbová kůra",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -3,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "analgesic",
+      "anti-fever"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#a8c090"
+  },
+  {
+    "id": "ING11",
+    "name_lat": "Aloe vera",
+    "name_cz": "Aloe",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 2,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "healing",
+      "cooling",
+      "purgative"
+    ],
+    "price": 8,
+    "shelf_days": 60,
+    "color": "#7dbd8a"
+  },
+  {
+    "id": "ING12",
+    "name_lat": "Chelidonium majus",
+    "name_cz": "Vlaštovičník",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 30,
+    "potency": 3,
+    "tags": [
+      "liver",
+      "bitter",
+      "toxic"
+    ],
+    "price": 10,
+    "shelf_days": 90,
+    "color": "#f1c40f"
+  },
+  {
+    "id": "ING13",
+    "name_lat": "Valeriana officinalis",
+    "name_cz": "Kozlík lékařský",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "sedative",
+      "calming"
+    ],
+    "price": 8,
+    "shelf_days": 180,
+    "color": "#d7bde2"
+  },
+  {
+    "id": "ING14",
+    "name_lat": "Allium sativum",
+    "name_cz": "Česnek",
+    "type": "Herb",
+    "thermal": 4,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 3,
+    "tags": [
+      "warming",
+      "antiseptic",
+      "anti-poison"
+    ],
+    "price": 3,
+    "shelf_days": 90,
+    "color": "#f8f9fa"
+  },
+  {
+    "id": "ING15",
+    "name_lat": "Euphrasia",
+    "name_cz": "Světlík",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "eye",
+      "cooling"
+    ],
+    "price": 5,
+    "shelf_days": 90,
+    "color": "#a9cce3"
+  },
+  {
+    "id": "ING16",
+    "name_lat": "Rosmarinus",
+    "name_cz": "Rozmarýn",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "memory",
+      "warming",
+      "aromatic"
+    ],
+    "price": 4,
+    "shelf_days": 180,
+    "color": "#6b8e23"
+  },
+  {
+    "id": "ING17",
+    "name_lat": "Salvia",
+    "name_cz": "Šalvěj",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "healing",
+      "aromatic",
+      "astringent"
+    ],
+    "price": 4,
+    "shelf_days": 180,
+    "color": "#7d9e4e"
+  },
+  {
+    "id": "ING18",
+    "name_lat": "Hypericum",
+    "name_cz": "Třezalka",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "wound",
+      "mood",
+      "anti-demon"
+    ],
+    "price": 6,
+    "shelf_days": 120,
+    "color": "#f39c12"
+  },
+  {
+    "id": "ING19",
+    "name_lat": "Rosa",
+    "name_cz": "Růže",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "heart",
+      "aromatic"
+    ],
+    "price": 7,
+    "shelf_days": 14,
+    "color": "#e8a0b4"
+  },
+  {
+    "id": "ING20",
+    "name_lat": "Borago",
+    "name_cz": "Brutnák",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "mood",
+      "cooling",
+      "heart"
+    ],
+    "price": 5,
+    "shelf_days": 7,
+    "color": "#5d86c0"
+  },
+  {
+    "id": "ING21",
+    "name_lat": "Melissa",
+    "name_cz": "Meduňka",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "calming",
+      "mood",
+      "aromatic"
+    ],
+    "price": 5,
+    "shelf_days": 30,
+    "color": "#a8d8a8"
+  },
+  {
+    "id": "ING22",
+    "name_lat": "Crocus sativus",
+    "name_cz": "Šafrán",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "mood",
+      "heart",
+      "expensive"
+    ],
+    "price": 60,
+    "shelf_days": 365,
+    "color": "#f39c12"
+  },
+  {
+    "id": "ING23",
+    "name_lat": "Piper",
+    "name_cz": "Pepř černý",
+    "type": "Herb",
+    "thermal": 4,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 3,
+    "tags": [
+      "warming",
+      "digestive",
+      "stimulant"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2c2c2c"
+  },
+  {
+    "id": "ING24",
+    "name_lat": "Zingiber",
+    "name_cz": "Zázvor",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "warming",
+      "digestive",
+      "nausea"
+    ],
+    "price": 8,
+    "shelf_days": 180,
+    "color": "#c8a870"
+  },
+  {
+    "id": "ING25",
+    "name_lat": "Cinnamomum",
+    "name_cz": "Skořice",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "warming",
+      "aromatic",
+      "digestive"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#8b4513"
+  },
+  {
+    "id": "ING26",
+    "name_lat": "Myrrha",
+    "name_cz": "Myrha",
+    "type": "Resin",
+    "thermal": 2,
+    "moisture": -3,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "antiseptic",
+      "wound",
+      "aromatic"
+    ],
+    "price": 20,
+    "shelf_days": 365,
+    "color": "#c0932f"
+  },
+  {
+    "id": "ING27",
+    "name_lat": "Olibanum",
+    "name_cz": "Kadidlo",
+    "type": "Resin",
+    "thermal": 2,
+    "moisture": -3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "anti-plague",
+      "purifying"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#e8d5a3"
+  },
+  {
+    "id": "ING28",
+    "name_lat": "Styrax",
+    "name_cz": "Storax",
+    "type": "Resin",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "binder",
+      "varnish"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#c09060"
+  },
+  {
+    "id": "ING29",
+    "name_lat": "Mastix",
+    "name_cz": "Masticha",
+    "type": "Resin",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "digestive",
+      "binder",
+      "dental"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#ffe8c0"
+  },
+  {
+    "id": "ING30",
+    "name_lat": "Camphora",
+    "name_cz": "Kafr",
+    "type": "Resin",
+    "thermal": -3,
+    "moisture": -3,
+    "toxicity": 20,
+    "potency": 2,
+    "tags": [
+      "cooling",
+      "antiseptic",
+      "anesthetic"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#ffffff"
+  },
+  {
+    "id": "ING31",
+    "name_lat": "Sanguis draconis",
+    "name_cz": "Dračí krev",
+    "type": "Resin",
+    "thermal": -1,
+    "moisture": -3,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "wound",
+      "rare",
+      "pigment",
+      "binding"
+    ],
+    "price": 30,
+    "shelf_days": 365,
+    "color": "#8b0000"
+  },
+  {
+    "id": "ING32",
+    "name_lat": "Gummi arabicum",
+    "name_cz": "Arabská guma",
+    "type": "Resin",
+    "thermal": 1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "binder",
+      "base",
+      "thickener"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#d4a843"
+  },
+  {
+    "id": "ING33",
+    "name_lat": "Cera flava",
+    "name_cz": "Včelí vosk",
+    "type": "Animal",
+    "thermal": 1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "ointment",
+      "binder"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#f1c40f"
+  },
+  {
+    "id": "ING34",
+    "name_lat": "Albumen Ovi",
+    "name_cz": "Vaječný bílek",
+    "type": "Animal",
+    "thermal": -2,
+    "moisture": 3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "binder",
+      "cooling",
+      "base"
+    ],
+    "price": 2,
+    "shelf_days": 3,
+    "color": "#f8f9fa"
+  },
+  {
+    "id": "ING35",
+    "name_lat": "Cantharides",
+    "name_cz": "Španělské mušky",
+    "type": "Animal",
+    "thermal": 4,
+    "moisture": -4,
+    "toxicity": 90,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "blister",
+      "aphrodisiac",
+      "rare"
+    ],
+    "price": 80,
+    "shelf_days": 365,
+    "color": "#27ae60"
+  },
+  {
+    "id": "ING36",
+    "name_lat": "Sepia",
+    "name_cz": "Sépiová kost",
+    "type": "Animal",
+    "thermal": -1,
+    "moisture": -3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "dental",
+      "pigment"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#d4a843"
+  },
+  {
+    "id": "ING37",
+    "name_lat": "Castoreum",
+    "name_cz": "Bobrovina",
+    "type": "Animal",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "stimulant",
+      "spasm",
+      "aromatic"
+    ],
+    "price": 35,
+    "shelf_days": 365,
+    "color": "#8b6040"
+  },
+  {
+    "id": "ING38",
+    "name_lat": "Cornus cervi",
+    "name_cz": "Pálený jelení roh",
+    "type": "Animal",
+    "thermal": -1,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "fever",
+      "astringent"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#e8d5a3"
+  },
+  {
+    "id": "ING39",
+    "name_lat": "Margaritae",
+    "name_cz": "Perly (drcené)",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "cooling",
+      "heart",
+      "precious"
+    ],
+    "price": 100,
+    "shelf_days": 365,
+    "color": "#f0f0f0"
+  },
+  {
+    "id": "ING40",
+    "name_lat": "Corallium rubrum",
+    "name_cz": "Červený korál",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "heart",
+      "cooling",
+      "precious"
+    ],
+    "price": 45,
+    "shelf_days": 365,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING41",
+    "name_lat": "Galla quercina",
+    "name_cz": "Dubová hálka",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -4,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "astringent",
+      "ink",
+      "tannin"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#7d5a3c"
+  },
+  {
+    "id": "ING42",
+    "name_lat": "Alumen",
+    "name_cz": "Kamenec",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -4,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "astringent",
+      "mordant",
+      "ink"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#bdc3c7"
+  },
+  {
+    "id": "ING43",
+    "name_lat": "Cinnabaris",
+    "name_cz": "Rumělka",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -3,
+    "toxicity": 80,
+    "potency": 3,
+    "tags": [
+      "poison",
+      "pigment",
+      "rare"
+    ],
+    "price": 40,
+    "shelf_days": 365,
+    "color": "#ff4500"
+  },
+  {
+    "id": "ING44",
+    "name_lat": "Aerugo",
+    "name_cz": "Měděnka",
+    "type": "Mineral",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 75,
+    "potency": 3,
+    "tags": [
+      "poison",
+      "pigment",
+      "antiseptic"
+    ],
+    "price": 20,
+    "shelf_days": 365,
+    "color": "#1abc9c"
+  },
+  {
+    "id": "ING45",
+    "name_lat": "Lapis Lazuli",
+    "name_cz": "Lazurit",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -3,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "pigment",
+      "precious"
+    ],
+    "price": 80,
+    "shelf_days": 365,
+    "color": "#3498db"
+  },
+  {
+    "id": "ING46",
+    "name_lat": "Aurum foliatum",
+    "name_cz": "Plátkové zlato",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "heart",
+      "precious",
+      "pigment"
+    ],
+    "price": 200,
+    "shelf_days": 365,
+    "color": "#ffd700"
+  },
+  {
+    "id": "ING47",
+    "name_lat": "Smaragdus",
+    "name_cz": "Smaragd (drcený)",
+    "type": "Mineral",
+    "thermal": -3,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "cooling",
+      "eye",
+      "precious"
+    ],
+    "price": 150,
+    "shelf_days": 365,
+    "color": "#27ae60"
+  },
+  {
+    "id": "ING48",
+    "name_lat": "Bolus Armeniacus",
+    "name_cz": "Arménský jíl",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "astringent",
+      "anti-poison"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#c0392b"
+  },
+  {
+    "id": "ING49",
+    "name_lat": "Lapis Haematites",
+    "name_cz": "Krevhel",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "blood",
+      "wound",
+      "pigment"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#8e2020"
+  },
+  {
+    "id": "ING50",
+    "name_lat": "Spongia",
+    "name_cz": "Mořská houba",
+    "type": "Animal",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "absorbing",
+      "cooling",
+      "surgical"
+    ],
+    "price": 10,
+    "shelf_days": 30,
+    "color": "#d4a843"
+  },
+  {
+    "id": "ING51",
+    "name_lat": "Minium",
+    "name_cz": "Suřík (olovo)",
+    "type": "Mineral",
+    "thermal": 1,
+    "moisture": -3,
+    "toxicity": 85,
+    "potency": 2,
+    "tags": [
+      "poison",
+      "pigment"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING52",
+    "name_lat": "Auripigmentum",
+    "name_cz": "Auripigment (arsen)",
+    "type": "Mineral",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 95,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "pigment",
+      "rare"
+    ],
+    "price": 50,
+    "shelf_days": 365,
+    "color": "#f39c12"
+  },
+  {
+    "id": "ING53",
+    "name_lat": "Plumbum album",
+    "name_cz": "Olovnatá běloba",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -3,
+    "toxicity": 80,
+    "potency": 2,
+    "tags": [
+      "poison",
+      "pigment",
+      "cooling"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#ecf0f1"
+  },
+  {
+    "id": "ING54",
+    "name_lat": "Oleum lini",
+    "name_cz": "Lněný olej",
+    "type": "Liquid",
+    "thermal": 2,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "varnish",
+      "carrier"
+    ],
+    "price": 4,
+    "shelf_days": 90,
+    "color": "#a8b820"
+  },
+  {
+    "id": "ING55",
+    "name_lat": "Spiritus Vini",
+    "name_cz": "Vinný destilát",
+    "type": "Liquid",
+    "thermal": 4,
+    "moisture": -3,
+    "toxicity": 10,
+    "potency": 3,
+    "tags": [
+      "solvent",
+      "tincture",
+      "base",
+      "warming"
+    ],
+    "price": 20,
+    "shelf_days": 365,
+    "color": "#e8d5a3"
+  },
+  {
+    "id": "ING56",
+    "name_lat": "Artemisia absinthium",
+    "name_cz": "Pelyněk pravý",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "bitter",
+      "digestive",
+      "anti-worm"
+    ],
+    "price": 7,
+    "shelf_days": 180,
+    "color": "#6b8e23"
+  },
+  {
+    "id": "ING57",
+    "name_lat": "Chamomilla",
+    "name_cz": "Heřmánek",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "calming",
+      "digestive",
+      "anti-spasm"
+    ],
+    "price": 4,
+    "shelf_days": 60,
+    "color": "#f1c40f"
+  },
+  {
+    "id": "ING58",
+    "name_lat": "Mentha piperita",
+    "name_cz": "Máta peprná",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "cooling",
+      "digestive",
+      "aromatic"
+    ],
+    "price": 4,
+    "shelf_days": 30,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING59",
+    "name_lat": "Plantago",
+    "name_cz": "Jitrocel",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "wound",
+      "cooling",
+      "astringent"
+    ],
+    "price": 3,
+    "shelf_days": 14,
+    "color": "#a8c090"
+  },
+  {
+    "id": "ING60",
+    "name_lat": "Symphytum officinale",
+    "name_cz": "Kostival",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "bone",
+      "wound",
+      "healing"
+    ],
+    "price": 6,
+    "shelf_days": 30,
+    "color": "#7d9e4e"
+  },
+  {
+    "id": "ING61",
+    "name_lat": "Argentum",
+    "name_cz": "Stříbro",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "cooling",
+      "precious"
+    ],
+    "price": 50,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING62",
+    "name_lat": "Hydrargyrum",
+    "name_cz": "Rtuť",
+    "type": "Mineral",
+    "thermal": -4,
+    "moisture": 4,
+    "toxicity": 80,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "fluid",
+      "rare"
+    ],
+    "price": 30,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING63",
+    "name_lat": "Plumbum",
+    "name_cz": "Olovo",
+    "type": "Mineral",
+    "thermal": -3,
+    "moisture": -3,
+    "toxicity": 60,
+    "potency": 3,
+    "tags": [
+      "poison",
+      "heavy"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING64",
+    "name_lat": "Stannum",
+    "name_cz": "Cín",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": 0,
+    "toxicity": 10,
+    "potency": 1,
+    "tags": [
+      "base"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING65",
+    "name_lat": "Ferrum",
+    "name_cz": "Železo",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "blood",
+      "warming"
+    ],
+    "price": 3,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING66",
+    "name_lat": "Cuprum",
+    "name_cz": "Měď",
+    "type": "Mineral",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 30,
+    "potency": 2,
+    "tags": [
+      "catalyst"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING67",
+    "name_lat": "Sulphur",
+    "name_cz": "Síra",
+    "type": "Mineral",
+    "thermal": 4,
+    "moisture": -4,
+    "toxicity": 20,
+    "potency": 3,
+    "tags": [
+      "warming",
+      "volatile"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING68",
+    "name_lat": "Sal Gemmae",
+    "name_cz": "Sůl kamenná",
+    "type": "Mineral",
+    "thermal": 1,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "preservative",
+      "purifying"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING69",
+    "name_lat": "Antimonium",
+    "name_cz": "Antimon",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 50,
+    "potency": 3,
+    "tags": [
+      "purgative",
+      "toxic"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING70",
+    "name_lat": "Arsenicum",
+    "name_cz": "Arsen",
+    "type": "Mineral",
+    "thermal": 4,
+    "moisture": -4,
+    "toxicity": 100,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "lethal"
+    ],
+    "price": 25,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING71",
+    "name_lat": "Sal Armoniacum",
+    "name_cz": "Salmiak",
+    "type": "Mineral",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 20,
+    "potency": 3,
+    "tags": [
+      "volatile",
+      "solvent"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING72",
+    "name_lat": "Bismuthum",
+    "name_cz": "Bismut",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -1,
+    "toxicity": 10,
+    "potency": 1,
+    "tags": [
+      "base"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING73",
+    "name_lat": "Cobaltum",
+    "name_cz": "Kobalt",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 40,
+    "potency": 2,
+    "tags": [
+      "toxic",
+      "pigment"
+    ],
+    "price": 22,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING74",
+    "name_lat": "Zincum",
+    "name_cz": "Zinek",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -1,
+    "toxicity": 20,
+    "potency": 1,
+    "tags": [
+      "base"
+    ],
+    "price": 7,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING75",
+    "name_lat": "Calx viva",
+    "name_cz": "Pálené vápno",
+    "type": "Mineral",
+    "thermal": 4,
+    "moisture": -4,
+    "toxicity": 40,
+    "potency": 3,
+    "tags": [
+      "caustic",
+      "warming"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING76",
+    "name_lat": "Kalium carbonicum",
+    "name_cz": "Potaš",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 30,
+    "potency": 2,
+    "tags": [
+      "caustic",
+      "cleansing"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING77",
+    "name_lat": "Sal nitri",
+    "name_cz": "Ledek",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 10,
+    "potency": 3,
+    "tags": [
+      "volatile",
+      "cooling",
+      "explosive"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING78",
+    "name_lat": "Tartarus",
+    "name_cz": "Vinný kámen",
+    "type": "Mineral",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "acidic",
+      "purifying"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING79",
+    "name_lat": "Vitriolum viride",
+    "name_cz": "Zelená skalice",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 40,
+    "potency": 3,
+    "tags": [
+      "corrosive",
+      "acid"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING80",
+    "name_lat": "Lapis Calaminaris",
+    "name_cz": "Kalamín",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -3,
+    "toxicity": 10,
+    "potency": 1,
+    "tags": [
+      "healing",
+      "skin"
+    ],
+    "price": 9,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING81",
+    "name_lat": "Talcum",
+    "name_cz": "Mastek",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cosmetic",
+      "drying"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING82",
+    "name_lat": "Silex",
+    "name_cz": "Pazourek",
+    "type": "Mineral",
+    "thermal": 0,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "hard"
+    ],
+    "price": 1,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING83",
+    "name_lat": "Fuligo",
+    "name_cz": "Saze",
+    "type": "Mineral",
+    "thermal": 1,
+    "moisture": -4,
+    "toxicity": 10,
+    "potency": 1,
+    "tags": [
+      "drying",
+      "bitter"
+    ],
+    "price": 1,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING84",
+    "name_lat": "Succinum",
+    "name_cz": "Jantar",
+    "type": "Resin",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "precious"
+    ],
+    "price": 35,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING85",
+    "name_lat": "Citrus bergamia",
+    "name_cz": "Bergamot",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "mood"
+    ],
+    "price": 12,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING86",
+    "name_lat": "Carum carvi",
+    "name_cz": "Kmín kořenný",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "digestive",
+      "warming"
+    ],
+    "price": 3,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING87",
+    "name_lat": "Anethum graveolens",
+    "name_cz": "Kopr vonný",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "digestive",
+      "calming"
+    ],
+    "price": 2,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING88",
+    "name_lat": "Ephedra",
+    "name_cz": "Chvojník",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 30,
+    "potency": 3,
+    "tags": [
+      "stimulant",
+      "warming"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING89",
+    "name_lat": "Marrubium vulgare",
+    "name_cz": "Jablečník obecný",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "expectorant",
+      "bitter"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING90",
+    "name_lat": "Lavandula officinalis",
+    "name_cz": "Levandule",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "calming",
+      "aromatic"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING91",
+    "name_lat": "Origanum majorana",
+    "name_cz": "Majoránka",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "warming",
+      "calming"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING92",
+    "name_lat": "Hieracium pilosella",
+    "name_cz": "Chlupáček",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "healing",
+      "astringent"
+    ],
+    "price": 3,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING93",
+    "name_lat": "Verbascum thapsus",
+    "name_cz": "Divizna",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "expectorant",
+      "lung"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING94",
+    "name_lat": "Cyperus papyrus",
+    "name_cz": "Papyrus",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "craft"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING95",
+    "name_lat": "Illicium verum",
+    "name_cz": "Badyán",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "digestive"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING96",
+    "name_lat": "Satureja hortensis",
+    "name_cz": "Saturejka",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "warming",
+      "spice"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING97",
+    "name_lat": "Thymus vulgaris",
+    "name_cz": "Tymián",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "antiseptic",
+      "warming"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING98",
+    "name_lat": "Galium odoratum",
+    "name_cz": "Mařinka vonná",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 10,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "tonic"
+    ],
+    "price": 7,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING99",
+    "name_lat": "Nepeta cataria",
+    "name_cz": "Šanta kočičí",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "calming",
+      "sedative"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING100",
+    "name_lat": "Prunus avium",
+    "name_cz": "Třešeň",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "sweet",
+      "cooling"
+    ],
+    "price": 4,
+    "shelf_days": 60,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING101",
+    "name_lat": "Turnera diffusa",
+    "name_cz": "Damiána",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aphrodisiac",
+      "mood"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING102",
+    "name_lat": "Aloysia citrodora",
+    "name_cz": "Aloisie citronová",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "calming"
+    ],
+    "price": 12,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING103",
+    "name_lat": "Syringa vulgaris",
+    "name_cz": "Šeřík",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "cooling"
+    ],
+    "price": 6,
+    "shelf_days": 120,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING104",
+    "name_lat": "Adiantum capillus-veneris",
+    "name_cz": "Netík",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "lung",
+      "expectorant"
+    ],
+    "price": 9,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING105",
+    "name_lat": "Myrtus communis",
+    "name_cz": "Myrta",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "aromatic"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING106",
+    "name_lat": "Passiflora incarnata",
+    "name_cz": "Mučenka",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "sedative",
+      "calming"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING107",
+    "name_lat": "Prunus persica",
+    "name_cz": "Broskev",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "sweet",
+      "cooling"
+    ],
+    "price": 6,
+    "shelf_days": 30,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING108",
+    "name_lat": "Plumeria rubra",
+    "name_cz": "Plumerie",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "rare"
+    ],
+    "price": 25,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING109",
+    "name_lat": "Rheum rhabarbarum",
+    "name_cz": "Reveň",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -1,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "purgative",
+      "bitter"
+    ],
+    "price": 7,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING110",
+    "name_lat": "Rubus idaeus",
+    "name_cz": "Maliník",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "cooling"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING111",
+    "name_lat": "Fragaria vesca",
+    "name_cz": "Jahodník",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "sweet"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING112",
+    "name_lat": "Tanacetum vulgare",
+    "name_cz": "Vratič",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 20,
+    "potency": 2,
+    "tags": [
+      "anti-worm",
+      "bitter"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING113",
+    "name_lat": "Vanilla planifolia",
+    "name_cz": "Vanilka",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "sweet",
+      "rare"
+    ],
+    "price": 45,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING114",
+    "name_lat": "Verbena officinalis",
+    "name_cz": "Sporýš lékařský",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "magic",
+      "calming"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING115",
+    "name_lat": "Viola odorata",
+    "name_cz": "Violka",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "aromatic"
+    ],
+    "price": 10,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING116",
+    "name_lat": "Santalum album",
+    "name_cz": "Bílé santalové dřevo",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "purifying",
+      "rare"
+    ],
+    "price": 55,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING117",
+    "name_lat": "Pogostemon cablin",
+    "name_cz": "Pačuli",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "earthy"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING118",
+    "name_lat": "Agrimonia eupatoria",
+    "name_cz": "Řepík",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "healing"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING119",
+    "name_lat": "Citrus aurantium flos",
+    "name_cz": "Pomerančový květ",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "calming"
+    ],
+    "price": 30,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING120",
+    "name_lat": "Nelumbo nucifera",
+    "name_cz": "Lotos",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 3,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "sedative",
+      "spiritual",
+      "rare"
+    ],
+    "price": 60,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING121",
+    "name_lat": "Artemisia dracunculus",
+    "name_cz": "Estragon",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "digestive",
+      "spice"
+    ],
+    "price": 7,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING122",
+    "name_lat": "Pimpinella anisum",
+    "name_cz": "Anýz",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "digestive",
+      "aromatic"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING123",
+    "name_lat": "Cupressus sempervirens",
+    "name_cz": "Cypřiš",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "aromatic"
+    ],
+    "price": 9,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING124",
+    "name_lat": "Alpinia officinarum",
+    "name_cz": "Galgán",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "warming",
+      "stimulant"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING125",
+    "name_lat": "Serenoa repens",
+    "name_cz": "Serenoa plíživá",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "tonic"
+    ],
+    "price": 16,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING126",
+    "name_lat": "Pausinystalia johimbe",
+    "name_cz": "Yohimbe",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -1,
+    "toxicity": 30,
+    "potency": 3,
+    "tags": [
+      "stimulant",
+      "aphrodisiac"
+    ],
+    "price": 28,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING127",
+    "name_lat": "Commiphora erythraea",
+    "name_cz": "Opoponax",
+    "type": "Resin",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "resin",
+      "aromatic",
+      "healing"
+    ],
+    "price": 30,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING128",
+    "name_lat": "Coriandrum sativum",
+    "name_cz": "Koriandr",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "digestive"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING129",
+    "name_lat": "Pelargonium graveolens",
+    "name_cz": "Pelargonie",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "aromatic"
+    ],
+    "price": 10,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING130",
+    "name_lat": "Myristica fragrans",
+    "name_cz": "Muškátový oříšek",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "warming",
+      "narcotic",
+      "spice"
+    ],
+    "price": 25,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING131",
+    "name_lat": "Berberis vulgaris",
+    "name_cz": "Dřišťál obecný",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "liver",
+      "cooling"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING132",
+    "name_lat": "Elettaria cardamomum",
+    "name_cz": "Kardamom",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "warming",
+      "digestive"
+    ],
+    "price": 22,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING133",
+    "name_lat": "Rhamnus purshiana",
+    "name_cz": "Řešetlák Purshův",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "purgative",
+      "bitter"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING134",
+    "name_lat": "Evernia prunastri",
+    "name_cz": "Větvičník slívový",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "earthy"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING135",
+    "name_lat": "Dianthus caryophyllus",
+    "name_cz": "Karafiát",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "spice"
+    ],
+    "price": 15,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING136",
+    "name_lat": "Hyssopus officinalis",
+    "name_cz": "Yzop",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "purifying",
+      "lung"
+    ],
+    "price": 7,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING137",
+    "name_lat": "Fumaria officinalis",
+    "name_cz": "Zemědým",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -1,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "liver",
+      "purifying"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING138",
+    "name_lat": "Bistorta officinalis",
+    "name_cz": "Rdesno hadí kořen",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "wound"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING139",
+    "name_lat": "Aconitum napellus",
+    "name_cz": "Oměj šalamounek",
+    "type": "Herb",
+    "thermal": -4,
+    "moisture": -3,
+    "toxicity": 95,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "lethal"
+    ],
+    "price": 40,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING140",
+    "name_lat": "Euphorbia",
+    "name_cz": "Pryšec",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 60,
+    "potency": 3,
+    "tags": [
+      "poison",
+      "purgative"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING141",
+    "name_lat": "Tamarindus indica",
+    "name_cz": "Tamarind",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "digestive"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING142",
+    "name_lat": "Chrysopogon zizanioides",
+    "name_cz": "Vetiver",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "earthy"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING143",
+    "name_lat": "Orchidaceae",
+    "name_cz": "Orchidej",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "rare",
+      "tonic"
+    ],
+    "price": 50,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING144",
+    "name_lat": "Cannabis sativa",
+    "name_cz": "Konopí",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 20,
+    "potency": 3,
+    "tags": [
+      "narcotic",
+      "sedative",
+      "analgesic"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING145",
+    "name_lat": "Datura stramonium",
+    "name_cz": "Durman",
+    "type": "Herb",
+    "thermal": -3,
+    "moisture": -3,
+    "toxicity": 85,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "narcotic",
+      "hallucinogen"
+    ],
+    "price": 20,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING146",
+    "name_lat": "Piper methysticum",
+    "name_cz": "Kava kava",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "sedative",
+      "narcotic"
+    ],
+    "price": 25,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING147",
+    "name_lat": "Lobelia inflata",
+    "name_cz": "Lobelka",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 40,
+    "potency": 3,
+    "tags": [
+      "lung",
+      "emetic",
+      "toxic"
+    ],
+    "price": 22,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING148",
+    "name_lat": "Scutellaria lateriflora",
+    "name_cz": "Šišák",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "calming",
+      "sedative"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING149",
+    "name_lat": "Lactuca virosa",
+    "name_cz": "Locika jedovatá",
+    "type": "Herb",
+    "thermal": -3,
+    "moisture": 1,
+    "toxicity": 20,
+    "potency": 2,
+    "tags": [
+      "narcotic",
+      "analgesic"
+    ],
+    "price": 14,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING150",
+    "name_lat": "Ulmus",
+    "name_cz": "Jilm",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "healing",
+      "base"
+    ],
+    "price": 7,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING151",
+    "name_lat": "Wisteria sinensis",
+    "name_cz": "Vistárie",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 0,
+    "toxicity": 25,
+    "potency": 1,
+    "tags": [
+      "toxic",
+      "vomitive"
+    ],
+    "price": 15,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING152",
+    "name_lat": "Syzygium aromaticum",
+    "name_cz": "Hřebíček",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "warming",
+      "analgesic",
+      "spice"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING153",
+    "name_lat": "Pimenta dioica",
+    "name_cz": "Nové koření",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "warming",
+      "spice"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING154",
+    "name_lat": "Canarium luzonicum",
+    "name_cz": "Elemi",
+    "type": "Resin",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "resin",
+      "wound",
+      "aromatic"
+    ],
+    "price": 20,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING155",
+    "name_lat": "Coffea arabica",
+    "name_cz": "Káva",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "stimulant",
+      "warming"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING156",
+    "name_lat": "Paullinia cupana",
+    "name_cz": "Guarana",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -1,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "stimulant",
+      "tonic"
+    ],
+    "price": 22,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING157",
+    "name_lat": "Acorus calamus",
+    "name_cz": "Puškvorec",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "digestive",
+      "aromatic"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING158",
+    "name_lat": "Polygonatum odoratum",
+    "name_cz": "Kokořík",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "healing",
+      "joint"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING159",
+    "name_lat": "Nardostachys jatamansi",
+    "name_cz": "Nard",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "calming"
+    ],
+    "price": 40,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING160",
+    "name_lat": "Angelica archangelica",
+    "name_cz": "Andělika",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "warming",
+      "tonic"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING161",
+    "name_lat": "Lithargyrum",
+    "name_cz": "Glet (oxid olovnatý)",
+    "type": "Mineral",
+    "thermal": 0,
+    "moisture": -4,
+    "toxicity": 60,
+    "potency": 2,
+    "tags": [
+      "poison",
+      "base"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING162",
+    "name_lat": "Realgar",
+    "name_cz": "Červený arsen",
+    "type": "Mineral",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 90,
+    "potency": 3,
+    "tags": [
+      "poison",
+      "pigment"
+    ],
+    "price": 35,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING163",
+    "name_lat": "Marcasita",
+    "name_cz": "Markazit",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "metal",
+      "spark"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING164",
+    "name_lat": "Smiris",
+    "name_cz": "Smirek",
+    "type": "Mineral",
+    "thermal": 0,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "abrasive",
+      "hard"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING165",
+    "name_lat": "Granatus",
+    "name_cz": "Granát",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -3,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "precious",
+      "abrasive"
+    ],
+    "price": 40,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING166",
+    "name_lat": "Vitriolum coeruleum",
+    "name_cz": "Modrá skalice",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 40,
+    "potency": 3,
+    "tags": [
+      "corrosive",
+      "pigment"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING167",
+    "name_lat": "Vitriolum album",
+    "name_cz": "Bílá skalice",
+    "type": "Mineral",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 30,
+    "potency": 2,
+    "tags": [
+      "eye",
+      "astringent"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING168",
+    "name_lat": "Sal Marinum",
+    "name_cz": "Mořská sůl",
+    "type": "Mineral",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "preservative",
+      "base"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING169",
+    "name_lat": "Cinis ligni",
+    "name_cz": "Dřevěný popel",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -4,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "caustic",
+      "purifying"
+    ],
+    "price": 1,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING170",
+    "name_lat": "Carbo ligni",
+    "name_cz": "Dřevěné uhlí",
+    "type": "Mineral",
+    "thermal": 2,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "absorbent",
+      "purifying"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING171",
+    "name_lat": "Creta",
+    "name_cz": "Křída",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "antacid"
+    ],
+    "price": 3,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING172",
+    "name_lat": "Urina",
+    "name_cz": "Moč",
+    "type": "Animal",
+    "thermal": 1,
+    "moisture": 4,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "solvent",
+      "volatile"
+    ],
+    "price": 1,
+    "shelf_days": 14,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING173",
+    "name_lat": "Fimus",
+    "name_cz": "Hnůj",
+    "type": "Animal",
+    "thermal": 3,
+    "moisture": 2,
+    "toxicity": 20,
+    "potency": 2,
+    "tags": [
+      "volatile",
+      "fertilizer"
+    ],
+    "price": 1,
+    "shelf_days": 30,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING174",
+    "name_lat": "Sanguis animalis",
+    "name_cz": "Zvířecí krev",
+    "type": "Animal",
+    "thermal": 2,
+    "moisture": 3,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "binder",
+      "base"
+    ],
+    "price": 4,
+    "shelf_days": 7,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING175",
+    "name_lat": "Millepedes",
+    "name_cz": "Stínky",
+    "type": "Animal",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "diuretic",
+      "bug"
+    ],
+    "price": 6,
+    "shelf_days": 30,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING176",
+    "name_lat": "Caro viperae",
+    "name_cz": "Zmijí maso",
+    "type": "Animal",
+    "thermal": 3,
+    "moisture": 1,
+    "toxicity": 10,
+    "potency": 3,
+    "tags": [
+      "anti-poison",
+      "rare"
+    ],
+    "price": 45,
+    "shelf_days": 60,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING177",
+    "name_lat": "Bufo",
+    "name_cz": "Ropucha",
+    "type": "Animal",
+    "thermal": -3,
+    "moisture": 2,
+    "toxicity": 50,
+    "potency": 3,
+    "tags": [
+      "poison",
+      "magic"
+    ],
+    "price": 20,
+    "shelf_days": 14,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING178",
+    "name_lat": "Aranea",
+    "name_cz": "Pavouk",
+    "type": "Animal",
+    "thermal": -2,
+    "moisture": 0,
+    "toxicity": 30,
+    "potency": 2,
+    "tags": [
+      "poison",
+      "magic"
+    ],
+    "price": 10,
+    "shelf_days": 30,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING179",
+    "name_lat": "Lumbrici",
+    "name_cz": "Žížaly",
+    "type": "Animal",
+    "thermal": -1,
+    "moisture": 3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "healing",
+      "joint"
+    ],
+    "price": 3,
+    "shelf_days": 14,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING180",
+    "name_lat": "Cinis ossium",
+    "name_cz": "Kostní popel",
+    "type": "Animal",
+    "thermal": 0,
+    "moisture": -4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "absorbing"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING181",
+    "name_lat": "Testae",
+    "name_cz": "Lastury",
+    "type": "Animal",
+    "thermal": -2,
+    "moisture": -3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "antacid",
+      "base"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ING182",
+    "name_lat": "Pix",
+    "name_cz": "Smola",
+    "type": "Resin",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "binder",
+      "wound"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING183",
+    "name_lat": "Tutia",
+    "name_cz": "Tutie",
+    "type": "Mineral",
+    "thermal": -1,
+    "moisture": -3,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "eye",
+      "astringent"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#9b59b6"
+  },
+  {
+    "id": "ING184",
+    "name_lat": "Hordeum vulgare",
+    "name_cz": "Ječmen",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "nutrition"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING185",
+    "name_lat": "Zea mays",
+    "name_cz": "Kukuřice",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "nutrition"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING186",
+    "name_lat": "Cimicifuga racemosa",
+    "name_cz": "Ploštičník",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -1,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "spasm",
+      "calming"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING187",
+    "name_lat": "Amanita muscaria",
+    "name_cz": "Muchomůrka červená",
+    "type": "Herb",
+    "thermal": -3,
+    "moisture": 2,
+    "toxicity": 65,
+    "potency": 3,
+    "tags": [
+      "hallucinogen",
+      "poison"
+    ],
+    "price": 25,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING188",
+    "name_lat": "Ferula assa-foetida",
+    "name_cz": "Čertovo lejno",
+    "type": "Resin",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 3,
+    "tags": [
+      "pungent",
+      "anti-spasm"
+    ],
+    "price": 30,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING189",
+    "name_lat": "Ambrosia",
+    "name_cz": "Ambrosie",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 10,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "irritating"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING190",
+    "name_lat": "Pinus",
+    "name_cz": "Borovice",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "lung"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING191",
+    "name_lat": "Potentilla",
+    "name_cz": "Mochna",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "magic"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING192",
+    "name_lat": "Cedrus",
+    "name_cz": "Cedr",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "purifying"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING193",
+    "name_lat": "Populus",
+    "name_cz": "Topolové pupeny",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "ointment",
+      "analgesic"
+    ],
+    "price": 8,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING194",
+    "name_lat": "Jasminum",
+    "name_cz": "Jasmín",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "mood"
+    ],
+    "price": 20,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING195",
+    "name_lat": "Foeniculum vulgare",
+    "name_cz": "Fenykl",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "digestive",
+      "aromatic"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING196",
+    "name_lat": "Cucumis sativus",
+    "name_cz": "Okurka",
+    "type": "Herb",
+    "thermal": -3,
+    "moisture": 4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "skin"
+    ],
+    "price": 3,
+    "shelf_days": 14,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING197",
+    "name_lat": "Hyacinthus",
+    "name_cz": "Hyacint",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 10,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "toxic"
+    ],
+    "price": 12,
+    "shelf_days": 60,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING198",
+    "name_lat": "Commiphora opobalsamum",
+    "name_cz": "Balzám z Gileádu",
+    "type": "Resin",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "healing"
+    ],
+    "price": 35,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING199",
+    "name_lat": "Laurus nobilis",
+    "name_cz": "Vavřín",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "victory"
+    ],
+    "price": 7,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING200",
+    "name_lat": "Cytisus scoparius",
+    "name_cz": "Janovec metlatý",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "diuretic",
+      "toxic"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING201",
+    "name_lat": "Rhamnus cathartica",
+    "name_cz": "Řešetlák počistivý",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 20,
+    "potency": 2,
+    "tags": [
+      "purgative",
+      "bitter"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING202",
+    "name_lat": "Arctium lappa",
+    "name_cz": "Lopuch",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "purifying",
+      "root"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING203",
+    "name_lat": "Uncaria tomentosa",
+    "name_cz": "Řemdihák plstnatý",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "immune",
+      "joint"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING204",
+    "name_lat": "Cichorium intybus",
+    "name_cz": "Čekanka",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "liver",
+      "bitter"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING205",
+    "name_lat": "Viburnum alnifolium",
+    "name_cz": "Viburnum",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -1,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "spasm",
+      "magic"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING206",
+    "name_lat": "Origanum dictamnus",
+    "name_cz": "Dobromysl krétská",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "wound",
+      "aromatic"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING207",
+    "name_lat": "Echinacea purpurea",
+    "name_cz": "Třapatka",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "immune",
+      "wound"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING208",
+    "name_lat": "Sambucus nigra",
+    "name_cz": "Bez černý",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "anti-fever",
+      "immune"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING209",
+    "name_lat": "Inula helenium",
+    "name_cz": "Oman pravý",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "lung",
+      "digestive"
+    ],
+    "price": 9,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING210",
+    "name_lat": "Eucalyptus",
+    "name_cz": "Eukalyptus",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "lung"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING211",
+    "name_lat": "Linum usitatissimum",
+    "name_cz": "Lněné semínko",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "demulcent",
+      "base"
+    ],
+    "price": 3,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING212",
+    "name_lat": "Tanacetum parthenium",
+    "name_cz": "Řimbaba",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -1,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "anti-fever",
+      "headache"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING213",
+    "name_lat": "Aframomum melegueta",
+    "name_cz": "Aframom",
+    "type": "Herb",
+    "thermal": 4,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "spice",
+      "warming"
+    ],
+    "price": 25,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING214",
+    "name_lat": "Lawsonia inermis",
+    "name_cz": "Henna",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "pigment",
+      "hair"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING215",
+    "name_lat": "Ipomoea jalapa",
+    "name_cz": "Jalapa",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 20,
+    "potency": 3,
+    "tags": [
+      "magic",
+      "purgative"
+    ],
+    "price": 28,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING216",
+    "name_lat": "Lonicera",
+    "name_cz": "Zimolez",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "sweet",
+      "cooling"
+    ],
+    "price": 10,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING217",
+    "name_lat": "Humulus lupulus",
+    "name_cz": "Chmel",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "sedative",
+      "bitter"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING218",
+    "name_lat": "Hydrangea arborescens",
+    "name_cz": "Hortenzie",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 15,
+    "potency": 1,
+    "tags": [
+      "toxic",
+      "diuretic"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING219",
+    "name_lat": "Equisetum",
+    "name_cz": "Přeslička",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "bone"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING220",
+    "name_lat": "Chondrus crispus",
+    "name_cz": "Puchratka kadeřavá",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 4,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "demulcent",
+      "lung"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING221",
+    "name_lat": "Coix lacryma-jobi",
+    "name_cz": "Slzovka",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "nutrition",
+      "magic"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING222",
+    "name_lat": "Citrus limon",
+    "name_cz": "Citron",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "acid"
+    ],
+    "price": 5,
+    "shelf_days": 60,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING223",
+    "name_lat": "Iris germanica",
+    "name_cz": "Kořen kosatce",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "root"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING224",
+    "name_lat": "Filipendula ulmaria",
+    "name_cz": "Tužebník",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "analgesic",
+      "stomach"
+    ],
+    "price": 7,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING225",
+    "name_lat": "Ruta graveolens",
+    "name_cz": "Routa vonná",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 20,
+    "potency": 2,
+    "tags": [
+      "bitter",
+      "magic",
+      "spasm"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING226",
+    "name_lat": "Sassafras albidum",
+    "name_cz": "Sasafras",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "liver"
+    ],
+    "price": 15,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING227",
+    "name_lat": "Mentha spicata",
+    "name_cz": "Máta klasnatá",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "digestive"
+    ],
+    "price": 5,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING228",
+    "name_lat": "Drimia maritima",
+    "name_cz": "Urginea přímořská",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 25,
+    "potency": 3,
+    "tags": [
+      "lung",
+      "heart",
+      "toxic"
+    ],
+    "price": 22,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING229",
+    "name_lat": "Hamamelis virginiana",
+    "name_cz": "Vilín",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "astringent",
+      "skin"
+    ],
+    "price": 10,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING230",
+    "name_lat": "Gaultheria procumbens",
+    "name_cz": "Libavka",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": 0,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "analgesic",
+      "aromatic"
+    ],
+    "price": 14,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING231",
+    "name_lat": "Stachys officinalis",
+    "name_cz": "Bukvice lékařská",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "brain",
+      "magic"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING232",
+    "name_lat": "Aquilaria",
+    "name_cz": "Orlářkové dřevo",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 3,
+    "tags": [
+      "precious",
+      "aromatic"
+    ],
+    "price": 80,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING233",
+    "name_lat": "Copal",
+    "name_cz": "Kopal",
+    "type": "Resin",
+    "thermal": 1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "aromatic",
+      "purifying"
+    ],
+    "price": 18,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING234",
+    "name_lat": "Amaranthus",
+    "name_cz": "Laskavec",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "astringent",
+      "nutrition"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING235",
+    "name_lat": "Lilium",
+    "name_cz": "Lilie",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "cosmetic"
+    ],
+    "price": 12,
+    "shelf_days": 60,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING236",
+    "name_lat": "Digitalis",
+    "name_cz": "Náprstník",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -1,
+    "toxicity": 80,
+    "potency": 4,
+    "tags": [
+      "heart",
+      "poison",
+      "lethal"
+    ],
+    "price": 30,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING237",
+    "name_lat": "Ferula gummosa",
+    "name_cz": "Galbanum",
+    "type": "Resin",
+    "thermal": 2,
+    "moisture": -1,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "spasm"
+    ],
+    "price": 25,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING238",
+    "name_lat": "Betula",
+    "name_cz": "Bříza",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "purifying",
+      "joint"
+    ],
+    "price": 4,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING239",
+    "name_lat": "Crataegus",
+    "name_cz": "Hloh",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 0,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "heart",
+      "magic"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING240",
+    "name_lat": "Quercus",
+    "name_cz": "Dub",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -3,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "astringent",
+      "strong"
+    ],
+    "price": 3,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING241",
+    "name_lat": "Sorbus aucuparia",
+    "name_cz": "Jeřáb",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 1,
+    "tags": [
+      "magic",
+      "astringent"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING242",
+    "name_lat": "Malus domestica",
+    "name_cz": "Jablko",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "sweet",
+      "cooling"
+    ],
+    "price": 2,
+    "shelf_days": 60,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING243",
+    "name_lat": "Pyrus",
+    "name_cz": "Hruška",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": 3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "cooling",
+      "sweet"
+    ],
+    "price": 2,
+    "shelf_days": 60,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING244",
+    "name_lat": "Morus",
+    "name_cz": "Moruše",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 2,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "sweet",
+      "blood"
+    ],
+    "price": 6,
+    "shelf_days": 30,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING245",
+    "name_lat": "Ficus",
+    "name_cz": "Fík",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 3,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "nutrition",
+      "sweet"
+    ],
+    "price": 8,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING246",
+    "name_lat": "Pterocarpus santalinus",
+    "name_cz": "Červené santalové dřevo",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -2,
+    "toxicity": 0,
+    "potency": 2,
+    "tags": [
+      "aromatic",
+      "pigment"
+    ],
+    "price": 45,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING247",
+    "name_lat": "Helianthus",
+    "name_cz": "Slunečnice",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "nutrition",
+      "oil"
+    ],
+    "price": 3,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING248",
+    "name_lat": "Heliotropium",
+    "name_cz": "Otočník",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 15,
+    "potency": 2,
+    "tags": [
+      "magic",
+      "toxic"
+    ],
+    "price": 12,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING249",
+    "name_lat": "Prunus dulcis",
+    "name_cz": "Mandle",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": 1,
+    "toxicity": 5,
+    "potency": 2,
+    "tags": [
+      "nutrition",
+      "base"
+    ],
+    "price": 10,
+    "shelf_days": 180,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING250",
+    "name_lat": "Juglans regia",
+    "name_cz": "Vlašský ořech",
+    "type": "Herb",
+    "thermal": 1,
+    "moisture": -1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "brain",
+      "astringent"
+    ],
+    "price": 6,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING251",
+    "name_lat": "Buxus",
+    "name_cz": "Zimostráz",
+    "type": "Herb",
+    "thermal": -2,
+    "moisture": -2,
+    "toxicity": 30,
+    "potency": 2,
+    "tags": [
+      "toxic",
+      "hard"
+    ],
+    "price": 8,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING252",
+    "name_lat": "Guaiacum officinale",
+    "name_cz": "Guajakové dřevo",
+    "type": "Herb",
+    "thermal": 3,
+    "moisture": -3,
+    "toxicity": 5,
+    "potency": 3,
+    "tags": [
+      "blood",
+      "purifying"
+    ],
+    "price": 35,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING253",
+    "name_lat": "Paeonia",
+    "name_cz": "Pivoňka",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": -1,
+    "toxicity": 10,
+    "potency": 2,
+    "tags": [
+      "spasm",
+      "magic"
+    ],
+    "price": 12,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING254",
+    "name_lat": "Helleborus niger",
+    "name_cz": "Čemeřice černá",
+    "type": "Herb",
+    "thermal": -4,
+    "moisture": -3,
+    "toxicity": 75,
+    "potency": 4,
+    "tags": [
+      "poison",
+      "purgative"
+    ],
+    "price": 28,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING255",
+    "name_lat": "Convolvulus scammonia",
+    "name_cz": "Skamonie",
+    "type": "Herb",
+    "thermal": 2,
+    "moisture": -2,
+    "toxicity": 40,
+    "potency": 3,
+    "tags": [
+      "purgative",
+      "toxic"
+    ],
+    "price": 25,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING256",
+    "name_lat": "Garcinia hanburyi",
+    "name_cz": "Gambodža",
+    "type": "Resin",
+    "thermal": 3,
+    "moisture": -2,
+    "toxicity": 45,
+    "potency": 3,
+    "tags": [
+      "purgative",
+      "pigment"
+    ],
+    "price": 30,
+    "shelf_days": 365,
+    "color": "#e67e22"
+  },
+  {
+    "id": "ING257",
+    "name_lat": "Secale cereale",
+    "name_cz": "Žito",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "nutrition"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING258",
+    "name_lat": "Triticum aestivum",
+    "name_cz": "Pšenice",
+    "type": "Herb",
+    "thermal": 0,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "base",
+      "nutrition"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING259",
+    "name_lat": "Avena sativa",
+    "name_cz": "Oves",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "calming",
+      "nutrition"
+    ],
+    "price": 2,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  },
+  {
+    "id": "ING260",
+    "name_lat": "Tilia",
+    "name_cz": "Lípa",
+    "type": "Herb",
+    "thermal": -1,
+    "moisture": 1,
+    "toxicity": 0,
+    "potency": 1,
+    "tags": [
+      "calming",
+      "anti-fever"
+    ],
+    "price": 5,
+    "shelf_days": 365,
+    "color": "#2ecc71"
+  }
+]

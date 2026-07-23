@@ -194,34 +194,110 @@
 /* Special Light Theme Clean Parchment Overrides */
 [data-theme="light"] {
   color-scheme: light;
+  --bg-main: #f5f0e4;
+  --bg-card: #fdfaf3;
+  --bg-subcard: #f2e7d7;
+  --bg-input: #eadecb;
+  --border-main: #d8c8b0;
+  --accent-gold: #9e6412;
+  --accent-light: #7a4a0c;
+  --text-main: #2b2014;
+  --text-muted: #5e4a38;
+  --text-dim: #7a6450;
+  --heading-text: #1a120a;
+  --card-shadow: 0 2px 8px rgba(100, 75, 35, 0.06);
 }
 
-[data-theme="light"] .text-white { color: var(--heading-text) !important; }
+[data-theme="light"] body {
+  background-color: #f5f0e4;
+  color: #2b2014;
+}
 
+/* Smooth Header in Light Theme */
 [data-theme="light"] header {
-  background-color: #f0e6d5 !important;
-  border-color: var(--border-main) !important;
+  background-color: #eee3d2 !important;
+  border-color: #d8c8b0 !important;
   background-image: none !important;
-  box-shadow: 0 1px 4px rgba(100, 70, 30, 0.08);
+  box-shadow: 0 1px 4px rgba(100, 70, 30, 0.06);
 }
 
-[data-theme="light"] .bg-gradient-to-r,
-[data-theme="light"] .bg-gradient-to-b {
+/* Header Stat Badges */
+[data-theme="light"] header [class*="bg-[#1a1208]"],
+[data-theme="light"] header .bg-\[\#1a1208\]\/80 {
+  background-color: #f8f3eb !important;
+  border-color: #d8c8b0 !important;
+  color: #2b2014 !important;
+  box-shadow: 0 1px 3px rgba(100, 70, 30, 0.05) !important;
+}
+
+[data-theme="light"] header [class*="bg-[#2a1d0d]"] {
+  background-color: #e6d8c4 !important;
+  border-color: #cbb89e !important;
+  color: #2b2014 !important;
+}
+
+/* Universal Soft Cards for Light Theme */
+[data-theme="light"] [class*="bg-[#1a1208]"],
+[data-theme="light"] [class*="bg-[#120d07]"],
+[data-theme="light"] [class*="bg-[#0d0a06]"],
+[data-theme="light"] [class*="bg-[#241a0e]"],
+[data-theme="light"] [class*="bg-[#2a1d0d]"],
+[data-theme="light"] [class*="bg-[#22180b]"],
+[data-theme="light"] [class*="bg-[#1f1509]"],
+[data-theme="light"] [class*="bg-[#3d2a13]"] {
+  background-color: #f7f1e5 !important;
+  color: #2b2014 !important;
+}
+
+/* Card Borders in Light Theme */
+[data-theme="light"] [class*="border-[#5c3d1a]"] {
+  border-color: #d8c8b0 !important;
+}
+
+/* Selected Tab in Right Sidebar */
+[data-theme="light"] .bg-\[\#5c3d1a\] {
+  background-color: #e0cea8 !important;
+  color: #2b2014 !important;
+  border-color: #cbb28b !important;
+  box-shadow: 0 2px 4px rgba(100, 70, 30, 0.08) !important;
+}
+
+/* Unselected Tabs in Right Sidebar */
+[data-theme="light"] .bg-\[\#1a1208\]\/20,
+[data-theme="light"] .bg-\[\#1a1208\]\/30,
+[data-theme="light"] .bg-\[\#1a1208\]\/40 {
+  background-color: #ebe0d0 !important;
+  color: #6b5643 !important;
+}
+
+/* Text Overrides for Light Theme */
+[data-theme="light"] .text-white { color: #1a120a !important; }
+[data-theme="light"] .text-\[\#e8d5a3\] { color: #2b2014 !important; }
+[data-theme="light"] .text-\[\#b5945a\] { color: #5e4a38 !important; }
+[data-theme="light"] .text-\[\#7a5f35\] { color: #7a6450 !important; }
+[data-theme="light"] .text-\[\#f0c040\] { color: #9e6412 !important; font-weight: 700 !important; }
+
+/* Status Text Colors for Light Theme */
+[data-theme="light"] .text-green-400 { color: #1e7a37 !important; }
+[data-theme="light"] .text-red-400 { color: #b82a2a !important; }
+
+/* Action Buttons in Light Theme */
+[data-theme="light"] .bg-gradient-to-r {
   background-image: none !important;
-  background-color: var(--accent-gold) !important;
+  background-color: #b88228 !important;
   color: #ffffff !important;
+  box-shadow: 0 2px 5px rgba(140, 95, 25, 0.2) !important;
+}
+[data-theme="light"] .bg-gradient-to-r:hover {
+  background-color: #a3711e !important;
 }
 
-[data-theme="light"] .bg-black\/20,
-[data-theme="light"] .bg-black\/10,
-[data-theme="light"] .bg-black\/30,
-[data-theme="light"] .bg-black\/40,
-[data-theme="light"] .bg-black\/50 {
-  background-color: rgba(140, 110, 70, 0.08) !important;
-}
-
-[data-theme="light"] .text-shadow {
-  text-shadow: none !important;
+/* Shadows and Text-Shadows */
+[data-theme="light"] .text-shadow { text-shadow: none !important; }
+[data-theme="light"] .shadow-2xl,
+[data-theme="light"] .shadow-xl,
+[data-theme="light"] .shadow-lg {
+  box-shadow: 0 4px 14px rgba(90, 65, 30, 0.08) !important;
 }
 
 /* Special Winter & Blue Theme Adjustments */

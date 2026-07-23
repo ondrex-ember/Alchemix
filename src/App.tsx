@@ -213,7 +213,7 @@ export default function App() {
   const [tutRecipesCompleted, setTutRecipesCompleted] = useState<Record<string, boolean>>({});
 
   const TUTORIAL_STEPS = [
-    { text: "Vítej v AlchemiX! Jsi alchymistou v temném středověku. Vlevo vidíš svůj <strong>Sklad ingrediencí</strong> — klikni na vodu a víno, abys je přidal na pracovní stůl." },
+    { text: "Vítej v Athanor v2! Jsi alchymistou v temném středověku. Vlevo vidíš svůj <strong>Sklad ingrediencí</strong> — klikni na vodu a víno, abys je přidal na pracovní stůl." },
     { text: "Skvěle! Přidal jsi ingredience do slotů na stole. Nyní zvol metodu úpravy (např. Smíchat nebo Vařit) a stiskni tlačítko <strong>UVAŘ!</strong>" },
     { text: "Pokud jsi trefil správný poměr a techniku, uvaříš recept zapsaný v Grimoiru! Jinak humorální engine vytvoří procedurální odvar." },
     { text: "Místní lidé tě navštěvují se svými trablemi v záložce <strong>📜 Zakázky</strong>. Plněním těchto kontraktů vyděláváš zlato a prestiž u frakcí." },
@@ -1225,8 +1225,8 @@ export default function App() {
       <header className="border-b border-[#5c3d1a] bg-[#1a1208]/90 py-4 px-6 sticky top-0 z-100 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div>
-            <h1 className="font-serif text-3xl md:text-4xl text-[#f0c040] font-bold tracking-widest flex items-center justify-center md:justify-start gap-2">
-              ⚗️ AlchemiX
+            <h1 className="font-['Cinzel'] text-3xl md:text-4xl text-[#f0c040] font-bold tracking-widest flex items-center justify-center md:justify-start gap-2">
+              ⚗️ Athanor v2
             </h1>
             <p className="text-[10px] text-[#7a5f35] font-serif uppercase tracking-wider italic mt-0.5">
               Středověká lékárna · Alchymistická laboratoř
@@ -2097,13 +2097,15 @@ export default function App() {
 
         {/* RIGHT COLUMN: Quests, Foraging, Grimoire tabs */}
         <section className="lg:col-span-4 p-4 flex flex-col gap-4">
-          <div className="flex border-b border-[#5c3d1a] gap-1 flex-wrap">
+          <div className="flex border-b border-[#5c3d1a]/60 gap-1 flex-wrap">
             {['quests', 'forage', 'grimoire', 'loyal', 'gremium'].map((t) => (
               <button
                 key={t}
                 onClick={() => setActiveTab(t)}
-                className={`flex-1 py-1.5 text-[10px] font-serif uppercase tracking-wider cursor-pointer ${
-                  activeTab === t ? 'bg-[#5c3d1a] text-[#f0c040]' : 'text-[#7a5f35] hover:text-[#b5945a]'
+                className={`flex-1 min-w-[70px] py-2 px-1 text-[11px] font-serif uppercase tracking-wider cursor-pointer rounded-t-lg transition-all border-t border-x ${
+                  activeTab === t
+                    ? 'bg-[#5c3d1a] text-[#f0c040] font-bold border-[#c8961e]/60 shadow-sm'
+                    : 'bg-[#1a1208]/20 border-transparent text-[#7a5f35] hover:text-[#b5945a] hover:bg-[#1a1208]/40'
                 }`}
               >
                 {t === 'quests' ? '📜 Cech' : t === 'forage' ? '🧭 Sběr' : t === 'grimoire' ? '📖 Recepty' : t === 'loyal' ? '👥 Zákazníci' : '🎓 Gremium'}

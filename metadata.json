@@ -1,5 +1,5 @@
 {
-  "name": "AlchemiX",
+  "name": "Athanor v2",
   "description": "Středověká alchymistická dílna — simulátor vaření lektvarů, plnění zakázek, sběru surovin a správy učedníků s propracovaným humorálním a ekonomickým systémem.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

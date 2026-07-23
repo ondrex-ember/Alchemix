@@ -376,7 +376,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   ⚗️
                 </div>
                 <h3 className="text-base font-bold text-[#f0c040]">
-                  AlchemiX · Staročeská Alchymistická Laboratoř
+                  Athanor v2 · Staročeská Alchymistická Laboratoř
                 </h3>
                 <span className="text-xs font-mono bg-[#c8961e]/20 text-[#f0c040] px-3 py-1 rounded-full border border-[#c8961e]/40 font-bold">
                   Verze v2.4.0 (GitHub Pages Build)

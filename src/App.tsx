@@ -1001,7 +1001,7 @@ export default function App() {
       const isPowder = process === 'Grind';
       setPotionInventory((prev) => {
         const existing = prev[pKey] || {
-          id: matched.id || `crafted_${Date.now()}`,
+          id: pKey,
           name_cz: matched.name_cz,
           category: isPowder ? 'Powder' : matched.category || 'Liquid',
           value: matched.value || (isExact ? 15 : 2),
@@ -1785,22 +1785,32 @@ export default function App() {
                             <button
                               onClick={() => {
                                 if (hasStock && matchingPotion) {
-                                  const pKey = matchingPotion.id || matchingPotion.name_cz;
+                                  let fulfilled = false;
                                   setPotionInventory(prev => {
-                                    const cur = prev[pKey];
-                                    if (!cur) return prev;
+                                    const entry = (Object.entries(prev) as [string, CraftedPotionItem][]).find(([k, item]) =>
+                                      (matchingPotion.id && (k === matchingPotion.id || item.id === matchingPotion.id)) ||
+                                      (matchingPotion.name_cz && item.name_cz === matchingPotion.name_cz)
+                                    );
+                                    if (!entry || entry[1].count <= 0) return prev;
+                                    const [dictKey, curItem] = entry;
+                                    fulfilled = true;
                                     return {
                                       ...prev,
-                                      [pKey]: {
-                                        ...cur,
-                                        count: Math.max(0, cur.count - 1)
+                                      [dictKey]: {
+                                        ...curItem,
+                                        count: Math.max(0, curItem.count - 1)
                                       }
                                     };
                                   });
-                                  setGold(g => g + q.reward);
-                                  setQuestsCompleted(qc => qc + 1);
-                                  setQuests(prev => prev.filter(quest => quest.id !== q.id));
-                                  addNotification(`🎉 Zakázka pro ${q.customer.name} splněna! Získal jsi 🪙 ${q.reward} zl.!`, "success");
+
+                                  if (fulfilled) {
+                                    setGold(g => g + q.reward);
+                                    setQuestsCompleted(qc => qc + 1);
+                                    setQuests(prev => prev.filter(quest => quest.id !== q.id));
+                                    addNotification(`🎉 Zakázka pro ${q.customer.name} splněna! Získal jsi 🪙 ${q.reward} zl.!`, "success");
+                                  } else {
+                                    addNotification(`❌ V truhle nemáš dostatek lektvaru na skladě!`, "error");
+                                  }
                                 } else {
                                   addNotification(`❌ V truhle nemáš potřebný lektvar: ${q.targetName || 'požadovaný lektvar'}. Uvař ho u stolu!`, "error");
                                 }
@@ -2474,19 +2484,30 @@ export default function App() {
                                 <div className="flex gap-1">
                                   <button
                                     onClick={() => {
-                                      setGold(g => Number((g + unitPrice).toFixed(2)));
+                                      let sold = false;
                                       setPotionInventory(prev => {
-                                        const cur = prev[pKey];
-                                        if (!cur) return prev;
+                                        const entry = (Object.entries(prev) as [string, CraftedPotionItem][]).find(([k, item]) => 
+                                          k === pKey || item.id === p.id || item.name_cz === p.name_cz
+                                        );
+                                        if (!entry || entry[1].count <= 0) return prev;
+
+                                        const [dictKey, curItem] = entry;
+                                        sold = true;
                                         return {
                                           ...prev,
-                                          [pKey]: {
-                                            ...cur,
-                                            count: Math.max(0, cur.count - 1)
+                                          [dictKey]: {
+                                            ...curItem,
+                                            count: Math.max(0, curItem.count - 1)
                                           }
                                         };
                                       });
-                                      addNotification(`Prodal jsi 1× ${p.name_cz} za 🪙 ${unitPrice} zl.`, "success");
+
+                                      if (sold) {
+                                        setGold(g => Number((g + unitPrice).toFixed(2)));
+                                        addNotification(`Prodal jsi 1× ${p.name_cz} za 🪙 ${unitPrice} zl.`, "success");
+                                      } else {
+                                        addNotification(`❌ Tento lektvar nemáš na skladě.`, "error");
+                                      }
                                     }}
                                     className="px-2 py-0.5 bg-[#c8961e] hover:bg-[#f0c040] text-black text-[10px] font-serif font-bold rounded cursor-pointer"
                                   >
@@ -2520,9 +2541,16 @@ export default function App() {
                           <div
                             key={id}
                             onClick={() => {
-                              setGold(g => g + sellPrice);
-                              setInventory(prev => ({ ...prev, [id]: prev[id] - 1 }));
-                              addNotification(`Prodal jsi 1× ${item.name_cz} za 🪙 ${sellPrice} zl.`, "info");
+                              let sold = false;
+                              setInventory(prev => {
+                                if (!prev[id] || prev[id] <= 0) return prev;
+                                sold = true;
+                                return { ...prev, [id]: prev[id] - 1 };
+                              });
+                              if (sold) {
+                                setGold(g => g + sellPrice);
+                                addNotification(`Prodal jsi 1× ${item.name_cz} za 🪙 ${sellPrice} zl.`, "info");
+                              }
                             }}
                             className="p-2 border border-[#5c3d1a] hover:border-[#2ecc71] rounded-xl flex items-center justify-between cursor-pointer bg-[#0d0a06]/40 transition-colors"
                           >

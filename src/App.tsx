@@ -65,6 +65,7 @@ import { LoyalCustomersTab } from './components/LoyalCustomersTab';
 import { GremiumTab } from './components/GremiumTab';
 import { TechTree } from './components/TechTree';
 import { DistillationGame } from './components/DistillationGame';
+import { TutorialGuideModal, TUTORIAL_RECIPES } from './components/TutorialGuideModal';
 
 export default function App() {
   // ══════════════════════════════════════════════════════
@@ -182,8 +183,11 @@ export default function App() {
     }, 4000);
   };
 
-  // Tutorial steps
+  // Tutorial steps & Guide
   const [tutStep, setTutStep] = useState<number>(0); // 0=not started, 1..6=tutorial, -1=completed
+  const [tutGuideOpen, setTutGuideOpen] = useState<boolean>(false);
+  const [tutRecipesCompleted, setTutRecipesCompleted] = useState<Record<string, boolean>>({});
+
   const TUTORIAL_STEPS = [
     { text: "Vítej v AlchemiX! Jsi alchymistou v temném středověku. Vlevo vidíš svůj <strong>Sklad ingrediencí</strong> — klikni na vodu a víno, abys je přidal na pracovní stůl." },
     { text: "Skvěle! Přidal jsi ingredience do slotů na stole. Nyní zvol metodu úpravy (např. Smíchat nebo Vařit) a stiskni tlačítko <strong>UVAŘ!</strong>" },
@@ -235,6 +239,7 @@ export default function App() {
         setTechStats(d.techStats ?? { distillCount: 0, thermalCancels: 0, toxOver60: 0, herbTotal: 0, mineralTotal: 0 });
         setTechUnlocked(d.techUnlocked ?? {});
         setTutStep(d.tutStep ?? 0);
+        setTutRecipesCompleted(d.tutRecipesCompleted ?? {});
         setSeasonIndex(d.seasonIndex ?? 0);
         setSeasonDay(d.seasonDay ?? 0);
         setDemand(d.demand ?? {});
@@ -278,7 +283,7 @@ export default function App() {
       blessedBrews, apprenticeBrews, lastEventDay, usedEvents, activeEventId: activeEvent?.id || null,
       merchantDay, merchantStock, marketBan: null, tournament, grimoireFilter: 'all',
       grimoireSort: 'name', swampUnlockBonus, gremiumUnlocked, apprentices, pendingReturn,
-      loyalCustomers, bartexOffer, usageTrack, techStats, techUnlocked, tutStep,
+      loyalCustomers, bartexOffer, usageTrack, techStats, techUnlocked, tutStep, tutRecipesCompleted,
       seasonIndex, seasonDay, demand, factions, blackMarketUnlocked, timePaused,
       droughtUntil, competitorUntil, competitorPenalty
     };
@@ -742,6 +747,43 @@ export default function App() {
     setSlots(prev => prev.filter((_, i) => i !== index));
   };
 
+  const handleSetupTutorialSlots = (
+    baseId: string,
+    reqIds: string[],
+    processType: 'Mix' | 'Grind' | 'Boil' | 'Distill'
+  ) => {
+    const missing = [baseId, ...reqIds].filter(id => (inventory[id] || 0) <= 0);
+    if (missing.length > 0) {
+      const missingNames = missing.map(id => ingMap[id]?.name_cz || id).join(', ');
+      addNotification(`⚠️ Ve skladu chybí: ${missingNames}. Použij "Doplnit suroviny".`, 'warn');
+      return;
+    }
+    setSlots([baseId, ...reqIds]);
+    setProcess(processType);
+    setActiveCenterTab('bench');
+    addNotification(`⚡ Připraveno na stůl! Nyní stiskni tlačítko UVAŘ!`, 'success');
+  };
+
+  const handleRefillStartingIngredients = () => {
+    setInventory(prev => {
+      const next = { ...prev };
+      ["ING01", "ING03", "ING04", "ING19"].forEach(id => {
+        next[id] = Math.max(next[id] || 0, 3);
+      });
+      return next;
+    });
+    setInventoryMeta(prev => {
+      const next = { ...prev };
+      ["ING01", "ING03", "ING04", "ING19"].forEach(id => {
+        if (!next[id] || (next[id].purchasedDays || []).length < 3) {
+          next[id] = { purchasedDays: [gameDay, gameDay, gameDay] };
+        }
+      });
+      return next;
+    });
+    addNotification("📦 Sklad byl doplněn o cvičné suroviny (Voda, Med, Ocet, Růže)!", "success");
+  };
+
   // CORE BREWING ENGINE
   const triggerBrew = () => {
     if (slots.length === 0) return;
@@ -814,6 +856,17 @@ export default function App() {
       if (isExact && matched.id && !discovered[matched.id]) {
         setDiscovered((prev) => ({ ...prev, [matched.id!]: true }));
         addNotification(`✨ Nový alchymistický recept zaznamenán: ${matched.name_cz}!`, 'success');
+      }
+
+      // Check tutorial 3-recipes progress reward
+      if (isExact && matched.id) {
+        const tutMatch = TUTORIAL_RECIPES.find(r => r.id === matched.id);
+        if (tutMatch && !tutRecipesCompleted[matched.id]) {
+          setTutRecipesCompleted(prev => ({ ...prev, [matched.id!]: true }));
+          setGold(g => g + tutMatch.rewardGold);
+          setVigor(v => Math.min(100, v + tutMatch.rewardVigor));
+          addNotification(`🎓 Výuková lekce splněna: ${tutMatch.name}! Odměna: +${tutMatch.rewardGold} Zlata & +${tutMatch.rewardVigor} Síly!`, 'success');
+        }
       }
 
       // Record tech-tree research counters
@@ -1007,7 +1060,7 @@ export default function App() {
           </div>
 
           {/* Stat bar */}
-          <div className="flex gap-4 flex-wrap justify-center text-xs font-serif">
+          <div className="flex gap-4 flex-wrap items-center justify-center text-xs font-serif">
             <span className="flex items-center gap-1.5 text-white">
               <Coins className="w-4 h-4 text-[#f0c040]" /> Zlato:{' '}
               <strong className="text-[#f0c040]">{gold}</strong>
@@ -1021,6 +1074,12 @@ export default function App() {
             <span className="text-[#b5945a]">
               Den: <strong className="text-white">{gameDay}</strong>
             </span>
+            <button
+              onClick={() => setTutGuideOpen(true)}
+              className="px-3 py-1 bg-gradient-to-r from-[#7a4a10] to-[#c8961e] hover:from-[#8a5a15] hover:to-[#e0a820] text-white border border-[#f0c040]/60 rounded-lg text-xs font-serif font-bold cursor-pointer shadow-md transition-all flex items-center gap-1.5"
+            >
+              🎓 Škola alchymie ({Object.keys(tutRecipesCompleted).length}/3)
+            </button>
           </div>
         </div>
       </header>
@@ -1134,6 +1193,31 @@ export default function App() {
 
           {activeCenterTab === 'bench' && (
             <div className="flex flex-col gap-4 flex-1">
+              {/* Tutorial Quick Card Banner */}
+              <div className="bg-gradient-to-r from-[#1f1509] via-[#2a1d0d] to-[#1f1509] border border-[#c8961e]/60 p-3.5 rounded-xl flex items-center justify-between gap-3 shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#c8961e]/20 border border-[#c8961e] flex items-center justify-center text-[#f0c040] font-bold text-base shadow">
+                    🎓
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-xs font-bold text-[#f0c040]">
+                      Škola alchymie · 3 Výukové recepty
+                    </h4>
+                    <p className="text-[11px] text-[#b5945a] font-serif">
+                      {Object.keys(tutRecipesCompleted).length === 3
+                        ? "Všechny 3 výukové lekce uvařeny! Skvělá práce."
+                        : `Dokončeno: ${Object.keys(tutRecipesCompleted).length}/3. Nauč se Míchat, Vařit a Destilovat!`}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setTutGuideOpen(true)}
+                  className="px-3.5 py-1.5 bg-gradient-to-r from-[#c8961e] to-[#f0c040] hover:brightness-110 text-black font-serif font-bold text-xs rounded-lg cursor-pointer whitespace-nowrap shadow transition-all"
+                >
+                  Otevřít recepty
+                </button>
+              </div>
+
               {/* Cauldron Visual Animation */}
               <CauldronVisual
                 brewing={brewingAnimation}
@@ -1795,6 +1879,18 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Tutorial 3-Recipes Guide Modal */}
+      <TutorialGuideModal
+        isOpen={tutGuideOpen}
+        onClose={() => setTutGuideOpen(false)}
+        inventory={inventory}
+        ingMap={ingMap}
+        onSetupSlots={handleSetupTutorialSlots}
+        onRefillStartingIngredients={handleRefillStartingIngredients}
+        tutRecipesCompleted={tutRecipesCompleted}
+        discoveredRecipes={discovered}
+      />
 
       {/* Floating Notifications */}
       <div className="fixed bottom-6 right-6 z-400 flex flex-col gap-2 max-w-sm pointer-events-none">

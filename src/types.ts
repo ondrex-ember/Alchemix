@@ -268,6 +268,7 @@ export interface GameState {
   };
   techUnlocked: Record<string, boolean>;
   tutStep: number;
+  tutRecipesCompleted?: Record<string, boolean>;
   seasonIndex: number;
   seasonDay: number;
   demand: Record<string, number>; // -3 to +3

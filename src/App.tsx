@@ -29,7 +29,8 @@ import {
   LoyalCustomer,
   CauldronResidue,
   GameState,
-  BartexOffer
+  BartexOffer,
+  BrewLogEntry
 } from './types';
 
 import {
@@ -82,6 +83,9 @@ export default function App() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [brewed, setBrewed] = useState<number>(0);
+  const [brewLog, setBrewLog] = useState<BrewLogEntry[]>([]);
+  const [logSearch, setLogSearch] = useState<string>('');
+  const [logProcessFilter, setLogProcessFilter] = useState<string>('all');
   const [maxToxSeen, setMaxToxSeen] = useState<number>(0);
   const [vigor, setVigor] = useState<number>(100);
   const [hunger, setHunger] = useState<number>(0);
@@ -299,6 +303,7 @@ export default function App() {
     setNotes(d.notes ?? {});
     setFavorites(d.favorites ?? {});
     setBrewed(d.brewed ?? 0);
+    setBrewLog(d.brewLog ?? []);
     setMaxToxSeen(d.maxToxSeen ?? 0);
     setVigor(d.vigor ?? 100);
     setHunger(d.hunger ?? 0);
@@ -359,7 +364,7 @@ export default function App() {
       grimoireSort: 'name', swampUnlockBonus, gremiumUnlocked, apprentices, pendingReturn,
       loyalCustomers, bartexOffer, usageTrack, techStats, techUnlocked, tutStep, tutRecipesCompleted,
       seasonIndex, seasonDay, demand, factions, blackMarketUnlocked, timePaused,
-      droughtUntil, competitorUntil, competitorPenalty, quests
+      droughtUntil, competitorUntil, competitorPenalty, quests, brewLog
     };
     localStorage.setItem('alchemix_react_save', JSON.stringify(saveData));
     addNotification("Hra uložena do kroniky! 💾", "success");
@@ -391,7 +396,7 @@ export default function App() {
       grimoireSort: 'name', swampUnlockBonus, gremiumUnlocked, apprentices, pendingReturn,
       loyalCustomers, bartexOffer, usageTrack, techStats, techUnlocked, tutStep, tutRecipesCompleted,
       seasonIndex, seasonDay, demand, factions, blackMarketUnlocked, timePaused,
-      droughtUntil, competitorUntil, competitorPenalty, quests
+      droughtUntil, competitorUntil, competitorPenalty, quests, brewLog
     };
     const jsonString = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(saveData, null, 2))}`;
     const downloadAnchor = document.createElement('a');
@@ -962,9 +967,27 @@ export default function App() {
         return nextMeta;
       });
 
-      // Update brewed counts
+      // Update brewed counts & log
       setBrewed((prev) => prev + 1);
       setMaxToxSeen((prev) => Math.max(prev, vec.toxicity));
+
+      const ingNames = slots.map(id => ingMap[id]?.name_cz || id);
+      const newLogEntry: BrewLogEntry = {
+        id: `brew_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+        day: gameDay,
+        potionName: matched.name_cz,
+        potionIcon: matched.tags?.includes('tonic') ? '🧪' : '🏺',
+        process,
+        ingredientIds: [...slots],
+        ingredientNames: ingNames,
+        thermal: vec.thermal,
+        moisture: vec.moisture,
+        toxicity: vec.toxicity,
+        isExact,
+        value: matched.value,
+        timeStr: `Den ${gameDay}`,
+      };
+      setBrewLog((prev) => [newLogEntry, ...prev].slice(0, 100));
 
       if (isExact && matched.id && !discovered[matched.id]) {
         setDiscovered((prev) => ({ ...prev, [matched.id!]: true }));
@@ -1464,37 +1487,55 @@ export default function App() {
 
               {/* Added Slots */}
               <div className="flex flex-col gap-2">
-                <span className="text-[10px] text-[#7a5f35] font-serif uppercase tracking-widest text-center">
-                  Vložené suroviny v kotli ({slots.length} / {maxSlots})
-                </span>
+                <div className="flex justify-between items-center px-1">
+                  <span className="text-[10px] text-[#7a5f35] font-serif uppercase tracking-widest">
+                    Vložené suroviny v kotli ({slots.length} / {maxSlots})
+                  </span>
+                  {Object.values(inventory).some(qty => (qty as number) > 0) && slots.length < maxSlots && (
+                    <span className="text-[9px] text-[#f0c040] font-serif animate-pulse flex items-center gap-1">
+                      ✨ Klikni na surovinu vlevo pro vložení
+                    </span>
+                  )}
+                </div>
                 <div className="grid grid-cols-4 gap-2">
-                  {Array.from({ length: maxSlots }).map((_, i) => {
-                    const id = slots[i];
-                    const item = id ? ingMap[id] : null;
+                  {(() => {
+                    const hasIngredients = Object.values(inventory).some(qty => (qty as number) > 0);
+                    return Array.from({ length: maxSlots }).map((_, i) => {
+                      const id = slots[i];
+                      const item = id ? ingMap[id] : null;
 
-                    return (
-                      <div
-                        key={i}
-                        onClick={() => item && removeIngredientFromSlot(i)}
-                        className={`h-16 border rounded-lg flex flex-col items-center justify-center gap-1 cursor-pointer transition-all ${
-                          item
-                            ? 'border-[#5c3d1a] bg-[#1a1208] hover:border-red-500'
-                            : 'border-dashed border-[#5c3d1a]/40 bg-[#0d0a06]/40 text-[#7a5f35] hover:border-[#7a5128]'
-                        }`}
-                      >
-                        {item ? (
-                          <>
-                            <span className="text-base">🌿</span>
-                            <span className="text-[9px] font-serif text-center truncate w-full px-1 text-[#e8d5a3]">
-                              {item.name_cz}
-                            </span>
-                          </>
-                        ) : (
-                          <span className="text-sm text-[#5c3d1a] font-bold">+</span>
-                        )}
-                      </div>
-                    );
-                  })}
+                      return (
+                        <div
+                          key={i}
+                          onClick={() => item && removeIngredientFromSlot(i)}
+                          className={`h-16 border rounded-xl flex flex-col items-center justify-center gap-1 cursor-pointer transition-all relative overflow-hidden ${
+                            item
+                              ? 'border-[#5c3d1a] bg-[#1a1208] hover:border-red-500 hover:bg-red-950/20 shadow-md'
+                              : hasIngredients
+                              ? 'border-dashed border-[#c8961e] bg-[#c8961e]/10 text-[#f0c040] hover:border-[#f0c040] hover:bg-[#c8961e]/20 animate-pulse shadow-[0_0_12px_rgba(200,150,30,0.25)]'
+                              : 'border-dashed border-[#5c3d1a]/40 bg-[#0d0a06]/40 text-[#7a5f35] hover:border-[#7a5128]'
+                          }`}
+                          title={item ? `${item.name_cz} (klikni pro odebrání)` : hasIngredients ? "Vyber surovinu v levém skladu pro vložení" : "Prázdný slot"}
+                        >
+                          {item ? (
+                            <>
+                              <span className="text-base">{item.type === 'Herb' ? '🌿' : item.type === 'Mineral' ? '💎' : item.type === 'Liquid' ? '💧' : item.type === 'Resin' ? '🪵' : '🐾'}</span>
+                              <span className="text-[9px] font-serif text-center truncate w-full px-1 text-[#e8d5a3] font-semibold">
+                                {item.name_cz}
+                              </span>
+                            </>
+                          ) : hasIngredients ? (
+                            <div className="flex flex-col items-center justify-center gap-0.5">
+                              <span className="text-sm text-[#f0c040] font-bold">+</span>
+                              <span className="text-[8px] font-serif text-[#c8961e] font-bold tracking-tight">Vlož surovinu</span>
+                            </div>
+                          ) : (
+                            <span className="text-sm text-[#5c3d1a] font-bold">+</span>
+                          )}
+                        </div>
+                      );
+                    });
+                  })()}
                 </div>
               </div>
 
@@ -1567,6 +1608,53 @@ export default function App() {
                     Oceňovaná hodnota: 💰 {lastBrewResult.result.value} zlatých
                   </p>
                 </motion.div>
+              )}
+
+              {/* Workbench Recent Brew Log Feed */}
+              {brewLog.length > 0 && (
+                <div className="mt-3 border border-[#5c3d1a]/60 bg-[#120d07]/60 rounded-xl p-3 flex flex-col gap-2">
+                  <div className="flex items-center justify-between border-b border-[#5c3d1a]/40 pb-1.5">
+                    <span className="text-[10px] font-serif uppercase tracking-widest text-[#f0c040] flex items-center gap-1">
+                      📜 Poslední uvařené elixíry ({brewLog.length})
+                    </span>
+                    <button
+                      onClick={() => setActiveCenterTab('stats')}
+                      className="text-[10px] font-serif text-[#b5945a] hover:text-[#f0c040] underline cursor-pointer"
+                    >
+                      Otevřít celou kroniku &rarr;
+                    </button>
+                  </div>
+                  <div className="flex flex-col gap-1.5 max-h-[160px] overflow-y-auto pr-1">
+                    {brewLog.slice(0, 4).map((entry) => (
+                      <div
+                        key={entry.id}
+                        className="bg-[#1a1208] border border-[#5c3d1a]/50 p-2 rounded-lg flex flex-col gap-1 text-[11px]"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-serif font-bold text-[#e8d5a3] flex items-center gap-1">
+                            <span>{entry.potionIcon || '🧪'}</span> {entry.potionName}
+                          </span>
+                          <span className="text-[9px] text-[#7a5f35] font-serif">
+                            {entry.timeStr} · {entry.process === 'Mix' ? '🥄' : entry.process === 'Grind' ? '🪨' : entry.process === 'Boil' ? '🔥' : '💧'}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-[10px]">
+                          <div className="flex items-center gap-1 flex-wrap">
+                            <span className="text-[#7a5f35]">Suroviny:</span>
+                            {entry.ingredientNames.map((ing, idx) => (
+                              <span key={idx} className="bg-[#0d0a06] border border-[#5c3d1a]/40 px-1.5 py-0.5 rounded text-[#b5945a]">
+                                {ing}
+                              </span>
+                            ))}
+                          </div>
+                          <span className="text-[#2ecc71] font-bold font-serif shrink-0 ml-1">
+                            💰 {entry.value} z.
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           )}
@@ -1661,6 +1749,143 @@ export default function App() {
                       {Object.values(inventory).reduce((acc: number, qty) => acc + (qty as number), 0)} kusů
                     </span>
                   </div>
+                </div>
+              </div>
+
+              {/* LOG UVAŘENÝCH SUROVIN A ELIXÍRŮ */}
+              <div className="border-t border-[#5c3d1a] pt-4 mt-2">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-serif text-[#f0c040] text-xs font-bold uppercase tracking-widest flex items-center gap-1.5">
+                    📜 Log uvařených surovin a elixírů ({brewLog.length})
+                  </h4>
+                  {brewLog.length > 0 && (
+                    <button
+                      onClick={() => {
+                        if (confirm("Chceš opravdu smazat historii uvařených surovin v logu?")) {
+                          setBrewLog([]);
+                          addNotification("📜 Log vaření byl vyčištěn.", "info");
+                        }
+                      }}
+                      className="text-[10px] text-red-400/80 hover:text-red-300 font-serif underline cursor-pointer"
+                    >
+                      Vymazat log
+                    </button>
+                  )}
+                </div>
+
+                {/* Search & Filter bar for Log */}
+                <div className="flex flex-col sm:flex-row gap-2 mb-3">
+                  <div className="relative flex-1">
+                    <Search className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[#7a5f35]" />
+                    <input
+                      type="text"
+                      placeholder="Hledat v logu (název, surovina...)"
+                      value={logSearch}
+                      onChange={(e) => setLogSearch(e.target.value)}
+                      className="w-full bg-[#0d0a06] border border-[#5c3d1a] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#e8d5a3] placeholder-[#7a5f35] focus:outline-none focus:border-[#c8961e]"
+                    />
+                  </div>
+                  <div className="flex gap-1 overflow-x-auto text-[10px] font-serif">
+                    {[
+                      { id: 'all', label: 'Vše' },
+                      { id: 'Mix', label: '🥄 Smíchat' },
+                      { id: 'Grind', label: '🪨 Drtit' },
+                      { id: 'Boil', label: '🔥 Vařit' },
+                      { id: 'Distill', label: '💧 Destilovat' },
+                    ].map((f) => (
+                      <button
+                        key={f.id}
+                        onClick={() => setLogProcessFilter(f.id)}
+                        className={`px-2 py-1 border rounded cursor-pointer whitespace-nowrap ${
+                          logProcessFilter === f.id
+                            ? 'bg-[#c8961e] border-[#ffe88a] text-black font-bold'
+                            : 'bg-[#0d0a06] border-[#5c3d1a] text-[#b5945a] hover:text-white'
+                        }`}
+                      >
+                        {f.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Log Entries List */}
+                <div className="flex flex-col gap-2 max-h-[320px] overflow-y-auto pr-1">
+                  {(() => {
+                    const filtered = brewLog.filter((entry) => {
+                      if (logProcessFilter !== 'all' && entry.process !== logProcessFilter) return false;
+                      if (logSearch) {
+                        const q = logSearch.toLowerCase();
+                        const matchName = entry.potionName.toLowerCase().includes(q);
+                        const matchIng = entry.ingredientNames.some((ing) => ing.toLowerCase().includes(q));
+                        if (!matchName && !matchIng) return false;
+                      }
+                      return true;
+                    });
+
+                    if (filtered.length === 0) {
+                      return (
+                        <div className="p-4 border border-dashed border-[#5c3d1a]/50 rounded-lg text-center text-[#7a5f35] text-xs font-serif">
+                          {brewLog.length === 0
+                            ? "Dosud jsi neuvařil žádný lektvar. Vlož suroviny do kotle na Stole a vyrob svůj první alchymistický preparát!"
+                            : "Žádný záznam v logu neodpovídá zvolenému filtru."}
+                        </div>
+                      );
+                    }
+
+                    return filtered.map((entry) => (
+                      <div
+                        key={entry.id}
+                        className="bg-[#0d0a06]/80 border border-[#5c3d1a] p-3 rounded-lg flex flex-col gap-2 text-xs"
+                      >
+                        <div className="flex items-center justify-between border-b border-[#5c3d1a]/30 pb-1.5">
+                          <div className="flex items-center gap-1.5 font-serif font-bold text-[#f0c040]">
+                            <span className="text-sm">{entry.potionIcon || '🧪'}</span>
+                            <span>{entry.potionName}</span>
+                            {entry.isExact ? (
+                              <span className="text-[9px] bg-green-950/80 text-green-400 border border-green-700/60 px-1.5 py-0.5 rounded font-normal">
+                                Recept
+                              </span>
+                            ) : (
+                              <span className="text-[9px] bg-amber-950/80 text-amber-400 border border-amber-700/60 px-1.5 py-0.5 rounded font-normal">
+                                Pokus
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 text-[10px] text-[#7a5f35] font-serif">
+                            <span>{entry.timeStr}</span>
+                            <span className="bg-[#1a1208] border border-[#5c3d1a] px-1.5 py-0.5 rounded text-[#e8d5a3]">
+                              {entry.process === 'Mix' ? '🥄 Smíchat' : entry.process === 'Grind' ? '🪨 Drtit' : entry.process === 'Boil' ? '🔥 Vařit' : '💧 Destilovat'}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Used Ingredients badges */}
+                        <div className="flex items-center gap-1.5 flex-wrap text-[11px]">
+                          <span className="text-[#7a5f35] font-serif">Použité suroviny:</span>
+                          {entry.ingredientNames.map((ingName, idx) => (
+                            <span
+                              key={idx}
+                              className="bg-[#1a1208] border border-[#5c3d1a] px-2 py-0.5 rounded-md text-[#e8d5a3] font-serif flex items-center gap-1"
+                            >
+                              <span>🌿</span> {ingName}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Vector & Value summary */}
+                        <div className="flex items-center justify-between text-[10px] text-[#b5945a] font-mono bg-black/30 p-1.5 rounded border border-[#5c3d1a]/40">
+                          <div className="flex gap-3 font-serif">
+                            <span>🔥 Teplo: <strong className={entry.thermal > 0 ? 'text-red-400' : entry.thermal < 0 ? 'text-blue-400' : 'text-gray-300'}>{entry.thermal > 0 ? `+${entry.thermal}` : entry.thermal}</strong></span>
+                            <span>💧 Vlhko: <strong className={entry.moisture > 0 ? 'text-cyan-400' : entry.moisture < 0 ? 'text-amber-400' : 'text-gray-300'}>{entry.moisture > 0 ? `+${entry.moisture}` : entry.moisture}</strong></span>
+                            <span>☣️ Toxicita: <strong className={entry.toxicity > 50 ? 'text-red-400' : 'text-green-400'}>{entry.toxicity}</strong></span>
+                          </div>
+                          <span className="text-[#2ecc71] font-serif font-bold text-xs">
+                            💰 {entry.value} z.
+                          </span>
+                        </div>
+                      </div>
+                    ));
+                  })()}
                 </div>
               </div>
 

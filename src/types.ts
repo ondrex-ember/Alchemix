@@ -283,4 +283,21 @@ export interface GameState {
   competitorUntil: number;
   competitorPenalty: number;
   quests?: Quest[];
+  brewLog?: BrewLogEntry[];
+}
+
+export interface BrewLogEntry {
+  id: string;
+  day: number;
+  potionName: string;
+  potionIcon?: string;
+  process: ProcessType;
+  ingredientIds: string[];
+  ingredientNames: string[];
+  thermal: number;
+  moisture: number;
+  toxicity: number;
+  isExact: boolean;
+  value: number;
+  timeStr: string;
 }

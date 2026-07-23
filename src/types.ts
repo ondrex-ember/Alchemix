@@ -217,6 +217,8 @@ export interface CraftedPotionItem {
   count: number;
   icon?: string;
   process?: ProcessType;
+  isElixirPlus?: boolean;
+  description?: string;
 }
 
 export interface GameState {

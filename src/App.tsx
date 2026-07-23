@@ -67,6 +67,7 @@ import { LoyalCustomersTab } from './components/LoyalCustomersTab';
 import { GremiumTab } from './components/GremiumTab';
 import { TechTree } from './components/TechTree';
 import { DistillationGame } from './components/DistillationGame';
+import { AlembicSynthesis } from './components/AlembicSynthesis';
 import { TutorialGuideModal, TUTORIAL_RECIPES } from './components/TutorialGuideModal';
 import { SettingsModal, THEMES } from './components/SettingsModal';
 
@@ -1448,15 +1449,23 @@ export default function App() {
             <button
               onClick={() => setActiveCenterTab('bench')}
               className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer ${
-                activeCenterTab === 'bench' ? 'border-b-2 border-[#c8961e] text-white' : 'text-[#7a5f35]'
+                activeCenterTab === 'bench' ? 'border-b-2 border-[#c8961e] text-white font-bold' : 'text-[#7a5f35]'
               }`}
             >
               ⚗️ Stůl
             </button>
             <button
+              onClick={() => setActiveCenterTab('synthesis')}
+              className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer flex items-center justify-center gap-1 ${
+                activeCenterTab === 'synthesis' ? 'border-b-2 border-[#f0c040] text-[#f0c040] font-bold' : 'text-[#7a5f35] hover:text-[#b5945a]'
+              }`}
+            >
+              <span>🔮 Syntéza Elixírů+</span>
+            </button>
+            <button
               onClick={() => setActiveCenterTab('research')}
               className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer ${
-                activeCenterTab === 'research' ? 'border-b-2 border-[#c8961e] text-white' : 'text-[#7a5f35]'
+                activeCenterTab === 'research' ? 'border-b-2 border-[#c8961e] text-white font-bold' : 'text-[#7a5f35]'
               }`}
             >
               🔬 Výzkum
@@ -1464,7 +1473,7 @@ export default function App() {
             <button
               onClick={() => setActiveCenterTab('stats')}
               className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer ${
-                activeCenterTab === 'stats' ? 'border-b-2 border-[#c8961e] text-white' : 'text-[#7a5f35]'
+                activeCenterTab === 'stats' ? 'border-b-2 border-[#c8961e] text-white font-bold' : 'text-[#7a5f35]'
               }`}
             >
               📊 Kronika
@@ -1736,6 +1745,23 @@ export default function App() {
                 </div>
               )}
             </div>
+          )}
+
+          {activeCenterTab === 'synthesis' && (
+            <AlembicSynthesis
+              potionInventory={potionInventory}
+              setPotionInventory={setPotionInventory}
+              vigor={vigor}
+              setVigor={setVigor}
+              dirtiness={dirtiness}
+              setDirtiness={setDirtiness}
+              brewed={brewed}
+              upgrades={upgrades}
+              setUpgrades={setUpgrades}
+              gold={gold}
+              setGold={setGold}
+              addNotification={addNotification}
+            />
           )}
 
           {activeCenterTab === 'research' && (

@@ -68,6 +68,9 @@ import { GremiumTab } from './components/GremiumTab';
 import { TechTree } from './components/TechTree';
 import { DistillationGame } from './components/DistillationGame';
 import { AlembicSynthesis } from './components/AlembicSynthesis';
+import { ChroniconPortal, ChroniconMessage } from './components/ChroniconPortal';
+import { ChroniconEconomyHub } from './components/ChroniconEconomyHub';
+import { initialChroniconSnapshot, ChroniconSnapshot } from './data/chroniconSnapshot';
 import { TutorialGuideModal, TUTORIAL_RECIPES } from './components/TutorialGuideModal';
 import { SettingsModal, THEMES } from './components/SettingsModal';
 
@@ -121,6 +124,52 @@ export default function App() {
   });
   const [blackMarketUnlocked, setBlackMarketUnlocked] = useState<boolean>(false);
   const [timePaused, setTimePaused] = useState<boolean>(false);
+  const [chroniconSnapshot, setChroniconSnapshot] = useState<ChroniconSnapshot>(initialChroniconSnapshot);
+
+  // Portal Unlock condition (Easter Egg / Achievement)
+  const totalBrewedCount = (Object.values(potionInventory) as CraftedPotionItem[]).reduce((acc, p) => acc + (p.count || 0), 0);
+  const isPortalUnlocked = totalBrewedCount >= 3 || (quests && quests.filter(q => q.completed).length >= 1) || brewed >= 3;
+
+  // Chronicon Portal & Outer Entities State
+  const [temporalResonance, setTemporalResonance] = useState<number>(55);
+  const [realtimeSeconds, setRealtimeSeconds] = useState<number>(15);
+  const [chroniconMessages, setChroniconMessages] = useState<ChroniconMessage[]>([
+    {
+      id: 'CH-01',
+      sender: 'Archon Času (Sféra Chronicon)',
+      title: 'Aktivace Astrálního Portálu Chronicon',
+      timestamp: 'Epocha I.01',
+      body: `Zdravíme tě v Athanoru, alchymisto! Tvé pokusy na stolu a v kotli rezonují s časovými vlákny Sféry Chronicon.
+
+Vnější bytosti z jiných věků a dimenzí pozorně sledují tvé pokroky. Nabízejí ti výměnu vzácných odvarů za astrální zlato, podporu sil Vigor a nebeské vědění.
+
+Více o záhadách časového kontinua nalezneš v oficiálním rukopisu Projektu Chronicon na GitHubu: https://github.com/ondrex-ember/chronicon`,
+      isRead: false,
+      type: 'lore',
+    },
+    {
+      id: 'CH-02',
+      sender: 'Tkáč Sféry #309',
+      title: 'Požadavek: Léčivá Esence pro Časovou Trhlinu',
+      timestamp: 'Epocha I.02',
+      body: `Alchymisto! V dimenzi Chronicon došlo ke kolapsu spojitosti. Pro stabilizaci trhliny vyžadujeme dodávku Léčivého lektvaru. Odměnou ti bude 220 Zlaťáků a obnovení 30 bodů Vigor!`,
+      requiredItemKey: 'REC01',
+      requiredItemName: 'Léčivý lektvar',
+      rewardGold: 220,
+      rewardVigor: 30,
+      isRead: false,
+      type: 'quest',
+    },
+    {
+      id: 'CH-03',
+      sender: 'Void Sentinel',
+      title: 'Pulsní Synchronizace Athanoru',
+      timestamp: 'Epocha I.03',
+      body: `Časový tok v tvé laboratoři byl úspěšně provázán s reálným časem! Každých 15 sekund proběhne Astrální Puls — tvá energie Vigor se pozvolna regeneruje a v dílně nastávají spontánní harmonické jevy.`,
+      isRead: false,
+      type: 'paradox',
+    },
+  ]);
 
   // Sub-systems state
   const [loyalCustomers, setLoyalCustomers] = useState<Record<string, LoyalCustomer>>({});
@@ -208,6 +257,34 @@ export default function App() {
       setNotifications(prev => prev.filter(n => n.id !== id));
     }, 4000);
   };
+
+  // Real-time Dynamic Temporal Pulse Ticker Loop
+  useEffect(() => {
+    if (timePaused) return;
+
+    const timer = setInterval(() => {
+      setRealtimeSeconds((prev) => {
+        if (prev <= 1) {
+          // Temporal Pulse Trigger
+          setVigor((v) => Math.min(100, v + 1));
+
+          // Ambient Lab Blessings
+          const roll = Math.random();
+          if (roll < 0.20) {
+            setDirtiness((d) => Math.max(0, d - 2));
+            addNotification("🌌 Astrální Puls ze Sféry Chronicon pročistil saze v kotli (-2% usazenin).", "info");
+          } else if (roll < 0.35) {
+            setTemporalResonance((r) => Math.min(100, r + 1));
+          }
+
+          return 15;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timePaused]);
 
   // Tutorial steps & Guide
   const [tutStep, setTutStep] = useState<number>(0); // 0=not started, 1..6=tutorial, -1=completed
@@ -351,6 +428,10 @@ export default function App() {
     setDroughtUntil(d.droughtUntil ?? 0);
     setCompetitorUntil(d.competitorUntil ?? 0);
     setCompetitorPenalty(d.competitorPenalty ?? 0);
+    if ((d as any).temporalResonance !== undefined) setTemporalResonance((d as any).temporalResonance);
+    if ((d as any).chroniconMessages && Array.isArray((d as any).chroniconMessages)) {
+      setChroniconMessages((d as any).chroniconMessages);
+    }
     if (d.quests && Array.isArray(d.quests)) {
       setQuests(d.quests);
     }
@@ -374,8 +455,9 @@ export default function App() {
       grimoireSort: 'name', swampUnlockBonus, gremiumUnlocked, apprentices, pendingReturn,
       loyalCustomers, bartexOffer, usageTrack, techStats, techUnlocked, tutStep, tutRecipesCompleted,
       seasonIndex, seasonDay, demand, factions, blackMarketUnlocked, timePaused,
-      droughtUntil, competitorUntil, competitorPenalty, quests, brewLog
-    };
+      droughtUntil, competitorUntil, competitorPenalty, quests, brewLog,
+      temporalResonance, chroniconMessages
+    } as any;
     localStorage.setItem('alchemix_react_save', JSON.stringify(saveData));
     addNotification("Hra uložena do kroniky! 💾", "success");
   };
@@ -1261,6 +1343,27 @@ export default function App() {
             <span className="flex items-center gap-1 bg-[#1a1208]/80 border border-[#5c3d1a] px-2 py-1 rounded-lg text-[#b5945a]">
               📅 Den <strong className="text-white">{gameDay}</strong>
             </span>
+            <span
+              className="flex items-center gap-1 bg-cyan-950/60 border border-cyan-500/40 px-2.5 py-1 rounded-lg text-cyan-300 font-mono text-[11px]"
+              title="Živý Astrální Puls v reálném čase: obnovuje energii Vigor a spouští laboratorní jevy"
+            >
+              ⏳ Puls: <strong className="text-cyan-200 animate-pulse font-bold">{realtimeSeconds}s</strong>
+            </span>
+            {isPortalUnlocked && (
+              <button
+                onClick={() => {
+                  setActiveCenterTab('chronicon');
+                  if (window.innerWidth < 1024) setMobileActivePanel('center');
+                }}
+                className="px-2.5 py-1 bg-gradient-to-r from-cyan-900 to-blue-900 hover:from-cyan-800 hover:to-blue-800 text-cyan-200 border border-cyan-400/60 rounded-lg text-xs font-serif font-bold cursor-pointer shadow-md transition-all flex items-center gap-1.5 relative"
+                title="Otevřít Astrální Portál Chronicon"
+              >
+                <span>🔮 Sféra</span>
+                {chroniconMessages.filter((m) => !m.isRead).length > 0 && (
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping absolute -top-0.5 -right-0.5" />
+                )}
+              </button>
+            )}
             <button
               onClick={() => setTutGuideOpen(true)}
               className="px-2.5 py-1 bg-gradient-to-r from-[#7a4a10] to-[#c8961e] hover:from-[#8a5a15] hover:to-[#e0a820] text-white border border-[#f0c040]/60 rounded-lg text-xs font-serif font-bold cursor-pointer shadow-md transition-all flex items-center gap-1.5"
@@ -1447,6 +1550,14 @@ export default function App() {
           {/* Sub tabs selectors */}
           <div className="flex border-b border-[#5c3d1a] gap-2">
             <button
+              onClick={() => setActiveCenterTab('world')}
+              className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer flex items-center justify-center gap-1 ${
+                activeCenterTab === 'world' ? 'border-b-2 border-amber-400 text-amber-300 font-bold' : 'text-[#7a5f35] hover:text-amber-400'
+              }`}
+            >
+              <span>🌍 Svět</span>
+            </button>
+            <button
               onClick={() => setActiveCenterTab('bench')}
               className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer ${
                 activeCenterTab === 'bench' ? 'border-b-2 border-[#c8961e] text-white font-bold' : 'text-[#7a5f35]'
@@ -1460,8 +1571,21 @@ export default function App() {
                 activeCenterTab === 'synthesis' ? 'border-b-2 border-[#f0c040] text-[#f0c040] font-bold' : 'text-[#7a5f35] hover:text-[#b5945a]'
               }`}
             >
-              <span>🔮 Syntéza Elixírů+</span>
+              <span>🔮 Syntéza</span>
             </button>
+            {isPortalUnlocked && (
+              <button
+                onClick={() => setActiveCenterTab('chronicon')}
+                className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer flex items-center justify-center gap-1 relative ${
+                  activeCenterTab === 'chronicon' ? 'border-b-2 border-cyan-400 text-cyan-300 font-bold' : 'text-[#7a5f35] hover:text-cyan-400'
+                }`}
+              >
+                <span>🔮 Sféra</span>
+                {chroniconMessages.filter((m) => !m.isRead).length > 0 && (
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping absolute top-0.5 right-1" />
+                )}
+              </button>
+            )}
             <button
               onClick={() => setActiveCenterTab('research')}
               className={`flex-1 pb-2 text-xs font-serif uppercase tracking-wider cursor-pointer ${
@@ -1573,6 +1697,11 @@ export default function App() {
                       const id = slots[i];
                       const item = id ? ingMap[id] : null;
 
+                      // Calculate saturation / potency limit
+                      const saturationVal = item
+                        ? Math.min(100, Math.max(25, 100 - (item.toxicity * 0.4) + (item.potency * 12)))
+                        : 0;
+
                       return (
                         <motion.div
                           key={`slot-${i}-${id || 'empty'}`}
@@ -1589,10 +1718,26 @@ export default function App() {
                               ? 'border-dashed border-[#c8961e] bg-[#c8961e]/10 text-[#f0c040] hover:border-[#f0c040] hover:bg-[#c8961e]/20 animate-pulse shadow-[0_0_12px_rgba(200,150,30,0.25)]'
                               : 'border-dashed border-[#5c3d1a]/40 bg-[#0d0a06]/40 text-[#7a5f35] hover:border-[#7a5128]'
                           }`}
-                          title={item ? `${item.name_cz} (klikni pro odebrání)` : hasIngredients ? "Vyber surovinu v levém skladu pro vložení" : "Prázdný slot"}
+                          title={
+                            item
+                              ? `${item.name_cz} (Nasycení/Potence: ${Math.round(saturationVal)}% - klikni pro odebrání)`
+                              : hasIngredients
+                              ? "Vyber surovinu v levém skladu pro vložení"
+                              : "Prázdný slot"
+                          }
                         >
                           {item ? (
                             <>
+                              {/* Brewing Fill Progress Bar Visual Overlay */}
+                              {brewingAnimation && (
+                                <motion.div
+                                  initial={{ width: "0%" }}
+                                  animate={{ width: "100%" }}
+                                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                                  className="absolute inset-0 bg-gradient-to-r from-[#c8961e]/70 via-[#f0c040]/80 to-emerald-500/70 pointer-events-none z-0 shadow-[0_0_15px_rgba(240,192,64,0.8)]"
+                                />
+                              )}
+
                               {/* Animated Liquid Fill-up Wave Effect */}
                               <motion.div
                                 initial={{ height: "0%", opacity: 0.85 }}
@@ -1600,6 +1745,7 @@ export default function App() {
                                 transition={{ duration: 0.45, ease: "easeOut" }}
                                 className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#f0c040]/70 via-[#c8961e]/30 to-transparent pointer-events-none rounded-b-xl"
                               />
+
                               {/* Sparkle Flash Wave */}
                               <motion.div
                                 initial={{ scale: 0.2, opacity: 1 }}
@@ -1607,10 +1753,44 @@ export default function App() {
                                 transition={{ duration: 0.5 }}
                                 className="absolute inset-0 bg-[#f0c040]/30 rounded-full pointer-events-none m-auto w-8 h-8"
                               />
+
+                              {/* Counter Overlay Tag */}
+                              {brewingAnimation ? (
+                                <motion.div
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  className="absolute top-0.5 right-0.5 bg-black/90 border border-[#f0c040] text-[#f0c040] text-[8px] font-mono px-1 py-0.2 rounded z-20 animate-pulse font-bold shadow"
+                                >
+                                  ⚡ 100%
+                                </motion.div>
+                              ) : (
+                                <div className="absolute top-0.5 right-0.5 bg-[#0a0704]/80 border border-[#5c3d1a] text-[#f0c040] text-[7.5px] font-mono px-1 py-0.2 rounded z-20 font-bold" title="Nasycení a potence v kotli">
+                                  {Math.round(saturationVal)}%
+                                </div>
+                              )}
+
                               <span className="text-base z-10">{item.type === 'Herb' ? '🌿' : item.type === 'Mineral' ? '💎' : item.type === 'Liquid' ? '💧' : item.type === 'Resin' ? '🪵' : '🐾'}</span>
-                              <span className="text-[9px] font-serif text-center truncate w-full px-1 text-[#e8d5a3] font-semibold z-10">
+                              <span className="text-[9px] font-serif text-center truncate w-full px-1 text-[#e8d5a3] font-semibold z-10 mb-1">
                                 {item.name_cz}
                               </span>
+
+                              {/* Saturation / Decay Progress Bar Visual */}
+                              <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#0a0704]/80 overflow-hidden z-20 border-t border-[#5c3d1a]/60">
+                                <motion.div
+                                  initial={{ width: "0%" }}
+                                  animate={{ width: brewingAnimation ? "100%" : `${saturationVal}%` }}
+                                  transition={{ duration: brewingAnimation ? 1.2 : 0.6, ease: "easeOut" }}
+                                  className={`h-full ${
+                                    brewingAnimation
+                                      ? 'bg-gradient-to-r from-amber-500 via-yellow-300 to-emerald-400 shadow-[0_0_8px_rgba(240,192,64,0.9)] animate-pulse'
+                                      : saturationVal > 70
+                                      ? 'bg-emerald-500'
+                                      : saturationVal > 40
+                                      ? 'bg-amber-500'
+                                      : 'bg-red-500'
+                                  }`}
+                                />
+                              </div>
                             </>
                           ) : hasIngredients ? (
                             <div className="flex flex-col items-center justify-center gap-0.5">
@@ -1761,6 +1941,36 @@ export default function App() {
               gold={gold}
               setGold={setGold}
               addNotification={addNotification}
+            />
+          )}
+
+          {activeCenterTab === 'world' && (
+            <ChroniconEconomyHub
+              snapshot={chroniconSnapshot}
+              setSnapshot={setChroniconSnapshot}
+              gold={gold}
+              setGold={setGold}
+              vigor={vigor}
+              setVigor={setVigor}
+              potionInventory={potionInventory}
+              setPotionInventory={setPotionInventory}
+              addNotification={addNotification}
+            />
+          )}
+
+          {activeCenterTab === 'chronicon' && (
+            <ChroniconPortal
+              messages={chroniconMessages}
+              setMessages={setChroniconMessages}
+              potionInventory={potionInventory}
+              setPotionInventory={setPotionInventory}
+              gold={gold}
+              setGold={setGold}
+              vigor={vigor}
+              setVigor={setVigor}
+              addNotification={addNotification}
+              temporalResonance={temporalResonance}
+              setTemporalResonance={setTemporalResonance}
             />
           )}
 

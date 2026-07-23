@@ -65,6 +65,8 @@ export interface Quest {
   urgent?: boolean;
   isChain?: boolean;
   isFinal?: boolean;
+  isDealAccepted?: boolean;
+  dealMultiplier?: number;
   bartexOfferIds?: string[]; // If this is a barter quest, items gained on completion
 }
 
@@ -204,6 +206,8 @@ export interface CauldronResidue {
   toxicity: number;
 }
 
+export type GameSaveData = GameState;
+
 export interface GameState {
   gold: number;
   inventory: Record<string, number>; // { [ingId]: qty }
@@ -278,4 +282,5 @@ export interface GameState {
   droughtUntil: number;
   competitorUntil: number;
   competitorPenalty: number;
+  quests?: Quest[];
 }

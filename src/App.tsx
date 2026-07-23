@@ -66,6 +66,7 @@ import { GremiumTab } from './components/GremiumTab';
 import { TechTree } from './components/TechTree';
 import { DistillationGame } from './components/DistillationGame';
 import { TutorialGuideModal, TUTORIAL_RECIPES } from './components/TutorialGuideModal';
+import { SettingsModal, THEMES } from './components/SettingsModal';
 
 export default function App() {
   // ══════════════════════════════════════════════════════
@@ -153,6 +154,8 @@ export default function App() {
   // Local Presentation state
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [stockFilter, setStockFilter] = useState<'all' | 'in_stock'>('in_stock');
+  const [ingredientTypeFilter, setIngredientTypeFilter] = useState<string>('All');
   const [activeTab, setActiveTab] = useState<string>("quests");
   const [activeCenterTab, setActiveCenterTab] = useState<string>("bench");
   const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(null);
@@ -168,6 +171,20 @@ export default function App() {
   const [lastBrewResult, setLastBrewResult] = useState<{ result: Recipe; vec: any; isExact: boolean } | null>(null);
   const [brewingAnimation, setBrewingAnimation] = useState<boolean>(false);
   const [swampUnlockBonus, setSwampUnlockBonus] = useState<number>(0);
+
+  // Settings & Theme
+  const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
+  const [currentTheme, setCurrentTheme] = useState<string>(() => localStorage.getItem('alchemix_theme') || 'default');
+  const [tutBannerDismissed, setTutBannerDismissed] = useState<boolean>(() => localStorage.getItem('alchemix_tut_banner_dismissed') === 'true');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('alchemix_theme', currentTheme);
+  }, [currentTheme]);
+
+  useEffect(() => {
+    localStorage.setItem('alchemix_tut_banner_dismissed', tutBannerDismissed ? 'true' : 'false');
+  }, [tutBannerDismissed]);
 
   // Navigation Panel state for Mobile
   const [mobileActivePanel, setMobileActivePanel] = useState<"left" | "center" | "right">("center");
@@ -273,6 +290,63 @@ export default function App() {
     }
   }, []);
 
+  const applySaveData = (d: any) => {
+    if (!d) return;
+    setGold(d.gold ?? 150);
+    setInventory(d.inventory ?? {});
+    setDiscovered(d.discovered ?? {});
+    setHinted(d.hinted ?? {});
+    setNotes(d.notes ?? {});
+    setFavorites(d.favorites ?? {});
+    setBrewed(d.brewed ?? 0);
+    setMaxToxSeen(d.maxToxSeen ?? 0);
+    setVigor(d.vigor ?? 100);
+    setHunger(d.hunger ?? 0);
+    setGameDay(d.gameDay ?? 1);
+    setInventoryMeta(d.inventoryMeta ?? {});
+    setQuestsCompleted(d.questsCompleted ?? 0);
+    setSuspicion(d.suspicion ?? 0);
+    setInquisitionWarnings(d.inquisitionWarnings ?? 0);
+    setUpgrades(d.upgrades ?? {});
+    setResidue(d.residue ?? null);
+    setActiveAilments(d.ailments ?? {});
+    setInspiredBrews(d.inspiredBrews ?? 0);
+    setBlessedBrews(d.blessedBrews ?? 0);
+    setApprenticeBrews(d.apprenticeBrews ?? 0);
+    setLastEventDay(d.lastEventDay ?? 0);
+    setUsedEvents(d.usedEvents ?? []);
+    setMerchantDay(d.merchantDay ?? -99);
+    setMerchantStock(d.merchantStock ?? []);
+    setSwampUnlockBonus(d.swampUnlockBonus ?? 0);
+    setGremiumUnlocked(d.gremiumUnlocked ?? false);
+    setApprentices(d.apprentices ?? []);
+    setLoyalCustomers(d.loyalCustomers ?? {});
+    setBartexOffer(d.bartexOffer ?? null);
+    setUsageTrack(d.usageTrack ?? {});
+    setTechStats(d.techStats ?? { distillCount: 0, thermalCancels: 0, toxOver60: 0, herbTotal: 0, mineralTotal: 0 });
+    setTechUnlocked(d.techUnlocked ?? {});
+    setTutStep(d.tutStep ?? 0);
+    setTutRecipesCompleted(d.tutRecipesCompleted ?? {});
+    setSeasonIndex(d.seasonIndex ?? 0);
+    setSeasonDay(d.seasonDay ?? 0);
+    setDemand(d.demand ?? {});
+    setFactions(d.factions ?? { guild: 0, order: 0, underworld: 0 });
+    setBlackMarketUnlocked(d.blackMarketUnlocked ?? false);
+    setTimePaused(d.timePaused ?? false);
+    setDroughtUntil(d.droughtUntil ?? 0);
+    setCompetitorUntil(d.competitorUntil ?? 0);
+    setCompetitorPenalty(d.competitorPenalty ?? 0);
+    if (d.quests && Array.isArray(d.quests)) {
+      setQuests(d.quests);
+    }
+
+    if (d.upgrades?.UPG_CAULDRON) setMaxSlots(8);
+    if (d.upgrades?.UPG_MORTAR) setGrindBonus(1);
+    if (d.upgrades?.UPG_CELLAR) setCellarBonus(true);
+    if (d.upgrades?.UPG_SILVER) setSilverLining(true);
+    if (d.upgrades?.UPG_CALENDAR) setHasCalendar(true);
+  };
+
   // Sync to localstorage
   const saveGame = () => {
     const saveData: GameState = {
@@ -285,7 +359,7 @@ export default function App() {
       grimoireSort: 'name', swampUnlockBonus, gremiumUnlocked, apprentices, pendingReturn,
       loyalCustomers, bartexOffer, usageTrack, techStats, techUnlocked, tutStep, tutRecipesCompleted,
       seasonIndex, seasonDay, demand, factions, blackMarketUnlocked, timePaused,
-      droughtUntil, competitorUntil, competitorPenalty
+      droughtUntil, competitorUntil, competitorPenalty, quests
     };
     localStorage.setItem('alchemix_react_save', JSON.stringify(saveData));
     addNotification("Hra uložena do kroniky! 💾", "success");
@@ -297,8 +371,47 @@ export default function App() {
       addNotification("Žádný dřívější záznam v kronice nenalezen.", "warn");
       return;
     }
-    // Simple reload to reset React states safely
-    window.location.reload();
+    try {
+      const d = JSON.parse(saved);
+      applySaveData(d);
+      addNotification("📂 Hra byla načtena z paměti!", "success");
+    } catch (err) {
+      addNotification("❌ Chyba při načítání pozice!", "error");
+    }
+  };
+
+  const handleExportSave = () => {
+    const saveData = {
+      gold, inventory, slots, process, discovered, hinted, notes, favorites,
+      brewed, maxToxSeen, vigor, hunger, gameDay, inventoryMeta, questsCompleted,
+      suspicion, inquisitionWarnings, upgrades, maxSlots, grindBonus, cellarBonus,
+      silverLining, hasCalendar, residue, ailments: activeAilments, inspiredBrews,
+      blessedBrews, apprenticeBrews, lastEventDay, usedEvents, activeEventId: activeEvent?.id || null,
+      merchantDay, merchantStock, marketBan: null, tournament, grimoireFilter: 'all',
+      grimoireSort: 'name', swampUnlockBonus, gremiumUnlocked, apprentices, pendingReturn,
+      loyalCustomers, bartexOffer, usageTrack, techStats, techUnlocked, tutStep, tutRecipesCompleted,
+      seasonIndex, seasonDay, demand, factions, blackMarketUnlocked, timePaused,
+      droughtUntil, competitorUntil, competitorPenalty, quests
+    };
+    const jsonString = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(saveData, null, 2))}`;
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute('href', jsonString);
+    downloadAnchor.setAttribute('download', `alchemix_save_den_${gameDay}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    addNotification("📥 Soubor s uložení byl stažen do počítače.", "success");
+  };
+
+  const handleImportSave = (jsonText: string) => {
+    try {
+      const d = JSON.parse(jsonText);
+      applySaveData(d);
+      saveGame();
+      addNotification("🎉 Pozice ze souboru byla úspěšně načtena!", "success");
+    } catch (err) {
+      addNotification("❌ Neplatný formát souboru s uložením!", "error");
+    }
   };
 
   const resetGame = () => {
@@ -1038,8 +1151,16 @@ export default function App() {
     }, 850);
   };
 
+  const activeTheme = THEMES.find((t) => t.id === currentTheme) || THEMES[0];
+
   return (
-    <div className="min-h-screen text-[#e8d5a3] font-sans antialiased relative pb-16 md:pb-0 bg-[#0d0a06]">
+    <div
+      className="min-h-screen font-sans antialiased relative pb-16 md:pb-0 transition-colors duration-500"
+      style={{
+        backgroundColor: activeTheme.bgMain,
+        color: activeTheme.textColor,
+      }}
+    >
       {/* Real-time paused indicator */}
       {timePaused && (
         <div className="fixed top-18 left-1/2 -translate-x-1/2 bg-red-950/90 border border-red-700 text-red-400 px-4 py-1.5 rounded-full text-xs font-serif uppercase tracking-widest z-250 animate-pulse font-bold">
@@ -1060,7 +1181,7 @@ export default function App() {
           </div>
 
           {/* Stat bar */}
-          <div className="flex gap-4 flex-wrap items-center justify-center text-xs font-serif">
+          <div className="flex gap-3 flex-wrap items-center justify-center text-xs font-serif">
             <span className="flex items-center gap-1.5 text-white">
               <Coins className="w-4 h-4 text-[#f0c040]" /> Zlato:{' '}
               <strong className="text-[#f0c040]">{gold}</strong>
@@ -1076,9 +1197,16 @@ export default function App() {
             </span>
             <button
               onClick={() => setTutGuideOpen(true)}
-              className="px-3 py-1 bg-gradient-to-r from-[#7a4a10] to-[#c8961e] hover:from-[#8a5a15] hover:to-[#e0a820] text-white border border-[#f0c040]/60 rounded-lg text-xs font-serif font-bold cursor-pointer shadow-md transition-all flex items-center gap-1.5"
+              className="px-2.5 py-1 bg-gradient-to-r from-[#7a4a10] to-[#c8961e] hover:from-[#8a5a15] hover:to-[#e0a820] text-white border border-[#f0c040]/60 rounded-lg text-xs font-serif font-bold cursor-pointer shadow-md transition-all flex items-center gap-1.5"
             >
               🎓 Škola alchymie ({Object.keys(tutRecipesCompleted).length}/3)
+            </button>
+            <button
+              onClick={() => setSettingsOpen(true)}
+              className="px-2.5 py-1 bg-[#2a1d0d] hover:bg-[#3d2a13] text-[#e8d5a3] border border-[#5c3d1a] hover:border-[#c8961e] rounded-lg text-xs font-serif font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow"
+              title="Nastavení hry (Ukládání, Motivy, Verze)"
+            >
+              <SettingsIcon className="w-3.5 h-3.5 text-[#f0c040]" /> Nastavení
             </button>
           </div>
         </div>
@@ -1088,7 +1216,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[calc(100vh-120px)] border-x border-[#5c3d1a]">
         
         {/* LEFT COLUMN: Warehouse Inventory */}
-        <section className="lg:col-span-3 border-r border-[#5c3d1a] p-4 flex flex-col gap-4">
+        <section className="lg:col-span-3 border-r border-[#5c3d1a] p-4 flex flex-col gap-4 lg:min-h-[calc(100vh-120px)]">
           <div className="border-b border-[#5c3d1a] pb-2 flex justify-between items-center">
             <h2 className="font-serif text-xs text-[#f0c040] tracking-widest uppercase">
               📦 Sklad surovin
@@ -1106,58 +1234,145 @@ export default function App() {
 
           {/* Search and Filters */}
           <div className="flex flex-col gap-2">
+            {/* Search Input */}
             <div className="relative">
               <Search className="w-3.5 h-3.5 text-[#7a5f35] absolute left-2.5 top-2.5" />
               <input
                 type="text"
-                placeholder="Hledat surovinu, účinek..."
+                placeholder="Hledat surovinu, latinský název..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#1a1208] border border-[#5c3d1a] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#e8d5a3] focus:outline-none focus:border-[#c8961e] placeholder-[#7a5f35]"
+                className="w-full bg-[#1a1208] border border-[#5c3d1a] rounded-lg pl-8 pr-7 py-1.5 text-xs text-[#e8d5a3] focus:outline-none focus:border-[#c8961e] placeholder-[#7a5f35]"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2 top-2 text-[#7a5f35] hover:text-white cursor-pointer"
+                  title="Vymazat hledání"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+
+            {/* Main Toggle Switch: Skladem vs Vše */}
+            <div className="grid grid-cols-2 bg-[#120d07] border border-[#5c3d1a] p-1 rounded-xl text-xs font-serif shadow-inner">
+              <button
+                onClick={() => setStockFilter('in_stock')}
+                className={`py-1.5 px-2 text-center rounded-lg font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                  stockFilter === 'in_stock'
+                    ? 'bg-gradient-to-r from-[#7a4a10] to-[#c8961e] text-white shadow border border-[#f0c040]/30'
+                    : 'text-[#b5945a] hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <span>📦 Skladem</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${stockFilter === 'in_stock' ? 'bg-black/40 text-[#f0c040]' : 'bg-black/30 text-[#8a6f45]'}`}>
+                  {INGREDIENTS.filter(i => (inventory[i.id] || 0) > 0).length}
+                </span>
+              </button>
+
+              <button
+                onClick={() => setStockFilter('all')}
+                className={`py-1.5 px-2 text-center rounded-lg font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                  stockFilter === 'all'
+                    ? 'bg-gradient-to-r from-[#7a4a10] to-[#c8961e] text-white shadow border border-[#f0c040]/30'
+                    : 'text-[#b5945a] hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <span>📚 Vše</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${stockFilter === 'all' ? 'bg-black/40 text-[#f0c040]' : 'bg-black/30 text-[#8a6f45]'}`}>
+                  {INGREDIENTS.length}
+                </span>
+              </button>
+            </div>
+
+            {/* Ingredient Type Filter Pills */}
+            <div className="flex gap-1 overflow-x-auto pb-1 text-[11px] font-serif no-scrollbar">
+              {[
+                { id: 'All', label: 'Všechny typy' },
+                { id: 'Herb', label: '🌿 Byliny' },
+                { id: 'Mineral', label: '💎 Minerály' },
+                { id: 'Liquid', label: '💧 Tekutiny' },
+                { id: 'Resin', label: '🪵 Pryskyřice' },
+                { id: 'Animal', label: '🐾 Živočišné' }
+              ].map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setIngredientTypeFilter(cat.id)}
+                  className={`px-2 py-0.5 rounded-md border whitespace-nowrap cursor-pointer transition-all ${
+                    ingredientTypeFilter === cat.id
+                      ? 'bg-[#c8961e]/25 border-[#c8961e] text-[#f0c040] font-bold shadow'
+                      : 'border-[#5c3d1a]/50 text-[#b5945a] hover:text-white bg-[#1a1208]'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Item scroll list */}
-          <div className="flex flex-col gap-1.5 max-h-[450px] overflow-y-auto pr-1">
-            {INGREDIENTS.filter(i => {
-              const matchesQ = i.name_cz.toLowerCase().includes(searchQuery.toLowerCase()) || i.name_lat.toLowerCase().includes(searchQuery.toLowerCase());
-              return matchesQ;
-            }).map(item => {
-              const qty = inventory[item.id] || 0;
-              const hasQty = qty > 0;
-              const inCauldron = slots.includes(item.id);
+          <div className="flex flex-col gap-1.5 max-h-[50vh] lg:max-h-[calc(100vh-320px)] flex-1 overflow-y-auto pr-1">
+            {(() => {
+              const items = INGREDIENTS.filter(i => {
+                const qty = inventory[i.id] || 0;
+                if (stockFilter === 'in_stock' && qty <= 0) return false;
+                if (ingredientTypeFilter !== 'All' && i.type !== ingredientTypeFilter) return false;
+                if (searchQuery.trim()) {
+                  const q = searchQuery.toLowerCase();
+                  const nameCzMatches = i.name_cz.toLowerCase().includes(q);
+                  const nameLatMatches = i.name_lat.toLowerCase().includes(q);
+                  const tagsMatches = (i.tags || []).some(t => t.toLowerCase().includes(q));
+                  const typeMatches = i.type.toLowerCase().includes(q);
+                  if (!nameCzMatches && !nameLatMatches && !tagsMatches && !typeMatches) return false;
+                }
+                return true;
+              });
 
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => hasQty && addIngredientToSlot(item.id)}
-                  className={`p-2 border rounded-xl flex items-center justify-between transition-all select-none cursor-pointer ${
-                    inCauldron
-                      ? 'bg-[#c8961e]/10 border-[#c8961e]'
-                      : hasQty
-                      ? 'border-[#5c3d1a] bg-[#1a1208] hover:bg-[#241a0e] hover:border-[#7a5128]'
-                      : 'border-[#5c3d1a]/20 bg-black/10 opacity-35 cursor-not-allowed'
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="w-2.5 h-2.5 rounded-full shrink-0"
-                      style={{ backgroundColor: item.color }}
-                    />
-                    <div>
-                      <h4 className="font-serif text-[12px] text-white font-semibold">
-                        {item.name_cz}
-                      </h4>
-                      <p className="text-[10px] text-[#7a5f35] italic">{item.name_lat}</p>
-                    </div>
+              if (items.length === 0) {
+                return (
+                  <div className="p-4 text-center text-xs text-[#7a5f35] font-serif bg-black/20 rounded-xl border border-[#5c3d1a]/30">
+                    Žádné suroviny neodpovídají zvoleným filtrům.
                   </div>
-                  <span className="font-mono text-xs font-bold text-[#b5945a]">
-                    {hasQty ? `${qty}×` : '—'}
-                  </span>
-                </div>
-              );
-            })}
+                );
+              }
+
+              return items.map(item => {
+                const qty = inventory[item.id] || 0;
+                const hasQty = qty > 0;
+                const inCauldron = slots.includes(item.id);
+
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => hasQty && addIngredientToSlot(item.id)}
+                    className={`p-2 border rounded-xl flex items-center justify-between transition-all select-none cursor-pointer ${
+                      inCauldron
+                        ? 'bg-[#c8961e]/15 border-[#c8961e] shadow-sm'
+                        : hasQty
+                        ? 'border-[#5c3d1a] bg-[#1a1208] hover:bg-[#241a0e] hover:border-[#7a5128]'
+                        : 'border-[#5c3d1a]/20 bg-black/10 opacity-35 cursor-not-allowed'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-2.5 h-2.5 rounded-full shrink-0"
+                        style={{ backgroundColor: item.color }}
+                      />
+                      <div>
+                        <h4 className="font-serif text-[12px] text-white font-semibold">
+                          {item.name_cz}
+                        </h4>
+                        <p className="text-[10px] text-[#7a5f35] italic">{item.name_lat}</p>
+                      </div>
+                    </div>
+                    <span className={`font-mono text-xs font-bold ${hasQty ? 'text-[#f0c040]' : 'text-stone-600'}`}>
+                      {hasQty ? `${qty}×` : '—'}
+                    </span>
+                  </div>
+                );
+              });
+            })()}
           </div>
         </section>
 
@@ -1194,29 +1409,43 @@ export default function App() {
           {activeCenterTab === 'bench' && (
             <div className="flex flex-col gap-4 flex-1">
               {/* Tutorial Quick Card Banner */}
-              <div className="bg-gradient-to-r from-[#1f1509] via-[#2a1d0d] to-[#1f1509] border border-[#c8961e]/60 p-3.5 rounded-xl flex items-center justify-between gap-3 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#c8961e]/20 border border-[#c8961e] flex items-center justify-center text-[#f0c040] font-bold text-base shadow">
-                    🎓
+              {!tutBannerDismissed && (
+                <div className="bg-gradient-to-r from-[#1f1509] via-[#2a1d0d] to-[#1f1509] border border-[#c8961e]/60 p-3.5 rounded-xl flex items-center justify-between gap-3 shadow-lg relative">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-[#c8961e]/20 border border-[#c8961e] flex items-center justify-center text-[#f0c040] font-bold text-base shadow shrink-0">
+                      🎓
+                    </div>
+                    <div>
+                      <h4 className="font-serif text-xs font-bold text-[#f0c040]">
+                        Škola alchymie · 3 Výukové recepty
+                      </h4>
+                      <p className="text-[11px] text-[#b5945a] font-serif">
+                        {Object.keys(tutRecipesCompleted).length === 3
+                          ? "Všechny 3 výukové lekce uvařeny! Skvělá práce."
+                          : `Dokončeno: ${Object.keys(tutRecipesCompleted).length}/3. Nauč se Míchat, Vařit a Destilovat!`}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-serif text-xs font-bold text-[#f0c040]">
-                      Škola alchymie · 3 Výukové recepty
-                    </h4>
-                    <p className="text-[11px] text-[#b5945a] font-serif">
-                      {Object.keys(tutRecipesCompleted).length === 3
-                        ? "Všechny 3 výukové lekce uvařeny! Skvělá práce."
-                        : `Dokončeno: ${Object.keys(tutRecipesCompleted).length}/3. Nauč se Míchat, Vařit a Destilovat!`}
-                    </p>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={() => setTutGuideOpen(true)}
+                      className="px-3.5 py-1.5 bg-gradient-to-r from-[#c8961e] to-[#f0c040] hover:brightness-110 text-black font-serif font-bold text-xs rounded-lg cursor-pointer whitespace-nowrap shadow transition-all"
+                    >
+                      Otevřít
+                    </button>
+                    <button
+                      onClick={() => {
+                        setTutBannerDismissed(true);
+                        localStorage.setItem('alchemix_tut_banner_dismissed', 'true');
+                      }}
+                      className="p-1 text-[#7a5f35] hover:text-white hover:bg-white/10 rounded-lg cursor-pointer transition-colors"
+                      title="Zavřít tento banner (lze kdykoliv otevřít z tlačítka v hlavičce)"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
-                <button
-                  onClick={() => setTutGuideOpen(true)}
-                  className="px-3.5 py-1.5 bg-gradient-to-r from-[#c8961e] to-[#f0c040] hover:brightness-110 text-black font-serif font-bold text-xs rounded-lg cursor-pointer whitespace-nowrap shadow transition-all"
-                >
-                  Otevřít recepty
-                </button>
-              </div>
+              )}
 
               {/* Cauldron Visual Animation */}
               <CauldronVisual
@@ -1511,7 +1740,7 @@ export default function App() {
 
           <div className="flex-1">
             {activeTab === 'quests' && (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 flex-1">
                 <div className="flex justify-between items-center">
                   <h3 className="font-serif text-[#f0c040] text-xs uppercase tracking-widest">
                     📜 Smluvní listiny cechu
@@ -1521,31 +1750,72 @@ export default function App() {
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-2.5 max-h-[480px] overflow-y-auto pr-1">
+                <div className="flex flex-col gap-2.5 max-h-[55vh] lg:max-h-[calc(100vh-260px)] flex-1 overflow-y-auto pr-1">
                   {quests.map((q) => {
                     const isShady = q.type === 'shady';
                     return (
                       <div
                         key={q.id}
-                        className={`border-2 p-3 rounded-xl flex flex-col gap-1.5 transition-all ${
-                          isShady
-                            ? 'border-purple-900 bg-purple-950/5'
+                        className={`border-2 p-3 rounded-xl flex flex-col gap-2 transition-all ${
+                          q.isDealAccepted
+                            ? 'border-[#c8961e] bg-[#22180b] shadow-lg ring-1 ring-[#f0c040]/30'
+                            : isShady
+                            ? 'border-purple-900 bg-purple-950/20'
                             : 'border-[#5c3d1a] bg-[#1a1208]/80 hover:border-[#7a5128]'
                         }`}
                       >
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-base">{q.customer.icon}</span>
-                          <span className="font-serif text-xs font-bold text-[#e8d5a3]">
-                            {q.customer.name}
-                          </span>
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-base">{q.customer.icon}</span>
+                            <span className="font-serif text-xs font-bold text-[#e8d5a3]">
+                              {q.customer.name}
+                            </span>
+                          </div>
+                          {q.isDealAccepted ? (
+                            <span className="text-[10px] bg-[#c8961e]/20 text-[#f0c040] border border-[#c8961e]/50 px-2 py-0.5 rounded-full font-serif font-bold flex items-center gap-1 shrink-0">
+                              🤝 Deal podepsán (+40%)
+                            </span>
+                          ) : (
+                            <span className="text-[10px] text-[#7a5f35] font-serif shrink-0">
+                              Standardní poptávka
+                            </span>
+                          )}
                         </div>
+
                         <p className="text-xs text-[#b5945a] leading-relaxed">
                           {q.description}
                         </p>
-                        <div className="flex justify-between items-center text-[10px] mt-1.5 font-serif border-t border-[#5c3d1a]/30 pt-1.5">
-                          <span className="text-[#f0c040] font-bold">💰 {q.reward} zlatých</span>
+
+                        <div className="flex justify-between items-center text-[10px] mt-0.5 font-serif border-t border-[#5c3d1a]/30 pt-2">
+                          <span className="text-[#f0c040] font-bold text-xs">💰 {q.reward} zlatých</span>
                           <span className="text-[#7a5f35]">Vyprší za: {q.expiresIn} vaření</span>
                         </div>
+
+                        {!q.isDealAccepted && (
+                          <button
+                            onClick={() => {
+                              setQuests((prev) =>
+                                prev.map((quest) => {
+                                  if (quest.id === q.id) {
+                                    const boostedReward = Math.round(quest.reward * 1.4);
+                                    addNotification(`🤝 Podepsal jsi Cechovní Deal s ${quest.customer.name}! Odměna zvýšena na 💰 ${boostedReward} zlatých.`, 'success');
+                                    return {
+                                      ...quest,
+                                      isDealAccepted: true,
+                                      reward: boostedReward,
+                                      dealMultiplier: 1.4,
+                                      suspicionGain: Math.min(100, quest.suspicionGain + 5),
+                                    };
+                                  }
+                                  return quest;
+                                })
+                              );
+                            }}
+                            className="w-full py-1.5 bg-gradient-to-r from-[#7a4a10] to-[#c8961e] hover:brightness-110 text-white font-serif font-bold text-[11px] rounded-lg cursor-pointer transition-all shadow flex items-center justify-center gap-1.5 mt-1"
+                          >
+                            🤝 Uzavřít Cechovní Deal (+40% odměna)
+                          </button>
+                        )}
                       </div>
                     );
                   })}
@@ -1879,6 +2149,24 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Settings Modal */}
+      <SettingsModal
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        currentTheme={currentTheme}
+        onSelectTheme={(themeId) => {
+          setCurrentTheme(themeId);
+          localStorage.setItem('alchemix_theme', themeId);
+          const t = THEMES.find((x) => x.id === themeId);
+          addNotification(`🎨 Grafické téma změněno: ${t?.name || themeId}`, 'success');
+        }}
+        onQuickSave={saveGame}
+        onQuickLoad={loadGameManual}
+        onExportSave={handleExportSave}
+        onImportSave={handleImportSave}
+        onResetGame={resetGame}
+      />
 
       {/* Tutorial 3-Recipes Guide Modal */}
       <TutorialGuideModal

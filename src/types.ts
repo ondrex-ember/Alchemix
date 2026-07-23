@@ -246,6 +246,7 @@ export interface GameState {
   silverLining: boolean;
   hasCalendar: boolean;
   residue: CauldronResidue | null;
+  dirtiness?: number;
   ailments: Record<string, boolean>;
   inspiredBrews: number;
   blessedBrews: number;

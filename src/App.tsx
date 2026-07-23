@@ -99,6 +99,7 @@ export default function App() {
   const [inquisitionWarnings, setInquisitionWarnings] = useState<number>(0);
   const [upgrades, setUpgrades] = useState<Record<string, boolean>>({});
   const [residue, setResidue] = useState<CauldronResidue | null>(null);
+  const [dirtiness, setDirtiness] = useState<number>(0);
   const [activeAilments, setActiveAilments] = useState<Record<string, boolean>>({});
   
   // Progression limits
@@ -248,6 +249,7 @@ export default function App() {
         setInquisitionWarnings(d.inquisitionWarnings ?? 0);
         setUpgrades(d.upgrades ?? {});
         setResidue(d.residue ?? null);
+        setDirtiness(d.dirtiness ?? (d.residue ? 45 : 0));
         setActiveAilments(d.ailments ?? {});
         setInspiredBrews(d.inspiredBrews ?? 0);
         setBlessedBrews(d.blessedBrews ?? 0);
@@ -365,7 +367,7 @@ export default function App() {
       gold, inventory, potionInventory, forageExp, slots, process, discovered, hinted, notes, favorites,
       brewed, maxToxSeen, vigor, hunger, gameDay, inventoryMeta, questsCompleted,
       suspicion, inquisitionWarnings, upgrades, maxSlots, grindBonus, cellarBonus,
-      silverLining, hasCalendar, residue, ailments: activeAilments, inspiredBrews,
+      silverLining, hasCalendar, residue, dirtiness, ailments: activeAilments, inspiredBrews,
       blessedBrews, apprenticeBrews, lastEventDay, usedEvents, activeEventId: activeEvent?.id || null,
       merchantDay, merchantStock, marketBan: null, tournament, grimoireFilter: 'all',
       grimoireSort: 'name', swampUnlockBonus, gremiumUnlocked, apprentices, pendingReturn,
@@ -1057,7 +1059,7 @@ export default function App() {
         return next;
       });
 
-      // Save memory residue for next potion
+      // Save memory residue & accumulation dirtiness for next potion
       if (slots.length > 0) {
         const highestToxId = [...slots].sort((a, b) => (ingMap[b]?.toxicity || 0) - (ingMap[a]?.toxicity || 0))[0];
         const carrier = ingMap[highestToxId];
@@ -1072,6 +1074,7 @@ export default function App() {
             toxicity: Math.round(carrier.toxicity * 0.08 * mult),
           });
         }
+        setDirtiness(prev => Math.min(100, prev + 25 + Math.round((vec.toxicity || 0) * 0.1)));
       } else {
         setResidue(null);
       }
@@ -1514,11 +1517,13 @@ export default function App() {
                 brewing={brewingAnimation}
                 liquidColor={slots.length > 0 ? (ingMap[slots[0]]?.color || '#1a3320') : '#1a3320'}
                 residue={residue}
+                dirtiness={dirtiness}
                 onClearResidue={() => {
                   if (vigor >= 5) {
                     setVigor(v => Math.max(0, v - 5));
                     setResidue(null);
-                    addNotification("🧹 Vyčistil jsi kotel od starých zbytků.", "info");
+                    setDirtiness(0);
+                    addNotification("🧹 Vyčistil jsi kotel od usazenin a sazí (Čistota 100%).", "info");
                   }
                 }}
                 vigor={vigor}
@@ -1527,8 +1532,9 @@ export default function App() {
               {/* Added Slots */}
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center px-1">
-                  <span className="text-[10px] text-[#7a5f35] font-serif uppercase tracking-widest">
-                    Vložené suroviny v kotli ({slots.length} / {maxSlots})
+                  <span className="text-[10px] text-[#7a5f35] font-serif uppercase tracking-widest flex items-center gap-1">
+                    <span>🧪 Vložené suroviny v kotli</span>
+                    <span className="text-[#f0c040] font-bold">({slots.length} / {maxSlots})</span>
                   </span>
                   {Object.values(inventory).some(qty => (qty as number) > 0) && slots.length < maxSlots && (
                     <span className="text-[9px] text-[#f0c040] font-serif animate-pulse flex items-center gap-1">
@@ -1536,20 +1542,40 @@ export default function App() {
                     </span>
                   )}
                 </div>
+
+                {/* Banner when Cauldron is Completely Full */}
+                {slots.length === maxSlots && maxSlots > 0 && (
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="bg-gradient-to-r from-amber-950/80 via-[#2a1d0d] to-amber-950/80 border border-[#f0c040] p-2 rounded-xl text-center font-serif text-xs text-[#f0c040] font-bold shadow-[0_0_15px_rgba(240,192,64,0.3)] flex items-center justify-center gap-2 animate-pulse"
+                  >
+                    <span>✨</span>
+                    <span>KOTEL JE NAPLNĚN DO PLNÉ KAPACITY! (Připraven k vaření)</span>
+                    <span>✨</span>
+                  </motion.div>
+                )}
+
                 <div className="grid grid-cols-4 gap-2">
                   {(() => {
                     const hasIngredients = Object.values(inventory).some(qty => (qty as number) > 0);
+                    const isFull = slots.length === maxSlots && maxSlots > 0;
                     return Array.from({ length: maxSlots }).map((_, i) => {
                       const id = slots[i];
                       const item = id ? ingMap[id] : null;
 
                       return (
-                        <div
-                          key={i}
+                        <motion.div
+                          key={`slot-${i}-${id || 'empty'}`}
+                          initial={{ scale: 0.85, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{ type: "spring", stiffness: 350, damping: 22 }}
                           onClick={() => item && removeIngredientFromSlot(i)}
-                          className={`h-16 border rounded-xl flex flex-col items-center justify-center gap-1 cursor-pointer transition-all relative overflow-hidden ${
+                          className={`h-16 border rounded-xl flex flex-col items-center justify-center gap-1 cursor-pointer transition-all relative overflow-hidden select-none ${
                             item
-                              ? 'border-[#5c3d1a] bg-[#1a1208] hover:border-red-500 hover:bg-red-950/20 shadow-md'
+                              ? isFull
+                                ? 'border-[#f0c040] bg-[#221609] hover:border-red-500 hover:bg-red-950/20 shadow-[0_0_12px_rgba(240,192,64,0.4)]'
+                                : 'border-[#c8961e] bg-[#1a1208] hover:border-red-500 hover:bg-red-950/20 shadow-md'
                               : hasIngredients
                               ? 'border-dashed border-[#c8961e] bg-[#c8961e]/10 text-[#f0c040] hover:border-[#f0c040] hover:bg-[#c8961e]/20 animate-pulse shadow-[0_0_12px_rgba(200,150,30,0.25)]'
                               : 'border-dashed border-[#5c3d1a]/40 bg-[#0d0a06]/40 text-[#7a5f35] hover:border-[#7a5128]'
@@ -1558,8 +1584,22 @@ export default function App() {
                         >
                           {item ? (
                             <>
-                              <span className="text-base">{item.type === 'Herb' ? '🌿' : item.type === 'Mineral' ? '💎' : item.type === 'Liquid' ? '💧' : item.type === 'Resin' ? '🪵' : '🐾'}</span>
-                              <span className="text-[9px] font-serif text-center truncate w-full px-1 text-[#e8d5a3] font-semibold">
+                              {/* Animated Liquid Fill-up Wave Effect */}
+                              <motion.div
+                                initial={{ height: "0%", opacity: 0.85 }}
+                                animate={{ height: "100%", opacity: [0.85, 0.25] }}
+                                transition={{ duration: 0.45, ease: "easeOut" }}
+                                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#f0c040]/70 via-[#c8961e]/30 to-transparent pointer-events-none rounded-b-xl"
+                              />
+                              {/* Sparkle Flash Wave */}
+                              <motion.div
+                                initial={{ scale: 0.2, opacity: 1 }}
+                                animate={{ scale: 1.8, opacity: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="absolute inset-0 bg-[#f0c040]/30 rounded-full pointer-events-none m-auto w-8 h-8"
+                              />
+                              <span className="text-base z-10">{item.type === 'Herb' ? '🌿' : item.type === 'Mineral' ? '💎' : item.type === 'Liquid' ? '💧' : item.type === 'Resin' ? '🪵' : '🐾'}</span>
+                              <span className="text-[9px] font-serif text-center truncate w-full px-1 text-[#e8d5a3] font-semibold z-10">
                                 {item.name_cz}
                               </span>
                             </>
@@ -1571,7 +1611,7 @@ export default function App() {
                           ) : (
                             <span className="text-sm text-[#5c3d1a] font-bold">+</span>
                           )}
-                        </div>
+                        </motion.div>
                       );
                     });
                   })()}
